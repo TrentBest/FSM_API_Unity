@@ -1,264 +1,300 @@
-using NUnit.Framework;
-
 using System;
-
+using System.Linq;
+using NUnit.Framework;
 using TheSingularityWorkshop.FSM.API;
 
-using UnityEngine;
-
-/*
- * ? 1. FSM Creation & Registration
-Tests
-
-CreateFiniteStateMachine returns a builder for new name.
-
-CreateFiniteStateMachine returns same builder for duplicate name (already in _buckets).
-
-Register stores FSM definition correctly in _buckets.
-
-    Register throws InvalidOperationException on duplicate FSM name.
-
-? 2. Lookup & Existence
-Tests
-
-Exists returns true for known FSM.
-
-Exists returns false for unknown FSM.
-
-GetAllDefinitionNames returns all registered names.
-
-GetDefinition returns correct FSM definition.
-
-GetDefinition throws KeyNotFoundException for unknown FSM.
-
-GetInstances returns correct instances list.
-
-    GetInstances throws KeyNotFoundException for unknown FSM.
-
-? 3. FSM Instance Management
-Tests
-
-CreateInstance successfully adds a handle to a known FSM.
-
-CreateInstance throws KeyNotFoundException for unknown FSM.
-
-Handle returned has correct Name, Context, and initialState.
-
-Handle transitions update currentState.
-
-TransitionTo() forces state transition and updates state.
-
-    Update() steps FSM with correct current state logic.
-
-? 4. Ticking / Updating
-Process Rates:
-
-FSM with processRate == 0 is skipped.
-
-FSM with processRate > 0 counts down and ticks on zero.
-
-FSM with processRate == -1 ticks every call.
-
-    FSM handle inside tick is updated correctly.
-
-? 5. Performance Watchdog
-Tests
-
-    Update() times the update and only logs if elapsed > 5ms.
-
-        Can mock/stub Stopwatch or inject a test version if needed.
-
-? 6. FSM Removal
-
-(Once DestroyFiniteStateMachine is complete — include these:)
-
-FSM is removed from _buckets.
-
-Subsequent Exists returns false.
-
-DestroyFiniteStateMachine on unknown FSM throws.
-
-FSM instance list is also removed or emptied (depending on implementation).
-
-    Removed FSM no longer ticks or updates.
-
-? 7. Edge Cases & Safety
-Tests
-
-Register FSM with empty string name.
-
-Create instance with null context (if allowed).
-
-Create FSM with unusual characters or very long name.
-
-    Tick when no FSMs exist (safe no-op).
-
-? 8. Thread Safety (Optional / Advanced)
-
-If you ever plan multithreaded FSMs:
-
-Register and CreateInstance on different threads.
-
-Tick from separate thread.
- */
-
-public class FSMTests
+namespace TheSingularityWorkshop.FSM.Tests
 {
-    [Test]
-    public void CreateFiniteStateMachine_ShouldCreateNewFSM_WhenCalledWithValidName()
-    {
-        string fsmName = "TestFSM";
-
-        FSM_API.CreateFiniteStateMachine(fsmName).BuildDefinition();
-
-        Assert.IsTrue(FSM_API.Exists(fsmName));
-        FSM_API.DestroyFiniteStateMachine(fsmName);
-    }
-
-    [Test]
-    public void CreateFiniteStateMachine_With_States_ShouldCreateNewFSM_WithStates()
-    {
-        string fsmName = "TestFSMWithStates";
-        FSM_API.CreateFiniteStateMachine(fsmName)
-        .State("State1", OnEnterState1, OnUpdateState1, OnExitState1)
-               .State("State2", OnEnterState2, OnUpdateState2, OnExitState2)
-               .WithInitialState("State1")
-               .Transition("State1", "State2", ShouldTransitionFromState1ToState2)
-               .Transition("State2", "State1", ShouldTransitionFromState2ToState1)
-               .BuildDefinition();
-        Assert.IsTrue(FSM_API.Exists(fsmName));
-        FSM_API.DestroyFiniteStateMachine(fsmName);
-    }
-
-    [Test]
-    public void CreateFiniteStateMachine_With_States_HasFSMInstance()
-    {
-        string fsmName = "TestFSMWithStates";
-        FSM_API.CreateFiniteStateMachine(fsmName)
-        .State("State1", OnEnterState1, OnUpdateState1, OnExitState1)
-               .State("State2", OnEnterState2, OnUpdateState2, OnExitState2)
-               .WithInitialState("State1")
-               .Transition("State1", "State2", ShouldTransitionFromState1ToState2)
-               .Transition("State2", "State1", ShouldTransitionFromState2ToState1)
-               .BuildDefinition();
-        var context = new TestStateContext { Name = "TestContext" };
-        var fsm = FSM_API.CreateInstance(fsmName,context);
-        Assert.IsNotNull(fsm);
-        FSM_API.DestroyFiniteStateMachine(fsmName);
-    }
-
-    [Test]
-    public void CreateFiniteStateMachine_With_States_ChangesStateWhenStepped()
-    {
-        string fsmName = "TestFSMWithStates2";
-        FSM_API.CreateFiniteStateMachine(fsmName,-1)
-        .State("State1", OnEnterState1, OnUpdateState1, OnExitState1)
-               .State("State2", OnEnterState2, OnUpdateState2, OnExitState2)
-               .WithInitialState("State1")
-               .Transition("State1", "State2", ShouldTransitionFromState1ToState2)
-               .Transition("State2", "State1", ShouldTransitionFromState2ToState1)
-               .BuildDefinition();
-        var context = new TestStateContext { Name = "TestContext" };
-        var fsm = FSM_API.CreateInstance(fsmName, context);
-        FSM_API.Update();
-
-        Assert.IsTrue(fsm.currentState == "State2");
-        FSM_API.DestroyFiniteStateMachine(fsmName);
-    }
-
-
-    private class TestStateContext : IStateContext
+    // Simple test double for IStateContext
+    public class FSMTestContext : IStateContext
     {
         public string Name { get; set; }
-        public object UserData { get; set; }
-        public bool EnteredState { get; } = false;
-        public bool ShouldTransition { get; } = false;
+        public bool IsValid { get; set; } = true;
     }
 
-    private void OnEnterState1(IStateContext context)
+    [TestFixture]
+    public class FSMTests
     {
-        Debug.Log("Entering State 1");
-    }
+        private API.FSM _fsm;
+        private FSMTestContext _context;
 
-    private void OnUpdateState1(IStateContext context)
-    {
-        Debug.Log("Updating State 1");
-    }
+        [SetUp]
+        public void SetUp()
+        {
+            _fsm = new API.FSM { Name = "TestFSM", InitialState = "Idle" };
+            _context = new FSMTestContext { Name = "TestContext" };
+        }
 
-    private void OnExitState1(IStateContext context)
-    {
-        Debug.Log("Exiting State 1");
-    }
+        [Test]
+        public void AddState_AddsAndOverwritesStates()
+        {
+            var state1 = new FSMState("Idle");
+            var state2 = new FSMState("Idle", c => { }); // Overwrite
+            _fsm.AddState(state1);
+            Assert.IsTrue(_fsm.HasState("Idle"));
+            _fsm.AddState(state2);
+            Assert.AreEqual(state2, _fsm.GetAllStates().First(s => s.Name == "Idle"));
+        }
 
-    private void OnEnterState2(IStateContext context)
-    {
-        Debug.Log("Entering State 2");
-    }
+        [Test]
+        public void AddState_NullState_ReportsError()
+        {
+            bool errorCalled = false;
+            FSM_API.OnInternalApiError += (msg, ex) => errorCalled = true;
+            _fsm.AddState(null);
+            FSM_API.OnInternalApiError -= (msg, ex) => errorCalled = true;
+            Assert.IsFalse(_fsm.HasState("null"));
+            Assert.IsTrue(errorCalled);
+        }
 
-    private void OnUpdateState2(IStateContext context)
-    {
-        Debug.Log("Updating State 2");
-    }
+        [Test]
+        public void AddTransition_AddsAndReplacesTransition()
+        {
+            _fsm.AddState(new FSMState("A"));
+            _fsm.AddState(new FSMState("B"));
+            Func<IStateContext, bool> cond1 = c => true;
+            Func<IStateContext, bool> cond2 = c => false;
+            _fsm.AddTransition("A", "B", cond1);
+            Assert.AreEqual(1, _fsm.GetAllTransitions().Count);
+            _fsm.AddTransition("A", "B", cond2); // Should replace
+            Assert.AreEqual(1, _fsm.GetAllTransitions().Count);
+            Assert.AreEqual(cond2, _fsm.GetAllTransitions().First().Condition);
+        }
 
-    private void OnExitState2(IStateContext context)
-    {
-        Debug.Log("Exiting State 2");
-    }
+        [Test]
+        public void AddTransition_NullCondition_ReportsError()
+        {
+            bool errorCalled = false;
+            FSM_API.OnInternalApiError += (msg, ex) => errorCalled = true;
+            _fsm.AddTransition("A", "B", null);
+            FSM_API.OnInternalApiError -= (msg, ex) => errorCalled = true;
+            Assert.IsTrue(errorCalled);
+        }
 
-    private bool ShouldTransitionFromState1ToState2(IStateContext context)
-    {
-        Debug.Log("Checking transition from State 1 to State 2");
-        return true;
-    }
+        [Test]
+        public void AddAnyStateTransition_AddsAndReplacesAnyStateTransition()
+        {
+            _fsm.AddState(new FSMState("B"));
+            Func<IStateContext, bool> cond1 = c => true;
+            Func<IStateContext, bool> cond2 = c => false;
+            _fsm.AddAnyStateTransition("B", cond1);
+            Assert.AreEqual(1, _fsm.GetAllTransitions().Count);
+            _fsm.AddAnyStateTransition("B", cond2); // Should replace
+            Assert.AreEqual(1, _fsm.GetAllTransitions().Count);
+            Assert.AreEqual(cond2, _fsm.GetAllTransitions().First().Condition);
+        }
 
-    private bool ShouldTransitionFromState2ToState1(IStateContext context)
-    {
-        Debug.Log("Checking transition from State 2 to State 1");
-        return true;
-    }
-}
+        [Test]
+        public void AddAnyStateTransition_NullCondition_ReportsError()
+        {
+            bool errorCalled = false;
+            FSM_API.OnInternalApiError += (msg, ex) => errorCalled = true;
+            _fsm.AddAnyStateTransition("B", null);
+            FSM_API.OnInternalApiError -= (msg, ex) => errorCalled = true;
+            Assert.IsTrue(errorCalled);
+        }
 
-public class FSMInstanceTests
-{
+        [Test]
+        public void HasState_ReturnsCorrectly()
+        {
+            Assert.IsFalse(_fsm.HasState("Idle"));
+            _fsm.AddState(new FSMState("Idle"));
+            Assert.IsTrue(_fsm.HasState("Idle"));
+        }
 
-}
+        [Test]
+        public void GetAllStates_ReturnsAllStates()
+        {
+            _fsm.AddState(new FSMState("A"));
+            _fsm.AddState(new FSMState("B"));
+            var states = _fsm.GetAllStates();
+            Assert.AreEqual(2, states.Count);
+            Assert.IsTrue(states.Any(s => s.Name == "A"));
+            Assert.IsTrue(states.Any(s => s.Name == "B"));
+        }
 
-public class FSMTickingTests
-{
+        [Test]
+        public void GetAllTransitions_ReturnsAllTransitions()
+        {
+            _fsm.AddState(new FSMState("A"));
+            _fsm.AddState(new FSMState("B"));
+            _fsm.AddTransition("A", "B", c => true);
+            _fsm.AddAnyStateTransition("B", c => false);
+            var transitions = _fsm.GetAllTransitions();
+            Assert.AreEqual(2, transitions.Count);
+        }
 
-}
+        [Test]
+        public void EnterInitial_ThrowsAndReportsError_IfInitialStateMissing()
+        {
+            _fsm.InitialState = "Missing";
+            bool errorCalled = false;
+            FSM_API.OnInternalApiError += (msg, ex) => errorCalled = true;
+            Assert.Throws<ArgumentException>(() => _fsm.EnterInitial(_context));
+            FSM_API.OnInternalApiError -= (msg, ex) => errorCalled = true;
+            Assert.IsTrue(errorCalled);
+        }
 
-public class  FSMRemovalTests
-{
-    
-}
+        [Test]
+        public void EnterInitial_CallsEnterOnInitialState()
+        {
+            bool entered = false;
+            _fsm.AddState(new FSMState("Idle", c => entered = true));
+            _fsm.EnterInitial(_context);
+            Assert.IsTrue(entered);
+        }
 
-[TestFixture]
-public class FSMEdgeCaseTests
-{
-    class TestContext : IStateContext
-    {
-        public string Name { get; set; }
-        public int TickCount = 0;
+        [Test]
+        public void Step_RecoversIfCurrentStateMissing()
+        {
+            _fsm.AddState(new FSMState("Idle"));
+            _fsm.InitialState = "Idle";
+            bool errorCalled = false;
+            FSM_API.OnInternalApiError += (msg, ex) => errorCalled = true;
+            string next;
+            _fsm.Step("Missing", _context, out next);
+            FSM_API.OnInternalApiError -= (msg, ex) => errorCalled = true;
+            Assert.AreEqual("Idle", next);
+            Assert.IsTrue(errorCalled);
+        }
 
-        public bool EnteredState { get; } = false;
-        public bool ShouldTransition { get; } = false;
-    }
+        [Test]
+        public void Step_AnyStateTransition_TakesPriority()
+        {
+            bool exited = false, entered = false;
+            _fsm.AddState(new FSMState("A", null, null, c => exited = true));
+            _fsm.AddState(new FSMState("B", c => entered = true));
+            _fsm.AddAnyStateTransition("B", c => true);
+            string next;
+            _fsm.Step("A", _context, out next);
+            Assert.IsTrue(exited);
+            Assert.IsTrue(entered);
+            Assert.AreEqual("B", next);
+        }
 
-    //private FSM<IStateContext> BuildSimpleMachine(string name)
-    //{
-    //    return new FSMBuilder<IStateContext>(name, processRate: -1)
-    //        .State("Idle", onUpdate: ctx => ((TestContext)ctx).TickCount++)
-    //        .BuildDefinition();
-    //}
+        [Test]
+        public void Step_RegularTransition_IfNoAnyState()
+        {
+            bool exited = false, entered = false;
+            _fsm.AddState(new FSMState("A", null, null, c => exited = true));
+            _fsm.AddState(new FSMState("B", c => entered = true));
+            _fsm.AddTransition("A", "B", c => true);
+            string next;
+            _fsm.Step("A", _context, out next);
+            Assert.IsTrue(exited);
+            Assert.IsTrue(entered);
+            Assert.AreEqual("B", next);
+        }
 
-    [SetUp]
-    public void Clear()
-    {
-        // Not part of your current API, but ideally you'd have:
-        // GenericStateMachineAPI.ClearAll(); 
-        // For now, just destroy a known test FSM
-        if (FSM_API.Exists("TestFSM"))
-            FSM_API.DestroyFiniteStateMachine("TestFSM");
+        [Test]
+        public void Step_UpdatesState_IfNoTransition()
+        {
+            bool updated = false;
+            _fsm.AddState(new FSMState("A", null, c => updated = true));
+            string next;
+            _fsm.Step("A", _context, out next);
+            Assert.IsTrue(updated);
+            Assert.AreEqual("A", next);
+        }
+
+        [Test]
+        public void Step_TransitionToNonExistentState_ReportsError()
+        {
+            _fsm.AddState(new FSMState("A"));
+            _fsm.AddAnyStateTransition("Missing", c => true);
+            bool errorCalled = false;
+            FSM_API.OnInternalApiError += (msg, ex) => errorCalled = true;
+            string next;
+            _fsm.Step("A", _context, out next);
+            FSM_API.OnInternalApiError -= (msg, ex) => errorCalled = true;
+            Assert.IsTrue(errorCalled);
+            Assert.AreEqual("A", next);
+        }
+
+        [Test]
+        public void Step_TransitionConditionThrows_ReportsError()
+        {
+            _fsm.AddState(new FSMState("A"));
+            _fsm.AddAnyStateTransition("A", c => throw new Exception("Condition failed"));
+            bool errorCalled = false;
+            FSM_API.OnInternalApiError += (msg, ex) => errorCalled = true;
+            string next;
+            _fsm.Step("A", _context, out next);
+            FSM_API.OnInternalApiError -= (msg, ex) => errorCalled = true;
+            Assert.IsTrue(errorCalled);
+            Assert.AreEqual("A", next);
+        }
+
+        [Test]
+        public void Step_UpdateThrows_ReportsError()
+        {
+            _fsm.AddState(new FSMState("A", null, c => throw new Exception("Update failed")));
+            bool errorCalled = false;
+            FSM_API.OnInternalApiError += (msg, ex) => errorCalled = true;
+            string next;
+            _fsm.Step("A", _context, out next);
+            FSM_API.OnInternalApiError -= (msg, ex) => errorCalled = true;
+            Assert.IsTrue(errorCalled);
+            Assert.AreEqual("A", next);
+        }
+
+        [Test]
+        public void ForceTransition_ExitsAndEntersStates()
+        {
+            bool exited = false, entered = false;
+            _fsm.AddState(new FSMState("A", null, null, c => exited = true));
+            _fsm.AddState(new FSMState("B", c => entered = true));
+            _fsm.ForceTransition("A", "B", _context);
+            Assert.IsTrue(exited);
+            Assert.IsTrue(entered);
+        }
+
+        [Test]
+        public void ForceTransition_ThrowsAndReportsError_IfTargetStateMissing()
+        {
+            _fsm.AddState(new FSMState("A"));
+            bool errorCalled = false;
+            FSM_API.OnInternalApiError += (msg, ex) => errorCalled = true;
+            Assert.Throws<ArgumentException>(() => _fsm.ForceTransition("A", "Missing", _context));
+            FSM_API.OnInternalApiError -= (msg, ex) => errorCalled = true;
+            Assert.IsTrue(errorCalled);
+        }
+
+        [Test]
+        public void ForceTransition_ReportsError_IfFromStateMissing()
+        {
+            _fsm.AddState(new FSMState("B"));
+            bool errorCalled = false;
+            FSM_API.OnInternalApiError += (msg, ex) => errorCalled = true;
+            _fsm.ForceTransition("Missing", "B", _context);
+            FSM_API.OnInternalApiError -= (msg, ex) => errorCalled = true;
+            Assert.IsTrue(errorCalled);
+        }
+
+        [Test]
+        public void ForceTransition_ExitThrows_ReportsError_AndStillEnters()
+        {
+            bool entered = false;
+            _fsm.AddState(new FSMState("A", null, null, c => throw new Exception("Exit failed")));
+            _fsm.AddState(new FSMState("B", c => entered = true));
+            bool errorCalled = false;
+            FSM_API.OnInternalApiError += (msg, ex) => errorCalled = true;
+            _fsm.ForceTransition("A", "B", _context);
+            FSM_API.OnInternalApiError -= (msg, ex) => errorCalled = true;
+            Assert.IsTrue(errorCalled);
+            Assert.IsTrue(entered);
+        }
+
+        [Test]
+        public void ForceTransition_EnterThrows_ReportsError_AndThrows()
+        {
+            _fsm.AddState(new FSMState("A"));
+            _fsm.AddState(new FSMState("B", c => throw new Exception("Enter failed")));
+            bool errorCalled = false;
+            FSM_API.OnInternalApiError += (msg, ex) => errorCalled = true;
+            Assert.Throws<Exception>(() => _fsm.ForceTransition("A", "B", _context));
+            FSM_API.OnInternalApiError -= (msg, ex) => errorCalled = true;
+            Assert.IsTrue(errorCalled);
+        }
     }
 }

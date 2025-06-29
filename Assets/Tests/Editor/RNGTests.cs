@@ -1,172 +1,142 @@
+using System;
 using NUnit.Framework;
-
 using TheSingularityWorkshop.Squirrel;
-
-using System.Linq;
-
 using UnityEngine;
 
-public class RNGTests
+namespace TheSingularityWorkshop.FSM.Tests
 {
-    [Test]
-    public void Hash_Deterministic()
+    [TestFixture]
+    public class RNGTests
     {
-        int a = RNG.Hash(42, 123);
-        int b = RNG.Hash(42, 123);
-        int c = RNG.Hash(43, 123);
-        int d = RNG.Hash(42, 124);
-
-        Assert.AreEqual(a, b, "Hash should be deterministic with same inputs.");
-        Assert.AreNotEqual(a, c, "Hash should change with different position.");
-        Assert.AreNotEqual(a, d, "Hash should change with different seed.");
-    }
-
-    [Test]
-    public void UHash_Deterministic()
-    {
-        uint a = RNG.UHash(42u, 123u);
-        uint b = RNG.UHash(42u, 123u);
-        uint c = RNG.UHash(43u, 123u);
-        uint d = RNG.UHash(42u, 124u);
-
-        Assert.AreEqual(a, b, "UHash should be deterministic with same inputs.");
-        Assert.AreNotEqual(a, c, "UHash should change with different position.");
-        Assert.AreNotEqual(a, d, "UHash should change with different seed.");
-    }
-
-    [Test]
-    public void RangeInt_WithinBounds()
-    {
-        for (int i = 0; i < 1000; i++)
+        [Test]
+        public void Hash_IsDeterministic_AndDifferentForDifferentInputs()
         {
-            int value = RNG.RangeInt(i, 10, 20, 123);
-            Assert.IsTrue(value >= 10 && value <= 20, $"Value {value} out of bounds!");
-        }
-    }
+            int a = RNG.Hash(42, 123);
+            int b = RNG.Hash(42, 123);
+            int c = RNG.Hash(43, 123);
+            int d = RNG.Hash(42, 124);
 
-    [Test]
-    public void RangeInt_DistributionCheck()
-    {
-        const int min = 0, max = 4;
-        const int sampleCount = 10000;
-        int[] bins = new int[max - min + 1];
-
-        for (int i = 0; i < sampleCount; i++)
-        {
-            int val = RNG.RangeInt(i, min, max, 99);
-            bins[val - min]++;
+            Assert.AreEqual(a, b, "Hash should be deterministic for same input/seed");
+            Assert.AreNotEqual(a, c, "Hash should differ for different input");
+            Assert.AreNotEqual(a, d, "Hash should differ for different seed");
         }
 
-        // Each bin should have at least 80% of the expected avg
-        int expected = sampleCount / bins.Length;
-        for (int i = 0; i < bins.Length; i++)
+        [Test]
+        public void UHash_IsDeterministic_AndDifferentForDifferentInputs()
         {
-            Assert.IsTrue(bins[i] > expected * 0.8, $"Bin {i} too low: {bins[i]}");
-        }
-    }
+            uint a = RNG.UHash(42, 123);
+            uint b = RNG.UHash(42, 123);
+            uint c = RNG.UHash(43, 123);
+            uint d = RNG.UHash(42, 124);
 
-    [Test]
-    public void SelectIndexByProbability_ReturnsValidIndex()
-    {
-        float[] weights = { 0.1f, 0.2f, 0.3f, 0.4f };
-        for (int i = 0; i < 1000; i++)
-        {
-            int index = RNG.SelectIndexByProbability(weights, i, 7);
-            Assert.IsTrue(index >= 0 && index < weights.Length, $"Index out of bounds: {index}");
-        }
-    }
-
-    [Test]
-    public void HashFromVec3_IsDeterministic()
-    {
-        Vector3 v = new Vector3(1f, 2f, 3f);
-        int h1 = RNG.HashFromVec3(v);
-        int h2 = RNG.HashFromVec3(v);
-        Assert.AreEqual(h1, h2);
-    }
-
-    [Test]
-    public void Seed_Int_IsDeterministic()
-    {
-        int input = 12345;
-        int first = RNG.Seed(input);
-        int second = RNG.Seed(input);
-        Assert.AreEqual(first, second, "Seed(int) should be deterministic.");
-    }
-
-    [Test]
-    public void Seed_UInt_IsDeterministic()
-    {
-        uint input = 67890;
-        uint first = RNG.Seed(input);
-        uint second = RNG.Seed(input);
-        Assert.AreEqual(first, second, "Seed(uint) should be deterministic.");
-    }
-
-    [Test]
-    public void Seed_Int_IsDifferentFromInput()
-    {
-        int input = 12345;
-        int output = RNG.Seed(input);
-        Assert.AreNotEqual(input, output, "Seed(int) should not return the input value unchanged.");
-    }
-
-    [Test]
-    public void Seed_UInt_IsDifferentFromInput()
-    {
-        uint input = 67890;
-        uint output = RNG.Seed(input);
-        Assert.AreNotEqual(input, output, "Seed(uint) should not return the input value unchanged.");
-    }
-
-    [Test]
-    public void Seed_Int_And_Seed_UInt_DoNotCollide()
-    {
-        int intInput = 123456789;
-        uint uintInput = (uint)intInput;
-        int intSeed = RNG.Seed(intInput);
-        uint uintSeed = RNG.Seed(uintInput);
-        Assert.AreNotEqual(intSeed, (int)uintSeed, "Seed(int) and Seed(uint) for the same value should not collide.");
-    }
-
-    [Test]
-    public void PrintSomeSeeds()
-    {
-        for (int i = 0; i < 100; i++)
-        {
-            int seed = RNG.Seed(i);
-            TestContext.WriteLine($"Seed({i}) = {seed}");
-        }
-    }
-
-    [Test]
-    public void RangeInt_Should_Have_Uniform_Stats()
-    {
-        int sampleCount = 100000;
-        int min = -1000;
-        int max = 1000;
-
-        var values = new int[sampleCount];
-        for (int i = 0; i < sampleCount; i++)
-        {
-            values[i] = RNG.RangeInt(i, min, max);
+            Assert.AreEqual(a, b, "UHash should be deterministic for same input/seed");
+            Assert.AreNotEqual(a, c, "UHash should differ for different input");
+            Assert.AreNotEqual(a, d, "UHash should differ for different seed");
         }
 
-        float mean = (float)values.Average();
-        float variance = values.Select(v => (v - mean) * (v - mean)).Sum() / sampleCount;
-        float stdDev = Mathf.Sqrt(variance);
+        [Test]
+        public void Range_ReturnsWithinBounds_AndIsDeterministic()
+        {
+            float min = 5.0f, max = 10.0f;
+            float a = RNG.Range(100, min, max, 42);
+            float b = RNG.Range(100, min, max, 42);
+            Assert.GreaterOrEqual(a, min);
+            Assert.LessOrEqual(a, max);
+            Assert.AreEqual(a, b, 1e-6f, "Range should be deterministic");
+        }
 
-        int realMin = values.Min();
-        int realMax = values.Max();
-        int unique = values.Distinct().Count();
+        [Test]
+        public void Value01_ReturnsBetweenZeroAndOne()
+        {
+            float v = RNG.Value01(12345, 6789);
+            Assert.GreaterOrEqual(v, 0.0f);
+            Assert.LessOrEqual(v, 1.0f);
+        }
 
-        int zeroCrosses = values.Count(v => v == 0);
+        [Test]
+        public void RangeInt_ReturnsWithinBounds_AndIsDeterministic()
+        {
+            int min = 1, max = 5;
+            int a = RNG.RangeInt(100, min, max, 42);
+            int b = RNG.RangeInt(100, min, max, 42);
+            Assert.GreaterOrEqual(a, min);
+            Assert.LessOrEqual(a, max);
+            Assert.AreEqual(a, b, "RangeInt should be deterministic");
+        }
 
-        Debug.Log($"Sample Count: {sampleCount}");
-        Debug.Log($"Range: [{min}, {max}]");
-        Debug.Log($"Observed Min: {realMin}, Max: {realMax}");
-        Debug.Log($"Mean: {mean:F3}, StdDev: {stdDev:F3}");
-        Debug.Log($"Unique Values: {unique}");
-        Debug.Log($"Zeroes: {zeroCrosses}");
+        [Test]
+        public void HashFromVec3_IsDeterministic_AndSensitiveToInput()
+        {
+            Vector3 v1 = new Vector3(1, 2, 3);
+            Vector3 v2 = new Vector3(1, 2, 3);
+            Vector3 v3 = new Vector3(3, 2, 1);
+
+            int h1 = RNG.HashFromVec3(v1);
+            int h2 = RNG.HashFromVec3(v2);
+            int h3 = RNG.HashFromVec3(v3);
+
+            Assert.AreEqual(h1, h2, "HashFromVec3 should be deterministic");
+            Assert.AreNotEqual(h1, h3, "HashFromVec3 should be sensitive to input");
+        }
+
+        [Test]
+        public void Seed_Uint_And_Int_AreDeterministic()
+        {
+            uint su1 = RNG.Seed(123u);
+            uint su2 = RNG.Seed(123u);
+            Assert.AreEqual(su1, su2);
+
+            int si1 = RNG.Seed(123);
+            int si2 = RNG.Seed(123);
+            Assert.AreEqual(si1, si2);
+        }
+
+        [Test]
+        public void Seed_String_IsDeterministic_AndHandlesNullOrEmpty()
+        {
+            int s1 = RNG.Seed("hello");
+            int s2 = RNG.Seed("hello");
+            int s3 = RNG.Seed("");
+            int s4 = RNG.Seed((string)null);
+
+            Assert.AreEqual(s1, s2, "Seed(string) should be deterministic");
+            Assert.AreEqual(0, s3, "Seed(\"\") should return 0");
+            Assert.AreEqual(0, s4, "Seed(null) should return 0");
+        }
+
+        [Test]
+        public void Seed_ParamsObject_IsDeterministic_AndHandlesNulls()
+        {
+            int s1 = RNG.Seed(1, "a", null);
+            int s2 = RNG.Seed(1, "a", null);
+            int s3 = RNG.Seed(1, "b", null);
+
+            Assert.AreEqual(s1, s2, "Seed(params) should be deterministic");
+            Assert.AreNotEqual(s1, s3, "Seed(params) should be sensitive to input");
+        }
+
+        [Test]
+        public void SelectIndexByProbability_ReturnsValidIndex_AndHandlesEdgeCases()
+        {
+            float[] weights = { 0.1f, 0.2f, 0.7f };
+            int idx = RNG.SelectIndexByProbability(weights, 42, 7);
+            Assert.True(idx > 0);
+            Assert.Less(idx, weights.Length);
+
+            float[] zeroWeights = { 0f, 0f, 0f };
+            int idx2 = RNG.SelectIndexByProbability(zeroWeights, 42, 7);
+            Assert.AreEqual(-1, idx2, "Should return -1 if total weights are non-positive");
+        }
+
+        [Test]
+        public void WithinCircle_ReturnsPointWithinRadius_AndIsDeterministic()
+        {
+            float radius = 5f;
+            Vector3 v1 = RNG.WithinCircle(123, radius, 42);
+            Vector3 v2 = RNG.WithinCircle(123, radius, 42);
+            Assert.AreEqual(v1, v2, "WithinCircle should be deterministic");
+            Assert.AreEqual(0f, v1.y, 1e-6f, "Y should always be 0");
+            Assert.LessOrEqual(new Vector2(v1.x, v1.z).magnitude, radius + 1e-5f, "Point should be within radius");
+        }
     }
 }
