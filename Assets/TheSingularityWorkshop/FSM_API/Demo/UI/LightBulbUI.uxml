@@ -1,0 +1,9 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/TheSingularityWorkshop/FSM_API/Demo/UI/LightBulbStyle.uss?fileID=7433441132597879392&amp;guid=c9f24cb3a410be847b5475944104a714&amp;type=3#LightBulbStyle" />
+    <engine:VisualElement style="flex-grow: 1;">
+        <engine:Label text="OFF" selectable="true" name="bulbStatusLabel" style="right: auto; align-items: auto; align-self: center;" />
+        <engine:Button text="On" name="onButton" />
+        <engine:Button text="Off" name="offButton" />
+        <engine:Button text="Blink" name="blinkButton" />
+    </engine:VisualElement>
+</engine:UXML>

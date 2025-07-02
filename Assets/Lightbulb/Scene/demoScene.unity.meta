@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 44c7180f67aec31458feb5c7127c4690
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 218258
+  packageName: LightBulb
+  packageVersion: 1.0
+  assetPath: Assets/Lightbulb/Scene/demoScene.unity
+  uploadId: 499509
