@@ -25,7 +25,7 @@ namespace TheSingularityWorkshop.FSM.API
         /// Occurs when an internal, non-state-logic API operation throws an unexpected exception.
         /// Provides a mechanism for users to capture internal API errors without forcing runtime logging.
         /// </summary>
-        public static event Action<string, Exception> OnInternalApiError;
+        public static event System.Action<FSMErrorEventArgs> OnInternalApiError;
 
         /// <summary>
         /// Safely invokes the OnInternalApiError event, checking for null subscribers.
@@ -33,9 +33,20 @@ namespace TheSingularityWorkshop.FSM.API
         /// </summary>
         /// <param name="message">The error message.</param>
         /// <param name="ex">The exception that occurred, if any.</param>
-        internal static void InvokeInternalApiError(string message, Exception ex)
+        public static void InvokeInternalApiError(FSMErrorType errorType, string message, System.Exception ex = null,
+                                            IStateContext context = null, string fsmName = null, string stateName = null)
         {
-            OnInternalApiError?.Invoke(message, ex);
+            // Ensure the message provides some detail even if null/empty
+            if (string.IsNullOrEmpty(message))
+            {
+                message = $"An internal FSM API error occurred ({errorType}).";
+                if (ex != null)
+                {
+                    message += $" Exception: {ex.GetType().Name}.";
+                }
+            }
+
+            OnInternalApiError?.Invoke(new FSMErrorEventArgs(errorType, message, ex, context, fsmName, stateName));
         }
 
         /// <summary>
@@ -119,7 +130,7 @@ namespace TheSingularityWorkshop.FSM.API
             }
             else
             {
-                InvokeInternalApiError($"Attempted to remove non-existent processing group '{processingGroup}'.", null);
+                InvokeInternalApiError(FSMErrorType.InvalidOperation, $"Attempted to remove non-existent processing group '{processingGroup}'.", null);
             }
         }
 
@@ -146,7 +157,7 @@ namespace TheSingularityWorkshop.FSM.API
             }
             if (processRate < -1)
             {
-                InvokeInternalApiError($"Invalid processRate '{processRate}' for FSM '{fsmName}'. Setting to 0 (event-driven).", null);
+                InvokeInternalApiError(FSMErrorType.DefinitionError, $"Invalid processRate '{processRate}' for FSM '{fsmName}'. Setting to 0 (event-driven).", null);
                 processRate = 0;
             }
 
@@ -196,7 +207,7 @@ namespace TheSingularityWorkshop.FSM.API
                 existingBucket.Definition = fsm;
                 existingBucket.ProcessRate = processRate;
                 existingBucket.Counter = processRate > 0 ? processRate : 0; // Reset counter for new rate
-                InvokeInternalApiError($"FSM '{fsmName}' in processing group '{processingGroup}' definition updated at runtime.", null);
+                InvokeInternalApiError(FSMErrorType.DefinitionError,$"FSM '{fsmName}' in processing group '{processingGroup}' definition updated at runtime.", null);
             }
             else
             {
@@ -207,7 +218,7 @@ namespace TheSingularityWorkshop.FSM.API
                     ProcessRate = processRate,
                     Counter = processRate > 0 ? processRate : 0,
                 };
-                InvokeInternalApiError($"FSM '{fsmName}' in processing group '{processingGroup}' newly registered.", null);
+                InvokeInternalApiError(FSMErrorType.DefinitionError, $"FSM '{fsmName}' in processing group '{processingGroup}' newly registered.", null);
             }
         }
 
@@ -347,39 +358,7 @@ namespace TheSingularityWorkshop.FSM.API
             return handle;
         }
 
-        /// <summary>
-        /// Processes all FSMs in the "LateUpdate" processing group. Call this method from a
-        /// MonoBehaviour's <c>LateUpdate()</c> method in your main application to
-        /// ensure FSMs update at the end of each frame.
-        /// </summary>
-        public static void LateUpdate()
-        {
-            var sw = Stopwatch.StartNew();
-            TickAll("LateUpdate");
-            ProcessDeferredModifications();
-            sw.Stop();
-            if (sw.ElapsedMilliseconds > TickPerformanceWarningThresholdMs)
-            {
-                InvokeInternalApiError($"'LateUpdate' tick took {sw.ElapsedMilliseconds}ms. Threshold: {TickPerformanceWarningThresholdMs}ms.", null);
-            }
-        }
-
-        /// <summary>
-        /// Processes all FSMs in the "FixedUpdate" processing group. Call this method from a
-        /// MonoBehaviour's <c>FixedUpdate()</c> method in your main application to
-        /// ensure FSMs update on a fixed time interval, ideal for physics-related FSMs.
-        /// </summary>
-        public static void FixedUpdate()
-        {
-            var sw = Stopwatch.StartNew();
-            TickAll("FixedUpdate");
-            ProcessDeferredModifications();
-            sw.Stop();
-            if (sw.ElapsedMilliseconds > TickPerformanceWarningThresholdMs)
-            {
-                InvokeInternalApiError($"'FixedUpdate' tick took {sw.ElapsedMilliseconds}ms. Threshold: {TickPerformanceWarningThresholdMs}ms.", null);
-            }
-        }
+       
 
         /// <summary>
         /// Processes all FSMs in the "Update" processing group. Call this method from a
@@ -394,7 +373,7 @@ namespace TheSingularityWorkshop.FSM.API
             sw.Stop();
             if (sw.ElapsedMilliseconds > TickPerformanceWarningThresholdMs)
             {
-                InvokeInternalApiError($"'Update' tick took {sw.ElapsedMilliseconds}ms. Threshold: {TickPerformanceWarningThresholdMs}ms.", null);
+                InvokeInternalApiError(FSMErrorType.RuntimeError,$"'Update' tick took {sw.ElapsedMilliseconds}ms. Threshold: {TickPerformanceWarningThresholdMs}ms.", null);
             }
         }
 
@@ -413,7 +392,7 @@ namespace TheSingularityWorkshop.FSM.API
                 }
                 catch (Exception ex)
                 {
-                    InvokeInternalApiError("Error during deferred API modification.", ex);
+                    InvokeInternalApiError(FSMErrorType.RuntimeError,"Error during deferred API modification.", ex);
                 }
             }
         }
@@ -427,7 +406,7 @@ namespace TheSingularityWorkshop.FSM.API
         {
             if (string.IsNullOrWhiteSpace(processingGroup))
             {
-                InvokeInternalApiError("TickAll called with null or empty processing group.", null);
+                InvokeInternalApiError(FSMErrorType.InvalidOperation,"TickAll called with null or empty processing group.", null);
                 return;
             }
 
@@ -501,13 +480,13 @@ namespace TheSingularityWorkshop.FSM.API
 
             if (!_buckets.TryGetValue(processingGroup, out var categoryBuckets))
             {
-                InvokeInternalApiError($"Attempted to destroy FSM '{fsmName}' from non-existent processing group '{processingGroup}'.", null);
+                InvokeInternalApiError(FSMErrorType.InvalidOperation,$"Attempted to destroy FSM '{fsmName}' from non-existent processing group '{processingGroup}'.", null);
                 return;
             }
 
             if (!categoryBuckets.TryGetValue(fsmName, out var bucket))
             {
-                InvokeInternalApiError($"Attempted to destroy non-existent FSM '{fsmName}' in processing group '{processingGroup}'.", null);
+                InvokeInternalApiError(FSMErrorType.InvalidOperation, $"Attempted to destroy non-existent FSM '{fsmName}' in processing group '{processingGroup}'.", null);
                 return;
             }
 
@@ -558,7 +537,7 @@ namespace TheSingularityWorkshop.FSM.API
             if (!removed)
             {
                 // Log a warning if the instance wasn't found, indicating it might have already been removed.
-                InvokeInternalApiError(
+                InvokeInternalApiError(FSMErrorType.InvalidOperation,
                     $"FSMHandle '{instance.Name}' not found in any registered FSM in any group for unregistration. It might have already been unregistered or was never registered.",
                     null
                 );
@@ -571,7 +550,7 @@ namespace TheSingularityWorkshop.FSM.API
         {
             if (handle == null)
             {
-                InvokeInternalApiError("Attempted to report error for a null FSMHandle.", ex);
+                InvokeInternalApiError(FSMErrorType.InvalidOperation, "Attempted to report error for a null FSMHandle.", ex);
                 return;
             }
 
@@ -589,17 +568,20 @@ namespace TheSingularityWorkshop.FSM.API
             }
 
             // Report the specific error
-            InvokeInternalApiError(
-                $"FSM Instance '{handle.Name}' (Definition: '{handle.Definition.Name}') in processing group '{handle.Definition.ProcessingGroup}' reported an error. Error count: {newInstanceCount}/{ErrorCountThreshold}. Exception: {ex?.Message}",
-                ex
-            );
+            InvokeInternalApiError(FSMErrorType.RuntimeError, 
+                $"FSM instance '{handle.Name}' (FSM: '{handle.Definition.Name}') exceeded error threshold. Removing.",
+                null, 
+                handle.Context, 
+                handle.Definition.Name, 
+                handle.CurrentState);
+            
 
             if (newInstanceCount >= ErrorCountThreshold)
             {
                 // Instance hit its error threshold, schedule its removal
                 _deferredModifications.Enqueue(() =>
                 {
-                    InvokeInternalApiError($"FSM Instance '{handle.Name}' (Definition: '{handle.Definition.Name}') hit Error Threshold ({ErrorCountThreshold}). Scheduling unregistration.", null);
+                    InvokeInternalApiError(FSMErrorType.RuntimeError, $"FSM Instance '{handle.Name}' (Definition: '{handle.Definition.Name}') hit Error Threshold ({ErrorCountThreshold}). Scheduling unregistration.", null);
                     Unregister(handle); // This will also clear its _errorCounts entry
                     IncrementDefinitionError(handle.Definition.Name, handle.Definition.ProcessingGroup);
                 });
@@ -610,34 +592,37 @@ namespace TheSingularityWorkshop.FSM.API
         /// Internal method to increment the error count for an FSM definition.
         /// If the definition's error count exceeds DefinitionErrorThreshold, the entire definition is destroyed.
         /// </summary>
-        /// <param name="fsmDefinitionName">The name of the FSM definition that had a failing instance.</param>
+        /// <param name="fsmName">The name of the FSM definition that had a failing instance.</param>
         /// <param name="processingGroup">The processing group of the FSM definition.</param>
-        private static void IncrementDefinitionError(string fsmDefinitionName, string processingGroup)
+        private static void IncrementDefinitionError(string fsmName, string processingGroup)
         {
             int newDefinitionCount;
-            if (_fsmDefinitionErrorCounts.TryGetValue(fsmDefinitionName, out int currentDefinitionCount))
+            if (_fsmDefinitionErrorCounts.TryGetValue(fsmName, out int currentDefinitionCount))
             {
                 newDefinitionCount = currentDefinitionCount + 1;
-                _fsmDefinitionErrorCounts[fsmDefinitionName] = newDefinitionCount;
+                _fsmDefinitionErrorCounts[fsmName] = newDefinitionCount;
             }
             else
             {
                 newDefinitionCount = 1;
-                _fsmDefinitionErrorCounts.Add(fsmDefinitionName, newDefinitionCount);
+                _fsmDefinitionErrorCounts.Add(fsmName, newDefinitionCount);
             }
 
-            InvokeInternalApiError(
-                $"FSM Definition '{fsmDefinitionName}' in processing group '{processingGroup}' has had a failing instance removed. Definition failure count: {newDefinitionCount}/{DefinitionErrorThreshold}.",
-                null
-            );
+            InvokeInternalApiError(FSMErrorType.DefinitionError, $"FSM Definition '{fsmName}' exceeded error threshold. Unregistering.", null, null, fsmName); 
 
+
+            //InvokeInternalApiError(FSMErrorType.RuntimeError, $"FSM Instance '{handle.Name}' (Definition: '{handle.Definition.Name}') hit Error Threshold ({ErrorCountThreshold}). Scheduling removal.", null);
+
+            
+
+            //InvokeInternalApiError($"FSMHandle '{instance.Name}' not found in any registered FSM in any group for deregistration. It might have already been deregistered or was never registered.", null);
             if (newDefinitionCount >= DefinitionErrorThreshold)
             {
                 // Definition hit its error threshold, schedule its complete destruction
                 _deferredModifications.Enqueue(() =>
                 {
-                    InvokeInternalApiError($"FSM Definition '{fsmDefinitionName}' in processing group '{processingGroup}' hit DefinitionErrorThreshold ({DefinitionErrorThreshold}). Scheduling complete destruction.", null);
-                    DestroyFiniteStateMachine(fsmDefinitionName, processingGroup);
+                    InvokeInternalApiError(FSMErrorType.DefinitionError, $"FSM Definition '{fsmName}' in processing group '{processingGroup}' hit DefinitionErrorThreshold ({DefinitionErrorThreshold}). Scheduling complete destruction.", null);
+                    DestroyFiniteStateMachine(fsmName, processingGroup);
                 });
             }
         }

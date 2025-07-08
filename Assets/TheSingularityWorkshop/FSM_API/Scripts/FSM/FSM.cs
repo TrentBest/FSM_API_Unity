@@ -76,7 +76,9 @@ namespace TheSingularityWorkshop.FSM.API
             if (s == null)
             {
                 // Corrected: Use FSM_API's internal event invocation helper
-                FSM_API.InvokeInternalApiError($"Attempted to add a null state to FSM '{Name}'.", new ArgumentNullException(nameof(s)));
+                FSM_API.InvokeInternalApiError(FSMErrorType.InvalidOperation, 
+                    $"Attempted to add a null state to FSM '{Name}'.", 
+                    new ArgumentNullException(nameof(s)));
                 return;
             }
 
@@ -96,7 +98,7 @@ namespace TheSingularityWorkshop.FSM.API
             if (cond == null)
             {
                 // Corrected: Use FSM_API's internal event invocation helper
-                FSM_API.InvokeInternalApiError($"Attempted to add a transition with null condition from '{from}' to '{to}' in FSM '{Name}'.", new ArgumentNullException(nameof(cond)));
+                FSM_API.InvokeInternalApiError(FSMErrorType.InvalidOperation, $"Attempted to add a transition with null condition from '{from}' to '{to}' in FSM '{Name}'.", new ArgumentNullException(nameof(cond)));
                 return;
             }
 
@@ -117,8 +119,7 @@ namespace TheSingularityWorkshop.FSM.API
         {
             if (cond == null)
             {
-                // Corrected: Use FSM_API's internal event invocation helper
-                FSM_API.InvokeInternalApiError($"Attempted to add an Any-State transition with null condition to '{to}' in FSM '{Name}'.", new ArgumentNullException(nameof(cond)));
+                FSM_API.InvokeInternalApiError(FSMErrorType.InvalidOperation, $"Attempted to add an Any-State transition with null condition to '{to}' in FSM '{Name}'.", new ArgumentNullException(nameof(cond)));
                 return;
             }
 
@@ -168,10 +169,11 @@ namespace TheSingularityWorkshop.FSM.API
         {
             if (!_states.TryGetValue(InitialState, out var state))
             {
-                // Corrected: Use FSM_API's internal event invocation helper
-                FSM_API.InvokeInternalApiError(
+                
+                FSM_API.InvokeInternalApiError(FSMErrorType.RuntimeError,
                     $"Initial state '{InitialState}' not found for FSM '{Name}'. This indicates a corrupted FSM definition.",
-                    new ArgumentException($"Initial state '{InitialState}' not found for FSM '{Name}'.", nameof(InitialState))
+                    new ArgumentException($"Initial state '{InitialState}' not found for FSM '{Name}'.",
+                    nameof(InitialState))
                 );
                 // Even though we invoke an error, we still throw to prevent the FSM from operating in an invalid state.
                 throw new ArgumentException($"Initial state '{InitialState}' not found for FSM '{Name}'.", nameof(InitialState));
@@ -197,7 +199,7 @@ namespace TheSingularityWorkshop.FSM.API
                 // This indicates a severe internal inconsistency.
                 // The FSMHandle thinks it's in a state that doesn't exist in the definition.
                 // Corrected: Use FSM_API's internal event invocation helper
-                FSM_API.InvokeInternalApiError(
+                FSM_API.InvokeInternalApiError(FSMErrorType.RuntimeError,
                     $"FSM '{Name}' instance in processing group '{ProcessingGroup}' has an invalid current state '{current}'. Attempting to recover by transitioning to initial state '{InitialState}'.",
                     null
                 );
@@ -213,8 +215,8 @@ namespace TheSingularityWorkshop.FSM.API
                 // Check if the target state exists before evaluating condition
                 if (!_states.ContainsKey(t.To))
                 {
-                    // Corrected: Use FSM_API's internal event invocation helper
-                    FSM_API.InvokeInternalApiError(
+                    
+                    FSM_API.InvokeInternalApiError(FSMErrorType.RuntimeError,
                         $"FSM '{Name}' Any-State transition defined to non-existent state '{t.To}'. Transition skipped for safety.",
                         null
                     );
@@ -234,7 +236,7 @@ namespace TheSingularityWorkshop.FSM.API
                 catch (Exception ex)
                 {
                     // Corrected: Use FSM_API's internal event invocation helper
-                    FSM_API.InvokeInternalApiError(
+                    FSM_API.InvokeInternalApiError(FSMErrorType.RuntimeError,
                         $"Error evaluating Any-State transition condition from '{current}' to '{t.To}' in FSM '{Name}'. Exception: {ex.Message}",
                         ex
                     );
@@ -249,8 +251,7 @@ namespace TheSingularityWorkshop.FSM.API
             }
             catch (Exception ex)
             {
-                // Corrected: Use FSM_API's internal event invocation helper
-                FSM_API.InvokeInternalApiError(
+                FSM_API.InvokeInternalApiError(FSMErrorType.RuntimeError,
                     $"Error during Update logic of state '{current}' in FSM '{Name}'. Exception: {ex.Message}",
                     ex
                 );
@@ -266,8 +267,8 @@ namespace TheSingularityWorkshop.FSM.API
                     // Check if the target state exists before evaluating condition
                     if (!_states.ContainsKey(t.To))
                     {
-                        // Corrected: Use FSM_API's internal event invocation helper
-                        FSM_API.InvokeInternalApiError(
+                        
+                        FSM_API.InvokeInternalApiError(FSMErrorType.RuntimeError,
                             $"FSM '{Name}' regular transition defined from '{current}' to non-existent state '{t.To}'. Transition skipped for safety.",
                             null
                         );
@@ -286,8 +287,8 @@ namespace TheSingularityWorkshop.FSM.API
                     }
                     catch (Exception ex)
                     {
-                        // Corrected: Use FSM_API's internal event invocation helper
-                        FSM_API.InvokeInternalApiError(
+                       
+                        FSM_API.InvokeInternalApiError(FSMErrorType.RuntimeError,
                             $"Error evaluating regular transition condition from '{current}' to '{t.To}' in FSM '{Name}'. Exception: {ex.Message}",
                             ex
                         );
@@ -320,7 +321,7 @@ namespace TheSingularityWorkshop.FSM.API
                 catch (Exception ex)
                 {
                     // Corrected: Use FSM_API's internal event invocation helper
-                    FSM_API.InvokeInternalApiError(
+                    FSM_API.InvokeInternalApiError(FSMErrorType.RuntimeError,
                         $"Error during Exit logic of state '{from}' during forced transition to '{to}' in FSM '{Name}'. Exception: {ex.Message}",
                         ex
                     );
@@ -330,7 +331,7 @@ namespace TheSingularityWorkshop.FSM.API
             else if (!string.IsNullOrEmpty(from)) // Only log if 'from' was specified but not found
             {
                 // Corrected: Use FSM_API's internal event invocation helper
-                FSM_API.InvokeInternalApiError(
+                FSM_API.InvokeInternalApiError(FSMErrorType.RuntimeError,
                     $"Attempted to force transition from non-existent or null state '{from}' for FSM '{Name}'. Exiting original state skipped.",
                     null
                 );
@@ -339,7 +340,7 @@ namespace TheSingularityWorkshop.FSM.API
             if (!_states.TryGetValue(to, out var toState))
             {
                 // Corrected: Use FSM_API's internal event invocation helper
-                FSM_API.InvokeInternalApiError(
+                FSM_API.InvokeInternalApiError(FSMErrorType.RuntimeError,
                     $"Target state '{to}' for forced transition does not exist in FSM '{Name}'. Forced transition failed.",
                     new ArgumentException($"Target state '{to}' for forced transition does not exist in FSM '{Name}'.", nameof(to))
                 );
@@ -353,7 +354,7 @@ namespace TheSingularityWorkshop.FSM.API
             catch (Exception ex)
             {
                 // Corrected: Use FSM_API's internal event invocation helper
-                FSM_API.InvokeInternalApiError(
+                FSM_API.InvokeInternalApiError(FSMErrorType.RuntimeError,
                     $"Error during Enter logic of state '{to}' during forced transition from '{from}' in FSM '{Name}'. Exception: {ex.Message}",
                     ex
                 );
