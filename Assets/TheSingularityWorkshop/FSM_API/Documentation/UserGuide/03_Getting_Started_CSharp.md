@@ -6,15 +6,37 @@ This guide shows how to use FSM_API in non-Unity environments (console, services
 
 ---
 
+## 🎯 What This Example Will Demonstrate
+
+We’ll simulate a basic character health lifecycle using FSM_API — all in **pure C#**.
+
+This example illustrates:
+
+- How a game character transitions through health-related states (`Healthy`, `Damaged`, `Critically Injured`, `Dead`)
+- How FSM_API makes these transitions declarative, clean, and maintainable
+- How to manually control the "ticking" of FSMs without relying on Unity’s game loop
+- How FSMs can be revived and continue operating even after simulated "death"
+
+### 💡 Simulation Flow
+
+1. The player starts in the **Healthy** state.
+2. Over several ticks, they take damage, triggering transitions to:
+   - **Damaged**
+   - **Critically Injured**
+   - **Dead**
+3. After death, a revive command is issued.
+4. Health is restored.
+5. The FSM automatically transitions back to **Healthy**.
+
+All output is printed to the console to simulate animation, audio, and event feedback — ideal for unit tests or backend game systems.
+
+---
+
 ## ✅ Step 1: Define Your Pure C# Context
 
 Create a standard C# class to represent the "thing" your FSM will manage — like a character, connection, pipeline, or subsystem.
 
 It must implement the `IStateContext` interface.
-
-### 🧠 What is a Context?
-
-In pure C#, a **context** is just a normal object the FSM uses to read data and execute actions. You define the rules for when it’s considered "valid" using `IsValid`.
 
 ### 🛠 Example: `GameCharacterContext.cs`
 
@@ -77,13 +99,8 @@ public class GameCharacterContext : IStateContext
     public bool IsReviveCommandPending => _isReviveCommandIssued;
 }
 ```
-
----
-
-## ✅ Step 2: Define and Create the FSM
-
-### 🎯 Setup FSM and Link to Context
-
+✅ Step 2: Define and Create the FSM
+🎯 Setup FSM and Link to Context
 ```csharp
 using System;
 using TheSingularityWorkshop.FSM.API;
@@ -133,15 +150,10 @@ public class PureCSharpGameLoop
     public string GetCharacterFSMState() => characterHealthFSM.CurrentState;
 }
 ```
+✅ Step 3: Manual Update Loop
 
----
-
-## ✅ Step 3: Manual Update Loop
-
-Since you don’t have Unity’s `Update()`, you'll tick the FSM manually in your main application loop.
-
-### 🕹 Example: Simulated Game Loop
-
+Since you don’t have Unity’s Update(), you'll tick the FSM manually in your main application loop.
+🕹 Example: Simulated Game Loop
 ```csharp
 using System;
 using System.Threading;
@@ -177,28 +189,34 @@ public class Program
     }
 }
 ```
+🧪 Running the Example
 
----
+    Create a Console App Project in your IDE (e.g., Visual Studio)
 
-## 🧪 Running the Example
+    Add FSM_API Reference
 
-1. **Create a Console App Project** in your IDE (e.g., Visual Studio)
-2. **Add FSM_API Reference**  
-   - via NuGet (if published) or manually via `.dll` reference
-3. **Add Code Files**  
-   - `GameCharacterContext.cs`  
-   - `PureCSharpGameLoop.cs`  
-   - `Program.cs`
-4. **Run the App** and observe the FSM transitions and output
+        via NuGet (if published) or manually via .dll reference
 
----
+    Add Code Files
 
-## ✅ Summary
+        GameCharacterContext.cs
 
-- FSM_API works seamlessly outside of Unity
-- You define a class that implements `IStateContext`
-- FSM logic and transitions are identical to Unity usage
-- You control when FSMs update via `FSM_API.Update("Group")`
-- This makes FSM_API ideal for **servers**, **simulations**, **AI systems**, and **custom engines**
+        PureCSharpGameLoop.cs
 
-➡️ Continue to: **04_FSMBuilder_Deep_Dive.md**
+        Program.cs
+
+    Run the App and observe the FSM transitions and output
+
+✅ Summary
+
+    FSM_API works seamlessly outside of Unity
+
+    You define a class that implements IStateContext
+
+    FSM logic and transitions are identical to Unity usage
+
+    You control when FSMs update via FSM_API.Update("Group")
+
+    This makes FSM_API ideal for servers, simulations, AI systems, and custom engines
+
+➡️ Continue to: 04_FSMBuilder_Deep_Dive.md
