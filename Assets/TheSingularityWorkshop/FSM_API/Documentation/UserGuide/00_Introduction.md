@@ -1,196 +1,208 @@
-Introduction to FSM_API
+# 00. Introduction to FSM_API
 
-Table of Contents
+---
 
-    00. Introduction to FSM_API
+## 📚 Table of Contents
 
-    01. Core Concepts: Your Guide to FSM_API
+1. [00. Introduction to FSM_API](#00-introduction-to-fsm_api)
+2. [01. Core Concepts: Your Guide to FSM_API](#)
+3. [02. Getting Started with Unity](#)
+4. [03. Getting Started with C# (Non-Unity)](#)
+5. [04. FSMBuilder Deep Dive: Building Your FSMs](#)
+6. [05. Understanding and Implementing Your Context (`IStateContext`)](#)
+7. [06. RNG Utility: Adding Randomness to Your FSMs](#)
+8. [07. Robust Error Handling: The Fubar System](#)
+9. [08. Performance Tips & Best Practices](#)
+10. [09. Common Use Cases & Examples](#)
+11. [10. FSM_API for Non-Coders: A Big Picture Overview](#)
+12. [11. Frequently Asked Questions (FAQ)](#)
 
-    02. Getting Started with Unity
+---
 
-    03. Getting Started with C# (Non-Unity)
+## 🧠 What is FSM_API?
 
-    04. FSMBuilder Deep Dive: Building Your FSMs
+**FSM_API** is a robust, modular, and game-engine-agnostic C#/.NET API designed to make building and managing Finite State Machines (FSMs) effortless — whether you're working in **Unity**, **Godot**, a **custom engine**, or any other **C#/.NET application**.
 
-    05. Understanding and Implementing Your Context (IStateContext)
+Whether you're creating complex AI, dynamic character behaviors, interactive UI states, or intricate game logic, **FSM_API empowers you to do so with clarity and confidence.**
 
-    06. RNG Utility: Adding Randomness to Your FSMs
+---
 
-    07. Robust Error Handling: The Fubar System
+## ✅ Why Choose FSM_API?
 
-    08. Performance Tips & Best Practices
+### 🔧 Simplifies Complexity
+FSM_API streamlines the process of designing and managing state-driven systems. You can focus on your **creative vision** instead of boilerplate code.
 
-    09. Common Use Cases & Examples
+### 🔗 Versatile & Modular – Truly Engine-Agnostic
+Built for **maximum flexibility**, FSM_API allows you to define **custom processing groups** (e.g., `"AI_Tick"`, `"UI_Animation"`, `"Physics_Update"`).  
+You control exactly when and where each group of FSMs updates via a single method:
 
-    10. FSM_API for Non-Coders: A Big Picture Overview
+```csharp
+FSM_API.Update("MyProcessingGroup");
+```
 
-    11. Frequently Asked Questions (FAQ)
+This gives you seamless integration with **game loops**, **custom simulations**, and even **nested FSM hierarchies** — all with **total control**.
 
-FSM_API is a robust, modular, and game-engine-agnostic C#/.NET
-API. It is designed to make building and managing Finite State Machines
-(FSMs) effortless for Unity, Godot, custom engines, and any C#/.NET
-application developers.
+### 🚀 Performance-Driven
+FSM_API is designed for **efficiency** and **responsiveness**, even when managing **hundreds or thousands** of active state machines.
 
-Whether you're creating complex AI, dynamic character behaviors, interactive UI
-states, or intricate game logic, FSM_API empowers you to do so
-with clarity and confidence.
+### 🧼 Clarity & Maintainability
+Designed for **readability and elegance**, FSM_API helps teams collaborate with ease and maintain codebases confidently.
 
-Why Choose FSM_API?
+### 🧪 Testability
+FSM_API’s clean **separation of logic and context** makes it easy to write **automated unit tests** for your state machines.
 
-    Simplifies Complexity:
-    FSM_API streamlines the process of designing and managing state-driven systems.
-    You can focus on your creative vision instead of boilerplate code.
+---
 
-    Versatile & Modular - Truly Engine-Agnostic:
-    Built with unparalleled flexibility, FSM_API allows you to define custom
-    processing groups (e.g., "AI_Tick", "UI_Animation", "Physics_Update").
-    You control precisely when and where each group of FSMs updates
-    by simply calling a single, central FSM_API.Update(string processingGroup)
-    method from any part of your application. This empowers you to integrate
-    FSMs seamlessly into any game loop, custom simulation, or even nested
-    state-machine hierarchies, providing ultimate control and adaptability.
+## 🔍 Core Components of FSM_API
 
-    Performance-Driven:
-    Enjoy high efficiency and responsiveness, even in projects with many
-    active state machines, thanks to its optimized internal processing.
+Here's a breakdown of the main tools you'll use when working with FSM_API:
 
-    Clarity & Maintainability:
-    The API is designed for readability and ease of use, helping teams
-    collaborate and maintain codebases with less friction.
+### 🧠 `FSM_API` — The Central Manager
+The master orchestrator.
 
-    Testability:
-    FSM_API�s clean separation of logic and context makes it easy to write
-    reliable, automated tests for your state machines.
+- Use `FSM_API.CreateFiniteStateMachine()` to define FSM blueprints.
+- Use `FSM_API.CreateInstance()` to spawn live instances.
+- Use `FSM_API.Update("YourGroup")` to drive your FSMs.
 
-How We Are Structured: Your Main Tools
+💡 Think of it as: **The big boss** that organizes and runs everything.
 
-FSM_API provides a few main tools that you will interact with.
-Understanding these relationships will help you use the API effectively.
+---
 
-    FSM_API (The Central Manager)
+### ✏️ `FSMBuilder` — The Blueprint Designer
+Use this fluent, chainable interface to:
 
-        This is the primary hub for all FSM operations.
+- Define states
+- Create transitions
+- Configure behavior
+- Set initial state
 
-        You interact with it to CreateFiniteStateMachine() (to start making a blueprint).
+💡 Think of it as: **Your drawing board** for building logic.
 
-        You also use it to CreateInstance() (to bring a blueprint to life).
+---
 
-        Crucially, you tell it to Update() specific processing groups.
+### 🧬 FSM Definition — The Blueprint
+Once you've called `BuildDefinition()` on an FSMBuilder, you get an **FSM Definition**:
 
-        Think: This is the big boss that organizes and runs everything.
+- Reusable logic for one behavior pattern
+- Shared across multiple live instances
 
-    FSMBuilder (The Blueprint Designer)
+💡 Think of it as: **Your master plan**, reusable and consistent.
 
-        You obtain an instance of this tool by calling FSM_API.CreateFiniteStateMachine().
+---
 
-        It's a fluent, chainable tool that lets you define your states.
+### ⚙️ `FSMHandle` — The Live Instance
+Each FSMHandle represents a **live FSM instance**, bound to a specific data context:
 
-        You also define transitions, and set initial properties for your FSM blueprint.
+- Maintains `CurrentState`
+- Updates logic and transitions
+- Operates on your `IStateContext` object
 
-        Think: This is your drawing board for designing how your behaviors work.
+💡 Think of it as: **The live performer** of your FSM script.
 
-    FSM Definition (The Blueprint Itself)
+---
 
-        This is the completed, reusable plan for a state machine.
+### 🧍 `IStateContext` — Your Game Object / Script
+This is **your class**, where the actual game data and logic lives.
 
-        It's created when you finish using the FSMBuilder and call BuildDefinition().
+- Implements `IStateContext` (and `IContext`)
+- Represents characters, UI panels, doors, anything
+- FSMs use this to read/write data and trigger behavior
 
-        It holds all the rules, states, and actions for a particular behavior.
+💡 Think of it as: **The actor’s brain and body**, where things happen.
 
-        Think: This is the master copy of your behavior design, ready for use.
+---
 
-    FSMHandle (The Live Behavior Instance)
+## 🔁 Flow of Interaction
 
-        This represents a single, live, running copy of an FSM Definition.
-
-        You get an FSMHandle by calling FSM_API.CreateInstance().
-
-        It manages the CurrentState and processes logic for one specific entity.
-
-        Think: This is the actual character performing actions or the door opening.
-
-    IStateContext (Your Game's Data & Features)
-
-        This is your custom object or script from your game (e.g., your player character, a monster, a door).
-
-        It holds all the specific data and functions that your FSM needs to interact with.
-
-        Your game object implements (which means it agrees to follow the rules of) this IStateContext interface.
-
-        States within your FSM will use this context to read information or trigger actions on your object.
-
-        Think: This is like your character's brain and body, giving the FSM access.
-
-Flow of Interaction (How the parts connect):
-
+```text
 FSM_API
--- (calls) CreateFiniteStateMachine() --> FSMBuilder
-|
-| (you design with builder, then call BuildDefinition())
-V
-FSM Definition
-|
-| (you call CreateInstance() on FSM_API with the definition's name)
-V
-FSMHandle
-|
-| (the FSMHandle continuously interacts with...)
-V
-IStateContext (THIS IS YOUR GAME OBJECT/SCRIPT)
+  └── CreateFiniteStateMachine() → FSMBuilder
+        └── BuildDefinition() → FSM Definition
+              └── CreateInstance() → FSMHandle
+                    └── Interacts with → IStateContext (Your game object)
+```
 
-Understanding State Management
+---
 
-FSM_API allows you to manage the way your states behave in two primary paradigms.
+## 🧭 State Management Modes
 
-    Frame-based FSMs:
-    These are FSMs that update on a regular, timed basis.
-    You can configure them to update every single frame (processRate = -1).
-    Or every Nth frame (e.g., every 5th frame, processRate = 5).
-    Or only when you explicitly tell them to (by setting processRate = 0).
+FSM_API supports **two primary paradigms** for updating FSMs:
 
-    Event-driven FSMs:
-    These FSMs react instantly to specific events that you send to them.
-    This allows for very responsive and efficient logic execution, 
-    as they only "wake up" when something relevant happens.
+### 🕰 Frame-Based FSMs
 
-FSM_API's Special Features
+- **Every frame**: `processRate = -1`
+- **Every N frames**: `processRate = N`
+- **Only when triggered manually**: `processRate = 0`
 
-    RNG Utility:
-    A powerful RNG.cs utility is included with FSM_API.
-    
+### 🔔 Event-Driven FSMs
 
-    Robust Error Handling: The "Fubar" System:
-    (F***ed Up Beyond All Recognition)
-    FSM_API features a unique and exceptionally robust internal system.
-    This proactive mechanism automatically detects and reports malfunctions.
-    It uses the OnInternalApiError event to tell you when problems occur.
-    If errors repeat, it will gracefully remove malfunctioning FSM instances.
-    It can even remove entire FSM definitions that cause consistent errors.
-    This ensures the stability and resilience of your application.
-    It helps prevent crashes, even from unexpected runtime issues.
+FSMs that are **idle until you trigger them**. Great for highly efficient UI logic or reactive AI.
 
-High-Level Flow: Getting Started
+---
 
-Here's a quick overview of the main steps to start using FSM_API:
+## 🎲 Special Features
 
-    Define Your FSM:
-    You begin by using FSM_API.CreateFiniteStateMachine().
-    Then, you use the fluent FSMBuilder to describe your FSM's states.
-    You also define its transitions and associated behaviors.
-    This action creates a reusable FSM blueprint (definition).
+### 🎛 RNG Utility
 
-    Create Live Instances:
-    Next, you bring your defined FSMs to life.
-    You instantiate them using FSM_API.CreateInstance().
-    You link them to specific objects in your game or application.
-    These objects must implement the IStateContext interface.
-    This step effectively activates your FSMs.
+A powerful `RNG.cs` class is included for:
 
-    Tell FSMs to "Think":
-    Finally, you integrate calls to FSM_API.Update("YourProcessingGroup").
-    You'll place these calls into your application's main game loop(s).
-    Or, you can put them into your custom update cycles.
-    This action drives the FSMs forward.
-    It allows them to process their logic, evaluate transitions, and react to events.
+- Probabilistic transitions
+- Weighted choices
+- Random behavior control
 
-Continue to: 01. Core Concepts: Your Guide to FSM_API
+### 💣 Robust Error Handling: The FUBAR System
+
+> FUBAR = **F**\*\*ed **U**p **B**eyond **A**ll **R**ecognition
+
+FSM_API includes an internal safeguard system to:
+
+- Catch and log **all exceptions**
+- Report errors via `OnInternalApiError`
+- Automatically remove **broken instances**
+- Automatically remove **unstable definitions** after repeated failures
+
+✅ Ensures **runtime resilience** and **application stability**  
+❌ Prevents hidden bugs from silently breaking your logic
+
+---
+
+## ⚡ High-Level Flow: Getting Started
+
+Here’s a simplified walkthrough:
+
+### 1. 🧱 Define Your FSM
+
+```csharp
+var builder = FSM_API.CreateFiniteStateMachine("MyFSM");
+builder
+    .State("Idle")
+        .TransitionIf("Moving", ctx => /* some condition */)
+    .End()
+    .State("Moving")
+        .TransitionIf("Idle", ctx => /* some other condition */)
+    .End()
+    .BuildDefinition();
+```
+
+---
+
+### 2. 🚶 Create a Live Instance
+
+```csharp
+var context = new MyGameObjectContext();
+var instance = FSM_API.CreateInstance("MyFSM", context);
+```
+
+---
+
+### 3. 🧠 Tell FSMs to “Think”
+
+```csharp
+FSM_API.Update("Update"); // Call this from Unity’s Update(), or your own loop
+```
+
+---
+
+## ⏭ Continue to:
+
+➡️ **[01. Core Concepts: Your Guide to FSM_API](01_Core_Concepts.md)**
