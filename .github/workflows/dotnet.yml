@@ -1,28 +1,42 @@
-# This workflow will build a .NET project
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
-
-name: .NET
+name: .NET Build & Test for FSM_API
 
 on:
   push:
-    branches: [ "master" ]
+    branches: [ "main", "master" ]
   pull_request:
-    branches: [ "master" ]
+    branches: [ "main", "master" ]
+
+permissions:
+  contents: read
 
 jobs:
-  build:
-
+  build-and-test:
+    name: 🛠️ Build & Test FSM_API (.NET Core)
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        dotnet-version: [ "8.0.x", "7.0.x" ] # Expand as needed
+
     steps:
-    - uses: actions/checkout@v4
-    - name: Setup .NET
+    - name: 📥 Checkout repository
+      uses: actions/checkout@v4
+
+    - name: 🧰 Setup .NET SDK ${{ matrix.dotnet-version }}
       uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: 8.0.x
-    - name: Restore dependencies
+        dotnet-version: ${{ matrix.dotnet-version }}
+
+    - name: 📦 Restore dependencies
       run: dotnet restore
-    - name: Build
-      run: dotnet build --no-restore
-    - name: Test
-      run: dotnet test --no-build --verbosity normal
+
+    - name: 🔨 Build solution
+      run: dotnet build FSM_API.sln --no-restore --configuration Release
+      
+    - name: 🧪 Run unit tests
+      run: dotnet test FSM_API.sln --no-build --configuration Release --verbosity normal
+      env:
+        DOTNET_ENVIRONMENT: "CI"
+
+    - name: ✅ Done!
+      run: echo "🎉 Build & tests completed on .NET ${{ matrix.dotnet-version }}"
