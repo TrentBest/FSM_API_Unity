@@ -28,7 +28,7 @@ jobs:
         dotnet-version: ${{ matrix.dotnet-version }}
 
     - name: 📦 Restore dependencies
-      run: dotnet restore
+      run: dotnet restore FSM_API.sln
 
     - name: 🔨 Build solution
       run: dotnet build FSM_API.sln --no-restore --configuration Release
