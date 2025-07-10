@@ -286,4 +286,4 @@ Conclusion
 
 Implementing IStateContext correctly is fundamental to effectively using FSM_API. It establishes the necessary communication bridge between your FSMs and your game's underlying objects and systems. By providing the Name for identification and the IsValid status for lifecycle management, you empower FSM_API to robustly manage state-driven behaviors across diverse object types—whether they are pure C# classes, Unity MonoBehaviours, or ScriptableObjects. Choose the context type that best fits the nature of the entity or system your FSM is intended to control, and enjoy the flexibility and power of FSM_API.
 
-➡️ Continue to: 06_FSM_API_Update_and_Management.md
+[➡️ Continue to: 06 RNG Utility](06_RNG_Utility.md)
