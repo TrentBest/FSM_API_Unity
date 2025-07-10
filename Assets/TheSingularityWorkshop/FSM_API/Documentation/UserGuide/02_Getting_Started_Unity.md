@@ -16,7 +16,33 @@ FSM_API is engine-agnostic, but Unity users get the full benefit of its modular 
 
 ---
 
-## ✅ Step 1: Define Your Context (MonoBehaviour + IStateContext)
+## ✅ Step 1: Register and Drive Processing Groups
+
+FSM_API uses named processing groups to organize how and when FSMs update.
+
+Before ticking a group, you must register it with:
+```csharp
+FSM_API.CreateProcessingGroup("Gameplay");
+```
+This should be done prior to defining any FSMs to a Processing Group.  (FSM_API.CreateInstance(...) is an exception to this rule, if you choose to provide a processing group which doesn't exist
+the API infers your intent and creates the processing group automatically before adding the FSMHandle to it's internal storage.
+
+🔁 Group Lifecycle and Cleanup
+
+    Creating a group: Simply call FSM_API.CreateProcessingGroup("GroupName")
+
+    Assigning FSMs: FSMs created with .CreateFiniteStateMachine(..., processingGroup: "GroupName") or FSMHandles instantiated with group overrides will be linked automatically
+
+    Destroying a group: Calling FSM_API.RemoveProcessingGroup("GroupName") will:
+
+        Call onExit() on all FSMs in that group
+
+        Unregister and clean up their handles
+
+        Remove the group from the ticking queue
+
+        Prevent further updates or leaks — it’s safe and clean
+✅ Step 2: Define Your Context (MonoBehaviour + IStateContext)
 
 Every FSM operates on a **context** — in Unity, this is typically a `MonoBehaviour`. The FSM reads and modifies data from the context, and reacts to its lifecycle.
 
@@ -98,30 +124,6 @@ public class PlayerCharacterContext : MonoBehaviour, IStateContext
     bool IsRevived() => currentHealth > 0 && Input.GetKeyDown(KeyCode.R);
 }
 ```
-✅ Step 2: Register and Drive Processing Groups
-
-FSM_API uses named processing groups to organize how and when FSMs update.
-
-Before ticking a group, you must register it with:
-```csharp
-FSM_API.CreateProcessingGroup("Gameplay");
-```
-This can be done anytime, but it’s common to do this in a dedicated driver MonoBehaviour.
-🔁 Group Lifecycle and Cleanup
-
-    Creating a group: Simply call FSM_API.CreateProcessingGroup("GroupName")
-
-    Assigning FSMs: FSMs created with .CreateFiniteStateMachine(..., processingGroup: "GroupName") or FSMHandles instantiated with group overrides will be linked automatically
-
-    Destroying a group: Calling FSM_API.RemoveProcessingGroup("GroupName") will:
-
-        Call onExit() on all FSMs in that group
-
-        Unregister and clean up their handles
-
-        Remove the group from the ticking queue
-
-        Prevent further updates or leaks — it’s safe and clean
 
 ✅ Step 3: The FSM Driver MonoBehaviour
 
@@ -157,7 +159,7 @@ public class FSMDriver : MonoBehaviour
     }
 }
 ```
-    ⚠️ You can create or remove processing groups at any point during runtime. Just don’t forget to call CreateProcessingGroup(...) before ticking it.
+    ⚠️ You can create or remove processing groups at any point during runtime. Just don’t forget to call CreateProcessingGroup(...) before assigning an FSM to it.
 
 ✅ Optional: FSMHandle Group Override
 
@@ -198,4 +200,4 @@ This can be layered atop individual FSM processRate settings — allowing deeply
 
     Manual stepping and tick throttling allow tight runtime control
 
-➡️ Continue to: 03_Pure_CSharp_Getting_Started.md
+[➡️ Continue to: 03 Getting Started pure CSharp](03_Getting_Started_CSharp.md)
