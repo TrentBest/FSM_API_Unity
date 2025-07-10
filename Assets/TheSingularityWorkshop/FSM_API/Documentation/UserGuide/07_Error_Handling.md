@@ -63,14 +63,14 @@ Built-in Error Thresholds and Automatic Cleanup
 FSM_API incorporates internal error tracking mechanisms that automatically respond to repeated errors from FSM instances or definitions, ensuring system stability and preventing resource accumulation from faulty logic.
 
 Error Tracking Mechanisms:
-```csharp
-    FSM_API.ErrorCountThreshold: This static property (default: 5) defines how many times a single FSM instance (represented by an FSMHandle) can throw an unhandled exception during its update cycle before FSM_API automatically removes and cleans up that specific instance.
-```
-        Behavior: If an FSM instance repeatedly encounters errors, it's considered "faulty." Once its error count reaches ErrorCountThreshold, FSM_API will call onExit for its current state, unregister the FSMHandle, and release its associated resources. This prevents a single problematic FSM from continually causing errors and consuming processing time.
-```csharp
-    FSM_API.DefinitionErrorThreshold: This static property (default: 3) defines how many different instances created from the same FSM definition can fail and be removed (due to reaching ErrorCountThreshold) before FSM_API schedules the complete destruction of the FSM definition itself.
-```
-        Behavior: If multiple instances derived from the same FSM definition consistently fail, it suggests a fundamental problem with the definition's blueprint. Once DefinitionErrorThreshold is met, FSM_API will queue a deferred modification to call DestroyFiniteStateMachine for that definition. This means no new instances can be created from it, and existing instances will cease to function or be tracked by the API.
+
+FSM_API.ErrorCountThreshold: This static property (default: 5) defines how many times a single FSM instance (represented by an FSMHandle) can throw an unhandled exception during its update cycle before FSM_API automatically removes and cleans up that specific instance.
+
+Behavior: If an FSM instance repeatedly encounters errors, it's considered "faulty." Once its error count reaches ErrorCountThreshold, FSM_API will call onExit for its current state, unregister the FSMHandle, and release its associated resources. This prevents a single problematic FSM from continually causing errors and consuming processing time.
+
+FSM_API.DefinitionErrorThreshold: This static property (default: 3) defines how many different instances created from the same FSM definition can fail and be removed (due to reaching ErrorCountThreshold) before FSM_API schedules the complete destruction of the FSM definition itself.
+
+Behavior: If multiple instances derived from the same FSM definition consistently fail, it suggests a fundamental problem with the definition's blueprint. Once DefinitionErrorThreshold is met, FSM_API will queue a deferred modification to call DestroyFiniteStateMachine for that definition. This means no new instances can be created from it, and existing instances will cease to function or be tracked by the API.
 
 Benefits of Thresholds:
 
@@ -86,4 +86,4 @@ Conclusion
 
 Implementing proper error handling and understanding FSM_API's debugging tools are vital steps towards building stable and maintainable FSM-driven systems. By subscribing to OnInternalApiError, you gain insight into the API's internal health, and by understanding the built-in error thresholds, you can rely on the system's self-correcting mechanisms to maintain runtime robustness.
 
-➡️ Continue to: 08_FSM_API_Examples_and_Best_Practices.md
+[➡️ Continue to: 08 Performance Tips](08_Performance_Tips.md)
