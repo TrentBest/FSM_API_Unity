@@ -146,3 +146,5 @@ If you want to understand more about these concepts (without necessarily learnin
 Conclusion
 
 Don't let the idea of "coding" intimidate you when it comes to designing complex game behaviors. FSM_API is built to make the power of Finite State Machines accessible, allowing you to define clear, predictable, and robust behaviors for your games and applications. You are the architect of these behaviors, and with FSM_API, your designs can come to life more directly than ever before.
+
+[➡️ Continue: 11 FAQ](11_FAQ.md)
