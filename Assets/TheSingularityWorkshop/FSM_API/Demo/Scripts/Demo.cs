@@ -130,7 +130,8 @@ public class Demo : MonoBehaviour, IStateContext
         }
 
         // Add a global listener for FSM_API internal errors (highly recommended for debugging)
-        FSM_API.OnInternalApiError += (sender, e) => Debug.LogError($"[FSM_API Error] {e.Message}");
+        FSM_API.OnInternalApiError += e => Debug.LogError($"[FSM_API Error] {e.Message}");
+
     }
 
     void OnEnable()
