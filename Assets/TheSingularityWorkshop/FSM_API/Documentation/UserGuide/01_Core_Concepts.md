@@ -124,13 +124,13 @@ It's the "what's happening right now" for the thing your FSM is controlling.
 
     Example of defining state actions (you'll see more in the FSMBuilder guide):
     C#
-
+```csharp
     // Imagine this is part of your FSM setup
     .State("Idle",
         onEnter: (context) => { /* Code to start Idle animation */ },
         onUpdate: (context) => { /* Code to check for player input */ },
         onExit: (context) => { /* Code to stop Idle animation */ })
-
+```
     Don't worry about context for now; we'll explain it next!
 
 State Context (IStateContext): Your Data Connection
@@ -162,7 +162,7 @@ It's how the FSM can "talk" to your game's data and features.
 
     Interface Details (What your object must provide):
     C#
-
+```csharp
 public interface IContext
 {
     // Your object must provide a 'Name'. This helps debugging!
@@ -175,10 +175,10 @@ public interface IStateContext : IContext // It inherits from IContext!
     // For example, if a game character is destroyed, IsValid might become 'false'.
     bool IsValid { get; }
 }
-
+```
 Example of what your class looks like (you'll fill in your own game details):
 C#
-
+```csharp
 // You would add this to YOUR script/class in Unity
 using UnityEngine; // Needed for MonoBehaviour
 
@@ -213,8 +213,10 @@ public class MyPlayerScript : MonoBehaviour, IStateContext
         HasJumpInput = input;
     }
 }
-
+```
 When writing your state actions, you'll often "tell" the context
 what kind of object it really is (e.g., (MyPlayerScript)context).
 This lets you access all your custom stuff, like ((MyPlayerScript)context).PerformJump().
 We'll show this in examples in later documents.
+
+Continue:  [Getting Started with Unity](02_Getting_Started_Unity.md)
