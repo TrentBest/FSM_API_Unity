@@ -363,4 +363,4 @@ Finalize and register the FSM blueprint. Essential last step.
 
 FSMBuilder is your FSM factory — write once, reuse everywhere, and iterate rapidly.
 
-➡️ Continue to: 05_Context_Implementation.md
+[➡️ Continue to: 05 Context Implementation](05_Context_Implementation.md)
