@@ -236,3 +236,5 @@ These broader Unity optimization principles are especially crucial when applied 
 Conclusion
 
 Performance is a continuous consideration throughout your development process. By thoughtfully choosing update frequencies, implementing efficient contexts, optimizing state actions, and mastering the powerful ProcessingGroup system, you can leverage FSM_API to its fullest potential, building highly responsive, scalable, and performant state-driven systems. Regular profiling will be your best friend in ensuring your FSMs remain fast and efficient, even at scale.
+
+[➡️ Continue: 09 Common Use Cases](09_Common_Use_Cases.md)
