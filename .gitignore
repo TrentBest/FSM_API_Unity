@@ -62,6 +62,15 @@ crashlytics-build.properties
 *.aab
 *.app
 
+# =========================
+# 📦 Unity Package Manager (UPM)
+# =========================
+# Ignore all contents of the Packages folder by default,
+# then re-include the essential manifest and lock files.
+Packages/
+!Packages/manifest.json
+!Packages/packages-lock.json
+
 # =============================
 # ✅ Files We WANT to Keep in Git
 # =============================
