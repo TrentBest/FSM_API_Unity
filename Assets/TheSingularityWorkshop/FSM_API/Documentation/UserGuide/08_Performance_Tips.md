@@ -1,42 +1,38 @@
 08. Performance Tips for FSM_API
 
-Optimizing FSM_API usage is key.
-It helps build high-performance games and applications.
-This guide covers strategies.
-They keep your FSMs fast and efficient, even at scale.
+Optimizing your FSM_API usage is paramount for building high-performance games and applications, especially as your project scales. This guide covers essential strategies to keep your Finite State Machines fast and efficient, balancing responsiveness with CPU cost.
 
-Choosing the Right Update Frequency
+Choosing the Right Update Frequency (processRate)
 
-FSMs can be updated:
+The processRate parameter in FSM_API.CreateFiniteStateMachine() is your primary tool for controlling how often an FSM's onUpdate actions and transition conditions are evaluated. Selecting the appropriate frequency for each FSM definition is critical for performance.
 
-    Every Tick (-1):
+    Every Tick (processRate: -1)
 
-        Pros: Most responsive. Immediate reaction to changes.
+        Pros: Maximum responsiveness, immediate reaction to changes in your game state.
 
-        Cons: Highest CPU cost. Updates every single time.
+        Cons: Highest CPU cost, as the FSM will be processed every single time its ProcessingGroup is updated.
 
-        Use for: Player input, critical real-time AI, essential UI.
+        Use for: Core gameplay elements requiring constant monitoring, such as player input, critical real-time AI (e.g., enemy targeting), or essential UI elements that update constantly.
 
-    Event-Driven (0):
+    Event-Driven (processRate: 0)
 
-        Pros: Zero CPU when idle. Only updates on demand.
+        Pros: Zero CPU consumption when idle. The FSM only processes its onUpdate logic and checks transitions when explicitly told to do so via FSMHandle.RequestTransition() or when TransitionTo() is called. Its internal onUpdate will not run unless manually stepped.
 
-        Cons: Must trigger updates manually via RequestTransition.
+        Cons: Requires manual triggering of updates or transitions from external code.
 
-        Use for: UI panels, turn-based logic, rare state changes.
+        Use for: UI panels that only change on user interaction, turn-based game logic, non-visual backend systems, or any FSM with rare, explicit state changes.
 
-    Nth Tick (>0):
+    Nth Tick (processRate: >0)
 
-        Pros: Reduces update frequency, saves CPU cycles.
+        Pros: Significantly reduces update frequency, leading to substantial CPU savings, especially with many FSM instances. An FSM with processRate: N will update approximately every (N + 1) ticks. For example, processRate: 1 means it updates every 2nd tick, and processRate: 5 means it updates every 6th tick.
 
-        Cons: Less responsive; introduces slight delay.
+        Cons: Introduces a slight, controlled delay in responsiveness proportional to N.
 
-        Use for: Background AI, non-critical NPCs, periodic checks.
-        (E.g., 1 skips 1 tick, processes on 2nd; 5 skips 5, processes on 6th).
+        Use for: Background AI (e.g., ambient wildlife, distant NPCs), non-critical AI behaviors, periodic data checks (e.g., checking for resource availability), or any system where a fractional delay is acceptable.
 
-Example:
+Example: Defining FSMs with Various Update Frequencies
 C#
-
+```csharp
 using TheSingularityWorkshop.FSM.API;
 using UnityEngine; // For MonoBehaviour context
 
@@ -46,171 +42,197 @@ public class FSMExamples
     {
         // Player FSM: Needs immediate response, updates every tick.
         FSM_API.CreateFiniteStateMachine("PlayerInputFSM",
-                                         processRate: -1, // Update every single tick
+                                         processRate: -1, // Update every single tick when its group is updated
                                          processingGroup: "InputLogic")
             .State("Idle", onUpdate: (ctx) => { /* Check for input continuously */ })
+            // ... other states and transitions
             .BuildDefinition();
 
-        // Door FSM: Only updates when activated by a player or event.
+        // Door FSM: Only updates when activated by a player or event (event-driven).
         FSM_API.CreateFiniteStateMachine("DoorStateFSM",
                                          processRate: 0, // Event-driven
                                          processingGroup: "Environment")
             .State("Closed", onEnter: (ctx) => { /* Play closed animation */ })
             .State("Opening", onUpdate: (ctx) => { /* Animate opening */ })
             .State("Open", onEnter: (ctx) => { /* Door is fully open */ })
+            // ... transitions
             .BuildDefinition();
 
-        // Bird Flock FSM: Can afford less frequent updates.
+        // Bird Flock FSM: Can afford less frequent updates to save CPU.
         FSM_API.CreateFiniteStateMachine("BirdFlockAI_FSM",
                                          processRate: 10, // Skip 10 ticks, process on 11th
                                          processingGroup: "BackgroundAI")
             .State("Flying", onUpdate: (ctx) => { /* Update bird positions slowly */ })
             .State("Perched", onUpdate: (ctx) => { /* Occasional checks for nearby food */ })
+            // ... transitions
             .BuildDefinition();
     }
 }
-
+```
 Efficient Context Implementation
 
-Your IStateContext implementation is crucial.
-Keep its methods and properties lean.
+Your IStateContext implementation serves as the data backbone for your FSM. The efficiency of its properties and methods is paramount, as they are frequently accessed by the FSM's internal logic and your state actions.
 
-    IsValid Property:
+    IsValid Property: Make it Lightning Fast
 
-        Make this check as fast as possible.
+        The IsValid property is checked by FSM_API for every active FSM instance, every time its processing group is updated. It is a critical hot-path.
 
-        Avoid complex logic, physics queries, or allocations.
+        Avoid: Complex logic, physics queries, expensive allocations, or iterating over collections within IsValid.
 
-        For MonoBehaviour contexts, this != null && gameObject.activeInHierarchy is ideal.
+        Ideal: For MonoBehaviour contexts, this != null && gameObject.activeInHierarchy is highly optimized. For pure C# contexts, a simple boolean flag or a check against a disposed state is best.
 
-    Context Data:
+    Context Data: Cache and Pre-calculate
 
-        Store pre-calculated or cached values.
+        Store pre-calculated values or cache references to frequently accessed components/data within your context.
 
-        Do not perform expensive lookups repeatedly.
+        Avoid performing expensive lookups (like GameObject.Find(), GetComponent<T>(), or complex calculations) repeatedly in onUpdate or condition callbacks. Instead, perform these once in Awake(), Start(), or onEnter() and store the result in a private field of your context.
 
-        Pass necessary data into the context constructor.
+        Pass necessary data into the context's constructor when creating pure C# contexts to ensure they are fully initialized and self-contained.
 
 Optimizing State Actions and Transitions
 
-Methods like onEnter, onUpdate, onExit, and condition run frequently.
-Optimize them like any hot-path code.
+The code you write within onEnter, onUpdate, onExit, and condition callbacks runs frequently and directly impacts performance. Treat these methods as hot-path code and optimize them rigorously.
 
-    Avoid Allocations:
+    Avoid Allocations (Minimize GC Pressure):
 
-        Minimize new keyword usage.
+        Minimize the use of the new keyword within these methods. Frequent object creation leads to garbage collection (GC) pauses, which can cause frame rate hitches.
 
-        Avoid creating new collections.
+        Avoid creating new collections (e.g., new List<T>(), new Dictionary<T, T>()) or implicitly creating new objects (e.g., by boxing value types).
 
-        Use object pooling if creating many temporary objects.
+        If you need temporary objects or collections, explore object pooling to reuse existing instances rather than creating and destroying new ones.
 
-        Reduce string operations; string concatenation creates garbage.
+        Reduce string operations, especially string concatenation with +, as these create new string objects (garbage). Use StringBuilder for complex string building or string interpolation for simple cases where it's optimized by the compiler.
 
     Minimize Expensive Computations:
 
-        Physics queries, pathfinding, GetComponent<T>() are costly.
+        Operations like physics queries (e.g., Raycast, OverlapSphere), complex pathfinding, or iterating over large collections are costly.
 
-        Perform these less often (e.g., in onEnter then cache result).
+        If a computation is expensive but doesn't need to be run every time onUpdate is called, consider:
 
-        Or move to less frequent processRate FSMs.
+            Performing it only in onEnter() and caching the result.
+
+            Implementing a timer or counter within onUpdate to run the expensive check only periodically (e.g., if (Time.frameCount % 10 == 0) for an every-10-frame check). While processRate handles overall FSM throttling, a per-method timer can further optimize specific heavy computations within an already active FSM.
 
     Cache References:
 
-        Don't call GameObject.Find().
+        Never call GameObject.Find(), FindObjectOfType(), or GetComponent<T>() in onUpdate or condition methods. These are extremely slow.
 
-        Or GetComponent() in onUpdate or condition.
+        Instead, cache all necessary component and object references in your Awake(), Start(), or onEnter() methods.
 
-        Cache references in Awake(), Start(), or onEnter().
+Leveraging Processing Groups for Extreme Optimization
 
-Leveraging Processing Groups
+FSM_API.Update(string groupName) is your most powerful tool for granular control over FSM performance. It allows you to define exactly when and how FSMs are processed. This enables advanced orchestration and significant performance gains.
 
-FSM_API.Update(string groupName) gives you control.
-It allows granular control over updates.
-Organize your FSMs into logical groups.
+    Granular Control is Absolute:
 
-    Group by Priority/Frequency:
+        An FSM will only process its onUpdate logic and check transitions if its assigned ProcessingGroup is explicitly updated by FSM_API.Update(groupName). If FSM_API.Update("BackgroundAI") is never called, any FSMs in that group, regardless of their processRate, will never run.
 
-        "Player" for critical, every-frame logic.
+        This gives you the power to completely stop or resume FSM processing for entire categories of game logic.
 
-        "AI" for common AI, updated periodically.
+        Default Group: Remember that FSM_API.Update() (without a groupName argument) implicitly updates the default "Update" processing group. FSMs defined without specifying a processingGroup will belong to this default group.
 
-        "UI" for UI elements, updated as needed.
+    Throttling External to FSM:
 
-        "Background" for very infrequent checks.
+        Beyond the processRate defined in the FSM blueprint, you can apply an additional layer of throttling by controlling how often you call FSM_API.Update() for a given group in your main game loop.
 
-    Update Only Necessary Groups:
+        Example: For a "VeryBackgroundAI" group, instead of calling FSM_API.Update("VeryBackgroundAI") every frame, you could call it only every 30 frames (or even less frequently) in your MonoBehaviour.Update() method. This compounds the processRate savings, leading to immense performance gains for non-critical systems.
+    C#
+```csharp
+    using TheSingularityWorkshop.FSM.API;
+    using UnityEngine;
 
-        During gameplay, update Player and AI.
-
-        In a menu, only update UI.
-
-        Pause background groups when not visible.
-
-Example:
-C#
-
-using TheSingularityWorkshop.FSM.API;
-using UnityEngine; // For MonoBehaviour update loop
-
-public class FSMUpdater : MonoBehaviour
-{
-    void Update()
+    public class AdvancedFSMUpdater : MonoBehaviour
     {
-        // Update high-priority player and enemy logic every frame
-        FSM_API.Update("PlayerInput");
-        FSM_API.Update("EnemyCombat");
+        private int _frameCount = 0;
 
-        // Update background AI only every few frames, controlled by its definition's processRate
-        FSM_API.Update("BackgroundAI");
-
-        // Only update UI when a menu is active
-        if (GameManager.IsMenuOpen)
+        void Update()
         {
-            FSM_API.Update("UIMenus");
+            // Always update critical gameplay logic
+            FSM_API.Update("PlayerInput");
+            FSM_API.Update("EnemyCombat");
+
+            // Update less critical AI every 5 frames
+            if (_frameCount % 5 == 0)
+            {
+                FSM_API.Update("BackgroundAI");
+            }
+
+            // Only update UI when a menu is explicitly active
+            if (GameManager.IsMenuOpen) // Assuming GameManager manages game state
+            {
+                FSM_API.Update("UIMenus");
+            }
+            else
+            {
+                // Ensure UI FSMs are not processing when menu is closed
+                // (though they won't process if Update("UIMenus") isn't called)
+            }
+
+            _frameCount++;
+        }
+
+        void FixedUpdate()
+        {
+            // Example for physics-related FSMs
+            FSM_API.Update("FixedPhysicsGroup"); // Update FSMs specifically tied to FixedUpdate
+        }
+
+        // Example: Only update a "SaveLoadSystem" group when a save/load operation is actually happening.
+        public void PerformSave()
+        {
+            // FSM_API.CreateInstance("SaveLoadFSM", new SaveLoadContext());
+            // ...
+            FSM_API.Update("SaveLoadSystem"); // Only call this when explicitly saving or loading
+            // ...
         }
     }
+```
+    Derived Clocks and Custom Time Tracking:
 
-    // You can define groups that are NEVER automatically updated
-    // For example, a save/load system FSM, only triggered by events.
-    // FSM_API.Update("SaveLoadSystem"); // Only call this when explicitly saving/loading
-}
+        FSM_API.Update(groupName) doesn't implicitly use Time.deltaTime or Unity's fixed timestep. This allows you to implement custom "clocks" for different parts of your game logic.
+
+        Example: In a turn-based strategy game, you might have a "TurnBasedLogic" processing group where FSM_API.Update("TurnBasedLogic") is only called once per game turn, or after specific player actions. This decouples your FSMs from the rendering framerate, enabling fully deterministic or event-driven simulations.
+
+        You could even have FSMs that track their own internal time, unrelated to real-world time, by using a custom IStateContext that holds a "game-tick" counter.
+
+    Orchestrating FSMs Across Groups (Parent/Child Concepts):
+
+        While FSM_API doesn't enforce a direct "parent-child" relationship between FSM definitions in its internal structure, you can orchestrate complex behaviors by having FSMs in one group influence those in another.
+
+        Mechanism: A "parent" FSM in one group might set a flag or value in the IStateContext of a "child" FSM instance, or it might call FSMHandle.RequestTransition() or FSMHandle.TransitionTo() directly on the child FSM's handle.
+
+        Execution Flow: Crucially, the "child" FSM will only react to these changes (e.g., perform onUpdate or check transitions) when its own dedicated processing group is subsequently updated by an FSM_API.Update(groupName) call in your main game loop. This allows for highly modular and controlled execution.
+
+    Intermixing Context Types:
+
+        FSM_API doesn't differentiate between MonoBehaviour, pure C#, or ScriptableObject contexts within a ProcessingGroup. This is a performance benefit, as you don't need to create separate processing groups just for different context implementations. All FSMs, regardless of their context type, are efficiently managed together if they belong to the same group.
+
+    Conditional FSM Definition:
+
+        Avoid re-defining FSMs unnecessarily. Use if (!FSM_API.Exists("FSMName")) to ensure FSM definitions are created only once at application startup. While BuildDefinition() handles overwriting, initial creation checks save a minor amount of overhead and prevent potential logical issues if definitions are mutable at runtime in ways not intended.
 
 Minimizing FSM Instances
 
-Use FSMs where state management is genuinely complex.
-For very simple behaviors, consider simpler patterns.
-Like direct method calls or basic boolean flags.
+While FSM_API is highly optimized, every FSM instance still carries a small overhead.
 
-    Remove Invalid Instances:
+    Use FSMs Where Truly Needed: Implement FSMs for behaviors that genuinely benefit from explicit state management (e.g., distinct states, complex transitions, clear actions per state). For very simple behaviors (e.g., a light that just turns on/off based on a single boolean), a direct method call or a simple conditional might be more performant than an FSM.
 
-        The IsValid property handles this automatically.
-
-        Ensure your IsValid logic correctly detects.
-
-        When an object is no longer active or destroyed.
-
-        This prevents processing dead FSMs.
+    Trust IsValid for Cleanup: The IsValid property on your IStateContext automatically handles the removal of FSM instances associated with invalid or destroyed objects. Ensure your IsValid logic correctly detects when an object is no longer active or destroyed, preventing dead FSMs from being needlessly processed.
 
 General Unity Performance Tips (Reminder)
 
-These apply broadly, but especially to FSM actions.
+These broader Unity optimization principles are especially crucial when applied within your FSM actions and conditions.
 
-    Avoid GameObject.Find*: Cache references on Awake() or Start().
+    Avoid GameObject.Find* Methods: Methods like GameObject.Find(), GameObject.FindWithTag(), and FindObjectsOfType() are extremely slow. Always cache references to GameObjects or components in Awake(), Start(), or OnEnable().
 
-    Minimize GetComponent*: Cache component references.
+    Minimize GetComponent<T>(): Repeated calls to GetComponent<T>() are costly. Cache component references in a field after the first retrieval.
 
-    Vector3.Distance vs. sqrMagnitude: Use sqrMagnitude for distance comparisons.
-    It avoids a costly square root operation.
+    Vector3.Distance vs. sqrMagnitude: When comparing distances (e.g., IsPlayerWithinRange), use (transform.position - target.position).sqrMagnitude instead of Vector3.Distance(). sqrMagnitude avoids a computationally expensive square root operation, which is unnecessary when only comparing relative magnitudes.
 
-    Linq and Foreach: Be mindful of performance.
-    foreach can cause allocations on structs.
-    Use for loops for arrays and List<T> where possible.
+    LINQ and foreach Allocation Awareness: While convenient, LINQ queries and foreach loops on certain collection types (especially older ones or when used on structs causing boxing) can generate garbage. For performance-critical code on arrays and List<T>, consider traditional for loops.
+
+    Profile Regularly: Performance optimization is an iterative process. Use Unity's Profiler (or similar tools for non-Unity applications) to identify actual bottlenecks in your FSM logic. Don't optimize blindly; let the profiler guide your efforts.
 
 Conclusion
 
-Performance is a continuous process.
-Profile your application regularly.
-Use Unity's Profiler or other tools.
-Identify bottlenecks in your FSM logic.
-Applying these tips will help ensure.
-Your FSM-driven systems remain fast and responsive.
+Performance is a continuous consideration throughout your development process. By thoughtfully choosing update frequencies, implementing efficient contexts, optimizing state actions, and mastering the powerful ProcessingGroup system, you can leverage FSM_API to its fullest potential, building highly responsive, scalable, and performant state-driven systems. Regular profiling will be your best friend in ensuring your FSMs remain fast and efficient, even at scale.
