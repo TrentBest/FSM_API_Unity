@@ -2,29 +2,29 @@ Introduction to FSM_API
 
 Table of Contents
 
-    00. Introduction to FSM_API
+[00. Introduction to FSM_API](00_Introduction.md)
 
-    01. Core Concepts: Your Guide to FSM_API
+[01. Core Concepts: Your Guide to FSM_API](01_Core_Concepts.md)
 
-    02. Getting Started with Unity
+[02. Getting Started with Unity](02_Getting_Started_Unity.md)
 
-    03. Getting Started with C# (Non-Unity)
+[03. Getting Started with C# (Non-Unity)](03_Getting_Started_CSharp.md)
 
-    04. FSMBuilder Deep Dive: Building Your FSMs
+[04. FSMBuilder Deep Dive: Building Your FSMs](04_FSM_Builder_Deep_Dive.md)
 
-    05. Understanding and Implementing Your Context (IStateContext)
+[05. Understanding and Implementing Your Context (IStateContext)](05_Context_Implementation.md)
 
-    06. RNG Utility: Adding Randomness to Your FSMs
+[06. RNG Utility: Adding Randomness to Your FSMs](06_RNG_Utility.md)
 
-    07. Robust Error Handling: The Fubar System
+[07. Robust Error Handling: The Fubar System](07_Error_Handling.md)
 
-    08. Performance Tips & Best Practices
+[08. Performance Tips & Best Practices](08_Performance_Tips.md)
 
-    09. Common Use Cases & Examples
+[09. Common Use Cases & Examples](09_Common_Use_Cases.md)
 
-    10. FSM_API for Non-Coders: A Big Picture Overview
+[10. FSM_API for Non-Coders: A Big Picture Overview](10_Non_Coder_Overview.md)
 
-    11. Frequently Asked Questions (FAQ)
+[11. Frequently Asked Questions (FAQ)](11_FAQ.md)
 
 FSM_API is a robust, modular, and game-engine-agnostic C#/.NET
 API. It is designed to make building and managing Finite State Machines
@@ -59,7 +59,7 @@ Why Choose FSM_API?
     collaborate and maintain codebases with less friction.
 
     Testability:
-    FSM_API’s clean separation of logic and context makes it easy to write
+    FSM_APIâ€™s clean separation of logic and context makes it easy to write
     reliable, automated tests for your state machines.
 
 How We Are Structured: Your Main Tools
@@ -193,4 +193,4 @@ Here's a quick overview of the main steps to start using FSM_API:
     This action drives the FSMs forward.
     It allows them to process their logic, evaluate transitions, and react to events.
 
-Continue to: 01. Core Concepts: Your Guide to FSM_API
+[Continue to: 01. Core Concepts: Your Guide to FSM_API](01_Core_Concepts.md)
