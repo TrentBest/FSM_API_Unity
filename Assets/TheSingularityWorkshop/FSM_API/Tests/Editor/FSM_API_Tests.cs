@@ -57,7 +57,7 @@ namespace TheSingularityWorkshop.FSM.Tests
         public void GetAllDefinitionNames_ReturnsCorrectly_AndThrowsOnInvalid()
         {
             Assert.Throws<ArgumentException>(() => FSM_API.GetAllDefinitionNames(null));
-            // Add more as needed
+           
         }
 
         [Test]
@@ -98,6 +98,6 @@ namespace TheSingularityWorkshop.FSM.Tests
             Assert.Throws<ArgumentNullException>(() => FSM_API.Unregister(null));
         }
 
-        // Add more tests for Update, FixedUpdate, LateUpdate, and error event handling as needed.
+        
     }
 }

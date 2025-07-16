@@ -33,12 +33,8 @@ namespace TheSingularityWorkshop.FSM.API
             {
                 throw new ArgumentException("State name cannot be null or empty.", nameof(name));
             }
-
-            // Removed Debug.Log from constructor as it can be noisy during FSM definition.
-            // Logging state creation might be better handled when the FSM is built or registered.
-
             Name = name;
-            // Assign actions directly. The methods (Enter, Update, Exit) will handle null checks.
+           
             _onEnter = onEnter;
             _onUpdate = onUpdate;
             _onExit = onExit;

@@ -60,6 +60,7 @@ namespace TheSingularityWorkshop.FSM.API
         // _buckets: Stores all FSM definitions and their instances, organized by
         // their processing group (e.g., "Update", "FixedUpdate") and then by FSM name.
         public static Dictionary<string, Dictionary<string, FsmBucket>> _buckets = new();
+        private static List<string> _underConstruction = new();
 
         /// <summary>
         /// Safely retrieves the dictionary of FSMs for a given processing group.
@@ -156,7 +157,7 @@ namespace TheSingularityWorkshop.FSM.API
                 // FSM definition already exists, return a builder initialized with its data for modification.
                 return new FSMBuilder(existingBucket.Definition);
             }
-
+            _underConstruction.Add(fsmName);
             // New FSM definition, return a fresh builder.
             return new FSMBuilder(fsmName, processRate, processingGroup);
         }
@@ -209,6 +210,8 @@ namespace TheSingularityWorkshop.FSM.API
                 };
                 InvokeInternalApiError($"FSM '{fsmName}' in processing group '{processingGroup}' newly registered.", null);
             }
+            if (_underConstruction.Contains(fsmName))
+                _underConstruction.Remove(fsmName);
         }
 
         /// <summary>
@@ -228,9 +231,13 @@ namespace TheSingularityWorkshop.FSM.API
             {
                 throw new ArgumentException("Processing group cannot be null or empty.", nameof(processingGroup));
             }
-
+            if(_underConstruction.Count > 0 && _underConstruction.Contains(fsmName))
+            {
+                return true;
+            }
             if (!_buckets.TryGetValue(processingGroup, out var categoryBuckets))
             {
+                _underConstruction.Add(fsmName);
                 return false;
             }
             return categoryBuckets.ContainsKey(fsmName);
@@ -539,12 +546,12 @@ namespace TheSingularityWorkshop.FSM.API
 
             bool removed = false;
             // Iterate through all processing groups
-            foreach (var categoryKvp in _buckets)
+            foreach (var processingGroup in _buckets)
             {
                 // Iterate through all FSM definitions within each processing group
-                foreach (var fsmBucket in categoryKvp.Value.Values)
+                foreach (var fsmBucket in processingGroup.Value.Values)
                 {
-                    // Attempt to remove the instance from the bucket's list of instances
+                    // Attempt to remove the instance from the handle's list of instances
                     if (fsmBucket.Instances.Remove(instance))
                     {
                         removed = true;
@@ -640,6 +647,11 @@ namespace TheSingularityWorkshop.FSM.API
                     DestroyFiniteStateMachine(fsmDefinitionName, processingGroup);
                 });
             }
+        }
+
+        public static List<string> GetAllProcessGroups()
+        {
+            return _buckets.Keys.ToList();
         }
     }
 }
