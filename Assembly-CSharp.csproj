@@ -66,17 +66,15 @@
     <Compile Include="Assets\TheSingularityWorkshop\FSM_API\Demo\Scripts\Demo.cs" />
     <Compile Include="Assets\TheSingularityWorkshop\FSM_API\Demo\Scripts\LightBulbDemo.cs" />
     <Compile Include="Assets\TheSingularityWorkshop\FSM_API\Scripts\FSM\FSMTransition.cs" />
-    <Compile Include="Assets\TheSingularityWorkshop\FSM_API\Scripts\FSM\FSMErrorEventArgs.cs" />
-    <Compile Include="Assets\TheSingularityWorkshop\FSM_API\Demo\Scripts\SplashController.cs" />
     <Compile Include="Assets\TheSingularityWorkshop\FSM_API\Scripts\FSM\IContext.cs" />
     <Compile Include="Assets\TheSingularityWorkshop\FSM_API\Demo\Scripts\TrafficLightDemo.cs" />
     <Compile Include="Assets\TheSingularityWorkshop\FSM_API\Demo\Scripts\LightBulbUI.cs" />
     <Compile Include="Assets\TheSingularityWorkshop\FSM_API\Demo\Scripts\LightBulb.cs" />
-    <Compile Include="Assets\TheSingularityWorkshop\FSM_API\Scripts\FSM\FSMErrorType.cs" />
     <Compile Include="Assets\TheSingularityWorkshop\FSM_API\Scripts\FSM\FSM.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\TheSingularityWorkshop\FSM_API\Demo\Scripts\SimpleLightDemo.cs" />
     <Compile Include="Assets\TheSingularityWorkshop\FSM_API\Scripts\FSM\FSMHandle.cs" />
+    <Compile Include="Assets\TheSingularityWorkshop\FSM_API\Demo\Scripts\Oscillator.cs" />
     <Compile Include="Assets\TheSingularityWorkshop\FSM_API\Demo\Scripts\DoorDemo.cs" />
     <Compile Include="Assets\TheSingularityWorkshop\FSM_API\Demo\Scripts\IDemonstration.cs" />
     <Compile Include="Assets\TheSingularityWorkshop\FSM_API\Scripts\FSM\FSMBuilder.cs" />
@@ -84,6 +82,7 @@
     <Compile Include="Assets\TheSingularityWorkshop\FSM_API\Scripts\FSM\FSMState.cs" />
     <Compile Include="Assets\TheSingularityWorkshop\FSM_API\Demo\Scripts\GameInGameDemo.cs" />
     <Compile Include="Assets\TheSingularityWorkshop\FSM_API\Scripts\FSM\IStateContext.cs" />
+    <Compile Include="Assets\TheSingularityWorkshop\FSM_API\Demo\Scripts\SimpleSplashDemo.cs" />
     <Compile Include="Assets\TheSingularityWorkshop\FSM_API\Demo\Scripts\TrafficIntersectionDemo.cs" />
     <Compile Include="Assets\TheSingularityWorkshop\FSM_API\Demo\Scripts\UIDemo.cs" />
     <Compile Include="Assets\TheSingularityWorkshop\FSM_API\Scripts\Utility\RNG.cs" />
