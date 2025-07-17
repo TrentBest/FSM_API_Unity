@@ -20,7 +20,9 @@ Assets/Unity.VisualScripting.Generated/
 Assets/AddressableAssetsData/*/*.bin*
 Assets/StreamingAssets/aa.meta
 Assets/StreamingAssets/aa/*
-
+Settings/
+TextMesh Pro/
+packages.config
 # Asset Store tools
 # Uncomment if you want to ignore it
 # Assets/AssetStoreTools*
@@ -61,13 +63,4 @@ crashlytics-build.properties
 *.apk
 *.aab
 *.app
-
-
-# =============================
-# ✅ Files We WANT to Keep in Git
-# =============================
-
-!FSM_API.sln
-!Assembly-CSharp.csproj
-!Assembly-CSharp-Editor.csproj
 
