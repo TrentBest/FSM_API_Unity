@@ -1,9 +1,6 @@
-Core Concepts: Your Guide to FSM_API
-
 What is a Finite State Machine (FSM)?
 
-Imagine anything in a game or app. It acts differently based
-on its current "mode" or "stage."
+Imagine anything in a game or app. It acts differently based on its current "mode" or "stage."
 
     A character might be Idle, then Walking, then Jumping.
 
@@ -11,10 +8,7 @@ on its current "mode" or "stage."
 
     A UI button might be Enabled, then Pressed, then Disabled.
 
-A Finite State Machine (FSM) is simply a way to manage these modes.
-It's a system that can only be in one "state" at a time.
-It has a limited, or "finite," number of possible states.
-And it has clear rules for "transitions" (moving from one state to another).
+A Finite State Machine (FSM) is simply a way to manage these modes. It's a system that can only be in one "state" at a time. It has a limited, or "finite," number of possible states. And it has clear rules for "transitions" (moving from one state to another).
 
 Think of it like a light switch:
 
@@ -26,71 +20,29 @@ Think of it like a light switch:
 
     It cannot be "half-on" or "both-on-and-off." It's one state at a time.
 
-FSMs help you organize complex behaviors cleanly.
-They make it easy to understand what's happening.
-And predict what will happen next.
+FSMs help you organize complex behaviors cleanly. They make it easy to understand what's happening and predict what will happen next.
 
-FSM_API helps you build and manage these powerful systems.
+Understanding the Core Concepts of FSMs
 
-Understanding FSM_API's Core Concepts
-
-Now that you know what an FSM is, let's look at FSM_API's pieces.
-Each concept below plays a distinct role in FSM_API's architecture.
+Now that you know what an FSM is, let's look at its pieces. Each concept below plays a distinct role in an FSM's structure.
 
 FSM Definition: The Blueprint
 
-Think of an FSM Definition as the complete plan or blueprint.
-It defines how a certain behavior should work.
+Think of an FSM Definition as the complete plan or blueprint for how a certain behavior should work.
 
-    What it is:
-    This blueprint lays out all the "stages" your character, item, or
-    game logic can be in (like "Walking," "Sleeping," or "Door Open").
-    It also defines the rules for moving between these stages.
-    And what actions happen in each stage.
+    What it is: This blueprint lays out all the "stages" your character, item, or game logic can be in (like "Walking," "Sleeping," or "Door Open"). It also defines the rules for moving between these stages and what actions happen in each stage.
 
-    How you create it:
-    You create this blueprint using a special tool called the FSMBuilder.
-    You get the FSMBuilder by simply typing FSM_API.CreateFiniteStateMachine("YourFSMName").
-    Then, you use easy, chained commands.
-    Add your stages (states), describe what happens in them.
-    And set up the rules for moving between them.
+    Why it matters: Once you have this blueprint, you can use it many times! For example, you can design a "Basic Enemy Behavior" blueprint once, then use that same plan to control hundreds of different enemies. Each acts on its own, but they all follow the same underlying design, saving you from repeating work.
 
-    Why it matters:
-    Once you have this blueprint, you can use it many times!
-    For example, define "Enemy AI" once.
-    Then use that same blueprint to control hundreds of different enemies.
-    Each acts on its own. It saves you from repeating work.
+FSM Instance: The Live Version
 
-FSM Instance (FSMHandle): The Live Version
+If an FSM Definition is the blueprint, an FSM Instance is the actual, live "thing" that's running in your game or application. It's a specific character actually walking, a specific door actually opening, or specific game logic actually deciding what to do next.
 
-If an FSM Definition is the blueprint, an FSM Instance is
-the actual, live "thing" that's running in your game or application.
-It's a specific character actually walking.
-A specific door actually opening.
-Or specific game logic actually deciding what to do next.
+    What it is: This is a live, active version of your FSM blueprint. It's always connected to a specific "thing" in your game (like a player character, a monster, or even a button).
 
-    What it is:
-    This is a live, active version of your FSM blueprint.
-    It's always connected to a specific "thing" in your game.
-    (Like a player character, a monster, or even a button).
+    Purpose: The FSM Instance is your main way to observe and, if needed, directly influence one of these live FSMs. It tells you what state the FSM is currently in (e.g., "walking").
 
-    Purpose:
-    The FSMHandle is your main way to talk to.
-    And control one of these live FSMs.
-    It tells you what state the FSM is currently in (e.g., "walking").
-    And you can use it to force the FSM to change its state if needed.
-
-    How it's created:
-    Once you've built your FSM Definition (the blueprint),
-    you create a live instance by calling FSM_API.CreateInstance("YourFSMName", yourObject).
-    The yourObject part is very important.
-    It's the specific thing in your game that this FSM will control.
-
-    Key Point:
-    Multiple FSM Instances can share the same FSM Definition.
-    But operate entirely independently.
-    Each manages its own current stage and actions.
-    Even though they all follow the same initial blueprint.
+    Key Point: Multiple FSM Instances can share the same FSM Definition but operate entirely independently. Each manages its own current stage and actions, even though they all follow the same initial blueprint.
 
 State: The "What's Happening Now"
 

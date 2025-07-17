@@ -62,14 +62,6 @@ crashlytics-build.properties
 *.aab
 *.app
 
-# =========================
-# 📦 Unity Package Manager (UPM)
-# =========================
-# Ignore all contents of the Packages folder by default,
-# then re-include the essential manifest and lock files.
-Packages/
-!Packages/manifest.json
-!Packages/packages-lock.json
 
 # =============================
 # ✅ Files We WANT to Keep in Git
@@ -79,5 +71,3 @@ Packages/
 !Assembly-CSharp.csproj
 !Assembly-CSharp-Editor.csproj
 
-# Uncomment the next line if you add a test project
-# !FSM_API.Tests.csproj
