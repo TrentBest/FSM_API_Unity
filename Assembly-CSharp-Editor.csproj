@@ -62,7 +62,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\TheSingularityWorkshop\FSM_API\Tests\Editor\RNGTests.cs" />
-    <Compile Include="Assets\TutorialInfo\Scripts\Editor\ReadmeEditor.cs" />
     <Compile Include="Assets\TheSingularityWorkshop\FSM_API\Tests\Editor\FSMTransitionTests.cs" />
     <Compile Include="Assets\TheSingularityWorkshop\FSM_API\Tests\Editor\FSM_API_Tests.cs" />
     <Compile Include="Assets\TheSingularityWorkshop\FSM_API\Tests\Editor\FSMBuilderTests.cs" />
