@@ -37,14 +37,14 @@ namespace TheSingularityWorkshop.FSM.API
         /// This constructor is intended for internal API use via <see cref="FSM_API.CreateFiniteStateMachine"/>.
         /// </summary>
         /// <param name="fsm">The existing FSM definition to load and potentially modify.</param>
-        public FSMBuilder(FSM fsm)
+        public FSMBuilder(FSM fsm, string newName)
         {
             if (fsm == null)
             {
                 throw new ArgumentNullException(nameof(fsm), "Cannot initialize FSMBuilder with a null FSM definition.");
             }
 
-            _fsmName = $"{fsm.Name}2";
+            _fsmName = (newName==null ||newName == string.Empty)?$"{fsm.Name}2":newName;
             _processRate = fsm.ProcessRate;
             _initialState = fsm.InitialState;
             _processGroup = fsm.ProcessingGroup;
@@ -72,7 +72,8 @@ namespace TheSingularityWorkshop.FSM.API
             }
             if (_states.Any(s => s.Name == name))
             {
-                throw new ArgumentException($"State with name '{name}' already exists in this FSM definition.", nameof(name));
+                //throw new ArgumentException($"State with name '{name}' already exists in this FSM definition.", nameof(name));
+                return this;
             }
 
             _states.Add(new FSMState(name, onEnter, onUpdate, onExit));
@@ -136,7 +137,10 @@ namespace TheSingularityWorkshop.FSM.API
             {
                 throw new ArgumentNullException(nameof(condition), "Transition condition cannot be null.");
             }
-
+            if(_transitions.Any(s=>s.From == from && s.To == to && s.Condition == condition))
+            {
+                return this;
+            }
             _transitions.Add(new FSMTransition(from, to, condition));
             return this;
         }
@@ -164,6 +168,10 @@ namespace TheSingularityWorkshop.FSM.API
         /// <exception cref="ArgumentException">Thrown if the specified initial state does not exist.</exception>
         public void BuildDefinition()
         {
+            if (FSM_API.Exists(_fsmName))
+            {
+                return;//Do nothing, it exists
+            }
             // --- Validation before building ---
             if (_states.Count == 0)
             {

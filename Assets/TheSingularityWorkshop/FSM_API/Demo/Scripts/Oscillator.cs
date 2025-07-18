@@ -24,32 +24,39 @@ public class Oscillator : MonoBehaviour, IStateContext
     public float Amplitude => MaximumValue - MinimumValue;
     public float MinimumValue { get; set; } = -1f;
     public float MaximumValue { get; set; } = 1f;
-
-
-    public void Awake()
+    private bool isInitialized = false;
+    public void Initialize()
     {
-        if (!FSM_API.ExistsProcessingGroup("OscillatorPG"))
-        {
-            FSM_API.CreateProcessingGroup("OscillatorPG");
-            Debug.Log("OscillatorPG created in Awake.");
-        }
+        isInitialized = true;
         if (!FSM_API.Exists("OscillatorFSM"))
         {
+            FSM_API.CreateProcessingGroup("OscillatorPG");
+            Debug.Log($"Defining OscillatorFSM");
             FSM_API.CreateFiniteStateMachine("OscillatorFSM", -1, "OscillatorPG")
                 .State("Initializing", OnEnterInitializing)
                 .State("Maximum", OnEnterMaximum, OnUpdateMaximum, OnExitMaximum)
                 .State("Minimum", OnEnterMinimum, OnUpdateMinimum, OnExitMinimum)
-
                 .Transition("Initializing", "Maximum", IsCloserToMax)
                 .Transition("Initializing", "Minimum", IsCloserToMin)
-                 .Transition("Maximum", "Minimum", IsMin)
-                 .Transition("Minimum", "Maximum", IsMax)
+                .Transition("Maximum", "Minimum", IsMin)
+                .Transition("Minimum", "Maximum", IsMax)
                 .BuildDefinition();
         }
-
     }
+
+    void Awake()
+    {
+    }
+    private object lockObj = new object();
     void Start()
     {
+        lock (lockObj)
+        {
+            if (!isInitialized)
+            {
+                Initialize();
+            }
+        }
         OscillatorFSM = FSM_API.CreateInstance("OscillatorFSM", this, "OscillatorPG");
     }
 

@@ -53,7 +53,9 @@ public class SimpleSplashDemo : MonoBehaviour, IStateContext
         if (!FSM_API.Exists("SimpleSplashDemo"))
         {
             //Create the FSM which will contro the demo.
+            Debug.Log($"Creating SimpleSplashDemo");
             FSM_API.CreateProcessingGroup("SimpleSplashDemoPG");
+            Debug.Log($"Created Processing Group");
             FSM_API.CreateFiniteStateMachine("SimpleSplashDemo", 9, "SimpleSplashDemoPG")//process these fsms every 10 frames
                 .State("Initializing", OnEnterSimpleDemoInitializing)
                 .State("Presenting", OnEnterSimpleDemoPresenting, OnUpdateSimpleDemoPresenting, OnExitSimpleDemoPresenting)
@@ -61,96 +63,99 @@ public class SimpleSplashDemo : MonoBehaviour, IStateContext
                 .Transition("Initializing", "Presenting", Initialized)
                 .Transition("Presenting", "Exiting", Finished)
                 .BuildDefinition();
-
+            Debug.Log("Word");
         }
+        Debug.Log($"Sup?");
         demoFSMHandle = FSM_API.CreateInstance("SimpleSplashDemo", this, "SimpleSplashDemoPG");
+        Debug.Log($"Wonka");
         IsValid = true;
     }
 
     private void OnEnterSimpleDemoInitializing(IStateContext context)
     {
+        Debug.Log($"Here");
         if (context is SimpleSplashDemo demo)
         {
             Debug.Log("Entering SimpleSplashDemo Initializing State");
-            var t = demo.moniker[0].GetComponent<Oscillator>();
+            var t = demo.moniker[0].AddComponent<Oscillator>();
             t.floatAccesorSetDelegate += RotatorSet(t.gameObject, Axis.Y);
             t.floatAccessorGetDelegate += RotatorGet(t.gameObject, Axis.Y);
             t.MaximumValue = 360f;
             t.MinimumValue = 0f;
-            t.dx = 1 / 360f;
-            var h = demo.moniker[1].GetComponent<Oscillator>();
+            t.dx = 1f;
+            var h = demo.moniker[1].AddComponent<Oscillator>();
             h.floatAccesorSetDelegate += RotatorSet(h.gameObject, Axis.X);
             h.floatAccessorGetDelegate += RotatorGet(h.gameObject, Axis.X);
             h.MaximumValue = 360f;
             h.MinimumValue = 0f;
             h.dx = 1 / 360f;
-            var e = demo.moniker[2].GetComponent<Oscillator>();
+            var e = demo.moniker[2].AddComponent<Oscillator>();
             e.floatAccesorSetDelegate += RotatorSet(e.gameObject, Axis.Z);
             e.floatAccessorGetDelegate += RotatorGet(e.gameObject, Axis.Z);
             e.MaximumValue = 360f;
             e.MinimumValue = 0f;
             e.dx = 1 / 360f;
 
-            var s = demo.moniker[3].GetComponent<Oscillator>();
+            var s = demo.moniker[3].AddComponent<Oscillator>();
             t.floatAccesorSetDelegate += TranslatorSet(t.gameObject, Axis.X);
             t.floatAccessorGetDelegate += TranslatorGet(t.gameObject, Axis.X);
             t.MinimumValue = t.transform.position.x - .5f;
             t.MaximumValue = t.transform.position.x + .5f;
-            var i = demo.moniker[4].GetComponent<Oscillator>();
+            var i = demo.moniker[4].AddComponent<Oscillator>();
             i.floatAccesorSetDelegate += ScalarSet(i.gameObject, Axis.Y);
             i.floatAccessorGetDelegate += ScalarGet(i.gameObject, Axis.Y);
             i.MinimumValue = .75f;
             i.MaximumValue = 1.25f;
-            var n = demo.moniker[5].GetComponent<Oscillator>();
+            var n = demo.moniker[5].AddComponent<Oscillator>();
             n.floatAccesorSetDelegate += RotatorSet(n.gameObject, Axis.Z);
             n.floatAccessorGetDelegate += RotatorGet(n.gameObject, Axis.Z);
-            var g = demo.moniker[6].GetComponent<Oscillator>();
+            var g = demo.moniker[6].AddComponent<Oscillator>();
             g.floatAccesorSetDelegate += TranslatorSet(g.gameObject, Axis.Y);
             g.floatAccessorGetDelegate += TranslatorGet(g.gameObject, Axis.Y);
-            var u = demo.moniker[7].GetComponent<Oscillator>();
+            var u = demo.moniker[7].AddComponent<Oscillator>();
             u.floatAccesorSetDelegate += TranslatorSet(u.gameObject, Axis.Z);
             u.floatAccessorGetDelegate += TranslatorGet(u.gameObject, Axis.Z);
-            var l = demo.moniker[8].GetComponent<Oscillator>();
+            var l = demo.moniker[8].AddComponent<Oscillator>();
             l.floatAccesorSetDelegate += ScalarSet(l.gameObject, Axis.X);
             l.floatAccessorGetDelegate += ScalarGet(l.gameObject, Axis.X);
-            var a = demo.moniker[9].GetComponent<Oscillator>();
+            var a = demo.moniker[9].AddComponent<Oscillator>();
             a.floatAccesorSetDelegate += RotatorSet(a.gameObject, Axis.Y);
             a.floatAccessorGetDelegate += RotatorGet(a.gameObject, Axis.Y);
-            var r = demo.moniker[10].GetComponent<Oscillator>();
+            var r = demo.moniker[10].AddComponent<Oscillator>();
             r.floatAccesorSetDelegate += TranslatorSet(r.gameObject, Axis.X);
             r.floatAccessorGetDelegate += TranslatorGet(r.gameObject, Axis.X);
-            var i2 = demo.moniker[11].GetComponent<Oscillator>();
+            var i2 = demo.moniker[11].AddComponent<Oscillator>();
             i2.floatAccesorSetDelegate += ScalarSet(i2.gameObject, Axis.Y);
             i2.floatAccessorGetDelegate += ScalarGet(i2.gameObject, Axis.Y);
-            var t2 = demo.moniker[12].GetComponent<Oscillator>();
+            var t2 = demo.moniker[12].AddComponent<Oscillator>();
             t2.floatAccesorSetDelegate += RotatorSet(t2.gameObject, Axis.Z);
             t2.floatAccessorGetDelegate += RotatorGet(t2.gameObject, Axis.Z);
-            var y = demo.moniker[13].GetComponent<Oscillator>();
+            var y = demo.moniker[13].AddComponent<Oscillator>();
             y.floatAccesorSetDelegate += TranslatorSet(y.gameObject, Axis.X);
             y.floatAccessorGetDelegate += TranslatorGet(y.gameObject, Axis.X);
 
-            var w = demo.moniker[14].GetComponent<Oscillator>();
+            var w = demo.moniker[14].AddComponent<Oscillator>();
             w.floatAccesorSetDelegate += ScalarSet(w.gameObject, Axis.Y);
             w.floatAccessorGetDelegate += ScalarGet(w.gameObject, Axis.Y);
-            var o = demo.moniker[15].GetComponent<Oscillator>();
+            var o = demo.moniker[15].AddComponent<Oscillator>();
             o.floatAccesorSetDelegate += RotatorSet(o.gameObject, Axis.Z);
             o.floatAccessorGetDelegate += RotatorGet(o.gameObject, Axis.Z);
-            var r2 = demo.moniker[16].GetComponent<Oscillator>();
+            var r2 = demo.moniker[16].AddComponent<Oscillator>();
             r2.floatAccesorSetDelegate += TranslatorSet(r2.gameObject, Axis.X);
             r2.floatAccessorGetDelegate += TranslatorGet(r2.gameObject, Axis.X);
-            var k = demo.moniker[17].GetComponent<Oscillator>();
+            var k = demo.moniker[17].AddComponent<Oscillator>();
             k.floatAccesorSetDelegate += ScalarSet(k.gameObject, Axis.Y);
             k.floatAccessorGetDelegate += ScalarGet(k.gameObject, Axis.Y);
-            var s2 = demo.moniker[18].GetComponent<Oscillator>();
+            var s2 = demo.moniker[18].AddComponent<Oscillator>();
             s2.floatAccesorSetDelegate += RotatorSet(s2.gameObject, Axis.Z);
             s2.floatAccessorGetDelegate += RotatorGet(s2.gameObject, Axis.Z);
-            var h2 = demo.moniker[19].GetComponent<Oscillator>();
+            var h2 = demo.moniker[19].AddComponent<Oscillator>();
             h2.floatAccesorSetDelegate += TranslatorSet(h2.gameObject, Axis.X);
             h2.floatAccessorGetDelegate += TranslatorGet(h2.gameObject, Axis.X);
-            var o2 = demo.moniker[20].GetComponent<Oscillator>();
+            var o2 = demo.moniker[20].AddComponent<Oscillator>();
             o2.floatAccesorSetDelegate += ScalarSet(o2.gameObject, Axis.Y);
             o2.floatAccessorGetDelegate += ScalarGet(o2.gameObject, Axis.Y);
-            var p = demo.moniker[21].GetComponent<Oscillator>();
+            var p = demo.moniker[21].AddComponent<Oscillator>();
             p.floatAccesorSetDelegate += RotatorSet(p.gameObject, Axis.Z);
             p.floatAccessorGetDelegate += RotatorGet(p.gameObject, Axis.Z);
             IsInitialized = true;
@@ -160,9 +165,12 @@ public class SimpleSplashDemo : MonoBehaviour, IStateContext
 
     private void Update()
     {
+        //Debug.Log($"Allo?");
         //Step our FSMs.
         FSM_API.Update("SimpleSplashDemoPG");//This should run every 10 frames, otherwise fast return;
+       // Debug.Log($"Violeta?");
         FSM_API.Update("OscillatorPG");//This iterates over a small group of oscillators (22).
+        //Debug.Log($"Screwball");
     }
 
     private FloatAccessorGetDelegate ScalarGet(GameObject gameObject, Axis axis)

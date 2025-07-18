@@ -15,11 +15,11 @@ MonoBehaviour:
   m_PixelRect:
     serializedVersion: 2
     x: 0
-    y: 43
-    width: 1920
-    height: 997
+    y: 43.2
+    width: 1536
+    height: 780.8
   m_ShowMode: 4
-  m_Title: Project
+  m_Title: Game
   m_RootView: {fileID: 6}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -43,12 +43,12 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 36
-    width: 1920
-    height: 941
+    width: 1536
+    height: 724.8
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 107
+  controlID: 114
   draggingID: 0
 --- !u!114 &3
 MonoBehaviour:
@@ -65,15 +65,15 @@ MonoBehaviour:
   m_Children: []
   m_Position:
     serializedVersion: 2
-    x: 1445
+    x: 1105.6
     y: 0
-    width: 475
-    height: 941
-  m_MinSize: {x: 276, y: 76}
-  m_MaxSize: {x: 4001, y: 4026}
-  m_ActualView: {fileID: 18}
+    width: 430.40002
+    height: 724.8
+  m_MinSize: {x: 275, y: 50}
+  m_MaxSize: {x: 4000, y: 4000}
+  m_ActualView: {fileID: 17}
   m_Panes:
-  - {fileID: 18}
+  - {fileID: 17}
   m_Selected: 0
   m_LastSelected: 0
 --- !u!114 &4
@@ -93,13 +93,13 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 412
-    height: 531
+    width: 314.4
+    height: 408.8
   m_MinSize: {x: 201, y: 226}
   m_MaxSize: {x: 4001, y: 4026}
-  m_ActualView: {fileID: 19}
+  m_ActualView: {fileID: 18}
   m_Panes:
-  - {fileID: 19}
+  - {fileID: 18}
   m_Selected: 0
   m_LastSelected: 0
 --- !u!114 &5
@@ -118,16 +118,16 @@ MonoBehaviour:
   m_Position:
     serializedVersion: 2
     x: 0
-    y: 531
-    width: 1445
-    height: 410
+    y: 408.8
+    width: 1105.6
+    height: 316
   m_MinSize: {x: 231, y: 276}
   m_MaxSize: {x: 10001, y: 10026}
-  m_ActualView: {fileID: 17}
+  m_ActualView: {fileID: 16}
   m_Panes:
-  - {fileID: 17}
-  - {fileID: 22}
-  - {fileID: 15}
+  - {fileID: 16}
+  - {fileID: 21}
+  - {fileID: 14}
   - {fileID: 12}
   m_Selected: 0
   m_LastSelected: 1
@@ -151,8 +151,8 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1920
-    height: 997
+    width: 1536
+    height: 780.8
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
   m_UseTopView: 1
@@ -176,7 +176,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1920
+    width: 1536
     height: 36
   m_MinSize: {x: 0, y: 0}
   m_MaxSize: {x: 0, y: 0}
@@ -197,8 +197,8 @@ MonoBehaviour:
   m_Position:
     serializedVersion: 2
     x: 0
-    y: 977
-    width: 1920
+    y: 760.8
+    width: 1536
     height: 20
   m_MinSize: {x: 0, y: 0}
   m_MaxSize: {x: 0, y: 0}
@@ -221,12 +221,12 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1445
-    height: 941
+    width: 1105.6
+    height: 724.8
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 65
+  controlID: 115
   draggingID: 0
 --- !u!114 &10
 MonoBehaviour:
@@ -247,12 +247,12 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1445
-    height: 531
+    width: 1105.6
+    height: 408.8
   m_MinSize: {x: 200, y: 50}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 41
+  controlID: 42
   draggingID: 0
 --- !u!114 &11
 MonoBehaviour:
@@ -269,19 +269,18 @@ MonoBehaviour:
   m_Children: []
   m_Position:
     serializedVersion: 2
-    x: 412
+    x: 314.4
     y: 0
-    width: 1033
-    height: 531
+    width: 791.19995
+    height: 408.8
   m_MinSize: {x: 202, y: 226}
   m_MaxSize: {x: 4002, y: 4026}
-  m_ActualView: {fileID: 21}
+  m_ActualView: {fileID: 20}
   m_Panes:
+  - {fileID: 19}
   - {fileID: 20}
-  - {fileID: 21}
-  - {fileID: 16}
+  - {fileID: 15}
   - {fileID: 13}
-  - {fileID: 14}
   m_Selected: 1
   m_LastSelected: 0
 --- !u!114 &12
@@ -322,7 +321,7 @@ MonoBehaviour:
     m_ContainerData: []
     m_OverlaysVisible: 1
   m_Spl:
-    ID: 3588
+    ID: 1575
     splitterInitialOffset: 225
     currentActiveSplitter: -1
     realSizes:
@@ -349,7 +348,7 @@ MonoBehaviour:
   m_TestListGUIs:
   - m_Window: {fileID: 12}
     runProgress:
-      RunGuid: 4d419bc4-3370-4848-98c4-6a66329e39f8
+      RunGuid: f8363fd1-70cd-41fd-8b4f-9a8ba1e36471
       ExecutionSettings:
         m_TargetPlatform: 0
         m_HasTargetPlatform: 0
@@ -361,7 +360,8 @@ MonoBehaviour:
           assemblyNames: []
         filters:
         - testMode: 1
-          testNames: []
+          testNames:
+          - TheSingularityWorkshop.FSM.Tests.OscillatorTests.OscillatorChangesDirectionAfterReachingMax
           groupNames: []
           categoryNames: []
           assemblyNames: []
@@ -376,7 +376,7 @@ MonoBehaviour:
           disableNestedEnumeratorBugfix: 0
         randomOrderSeed: 0
       HasFinished: 1
-      Progress: 1.0000007
+      Progress: 0.9999999
       CurrentStepName: Unlock Reload Assemblies
       CurrentStageName: 
     m_NewResultList:
@@ -396,7 +396,7 @@ MonoBehaviour:
       categories: []
       parentId: 
       parentUniqueId: 
-    - id: 1076
+    - id: 1081
       uniqueId: '[Assembly-CSharp-Editor.dll][suite]'
       name: Assembly-CSharp-Editor.dll
       fullName: C:/Users/Trent Best/FSM_API/Library/ScriptAssemblies/Assembly-CSharp-Editor.dll
@@ -412,7 +412,7 @@ MonoBehaviour:
       categories: []
       parentId: 1000
       parentUniqueId: '[FSM_API][suite]'
-    - id: 1077
+    - id: 1082
       uniqueId: 'Assembly-CSharp-Editor.dll/[TheSingularityWorkshop][suite]'
       name: TheSingularityWorkshop
       fullName: TheSingularityWorkshop
@@ -426,9 +426,9 @@ MonoBehaviour:
       description: 
       isSuite: 1
       categories: []
-      parentId: 1076
+      parentId: 1081
       parentUniqueId: '[Assembly-CSharp-Editor.dll][suite]'
-    - id: 1078
+    - id: 1083
       uniqueId: 'Assembly-CSharp-Editor.dll/TheSingularityWorkshop/[FSM][suite]'
       name: FSM
       fullName: TheSingularityWorkshop.FSM
@@ -442,9 +442,9 @@ MonoBehaviour:
       description: 
       isSuite: 1
       categories: []
-      parentId: 1077
+      parentId: 1082
       parentUniqueId: 'Assembly-CSharp-Editor.dll/[TheSingularityWorkshop][suite]'
-    - id: 1079
+    - id: 1084
       uniqueId: 'Assembly-CSharp-Editor.dll/TheSingularityWorkshop/FSM/[Assembly-CSharp-Editor][TheSingularityWorkshop.FSM.Tests][suite]'
       name: Tests
       fullName: TheSingularityWorkshop.FSM.Tests
@@ -458,7 +458,7 @@ MonoBehaviour:
       description: 
       isSuite: 1
       categories: []
-      parentId: 1078
+      parentId: 1083
       parentUniqueId: 'Assembly-CSharp-Editor.dll/TheSingularityWorkshop/[FSM][suite]'
     - id: 1053
       uniqueId: 'Assembly-CSharp-Editor.dll/TheSingularityWorkshop/FSM/Tests/[Assembly-CSharp-Editor][TheSingularityWorkshop.FSM.Tests.FSM_API_Tests][suite]'
@@ -474,7 +474,7 @@ MonoBehaviour:
       description: 
       isSuite: 1
       categories: []
-      parentId: 1079
+      parentId: 1084
       parentUniqueId: 'Assembly-CSharp-Editor.dll/TheSingularityWorkshop/FSM/[Assembly-CSharp-Editor][TheSingularityWorkshop.FSM.Tests][suite]'
     - id: 1056
       uniqueId: 'Assembly-CSharp-Editor.dll/TheSingularityWorkshop/FSM/Tests/FSM_API_Tests/[Assembly-CSharp-Editor][TheSingularityWorkshop.FSM.Tests.FSM_API_Tests.CreateFiniteStateMachine_ThrowsOnInvalid]'
@@ -660,7 +660,7 @@ MonoBehaviour:
       description: 
       isSuite: 1
       categories: []
-      parentId: 1079
+      parentId: 1084
       parentUniqueId: 'Assembly-CSharp-Editor.dll/TheSingularityWorkshop/FSM/[Assembly-CSharp-Editor][TheSingularityWorkshop.FSM.Tests][suite]'
     - id: 1011
       uniqueId: 'Assembly-CSharp-Editor.dll/TheSingularityWorkshop/FSM/Tests/FSMBuilderTests/[Assembly-CSharp-Editor][TheSingularityWorkshop.FSM.Tests.FSMBuilderTests.BuildDefinition_RegistersFSMWithAllStatesAndTransitions]'
@@ -863,7 +863,7 @@ MonoBehaviour:
       description: 
       isSuite: 1
       categories: []
-      parentId: 1079
+      parentId: 1084
       parentUniqueId: 'Assembly-CSharp-Editor.dll/TheSingularityWorkshop/FSM/[Assembly-CSharp-Editor][TheSingularityWorkshop.FSM.Tests][suite]'
     - id: 1008
       uniqueId: 'Assembly-CSharp-Editor.dll/TheSingularityWorkshop/FSM/Tests/FSMStateTests/[Assembly-CSharp-Editor][TheSingularityWorkshop.FSM.Tests.FSMStateTests.Constructor_ThrowsArgumentException_WhenNameIsNullOrWhitespace]'
@@ -1044,7 +1044,7 @@ MonoBehaviour:
       description: 
       isSuite: 1
       categories: []
-      parentId: 1079
+      parentId: 1084
       parentUniqueId: 'Assembly-CSharp-Editor.dll/TheSingularityWorkshop/FSM/[Assembly-CSharp-Editor][TheSingularityWorkshop.FSM.Tests][suite]'
     - id: 1022
       uniqueId: 'Assembly-CSharp-Editor.dll/TheSingularityWorkshop/FSM/Tests/FSMTests/[Assembly-CSharp-Editor][TheSingularityWorkshop.FSM.Tests.FSMTests.AddAnyStateTransition_AddsAndReplacesAnyStateTransition]'
@@ -1494,7 +1494,7 @@ MonoBehaviour:
       description: 
       isSuite: 1
       categories: []
-      parentId: 1079
+      parentId: 1084
       parentUniqueId: 'Assembly-CSharp-Editor.dll/TheSingularityWorkshop/FSM/[Assembly-CSharp-Editor][TheSingularityWorkshop.FSM.Tests][suite]'
     - id: 1036
       uniqueId: 'Assembly-CSharp-Editor.dll/TheSingularityWorkshop/FSM/Tests/FSMTransitionTests/[Assembly-CSharp-Editor][TheSingularityWorkshop.FSM.Tests.FSMTransitionTests.Constructor_SetsProperties]'
@@ -1582,6 +1582,283 @@ MonoBehaviour:
       parentId: 1035
       parentUniqueId: 'Assembly-CSharp-Editor.dll/TheSingularityWorkshop/FSM/Tests/[Assembly-CSharp-Editor][TheSingularityWorkshop.FSM.Tests.FSMTransitionTests][suite]'
     - id: 1064
+      uniqueId: 'Assembly-CSharp-Editor.dll/TheSingularityWorkshop/FSM/Tests/[Assembly-CSharp-Editor][TheSingularityWorkshop.FSM.Tests.OscillatorTests][suite]'
+      name: OscillatorTests
+      fullName: TheSingularityWorkshop.FSM.Tests.OscillatorTests
+      resultStatus: 0
+      duration: 0
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 1084
+      parentUniqueId: 'Assembly-CSharp-Editor.dll/TheSingularityWorkshop/FSM/[Assembly-CSharp-Editor][TheSingularityWorkshop.FSM.Tests][suite]'
+    - id: 1067
+      uniqueId: 'Assembly-CSharp-Editor.dll/TheSingularityWorkshop/FSM/Tests/OscillatorTests/[Assembly-CSharp-Editor][TheSingularityWorkshop.FSM.Tests.OscillatorTests.IsMaxReturnsTrueWhenMaximumValueReached]'
+      name: IsMaxReturnsTrueWhenMaximumValueReached
+      fullName: TheSingularityWorkshop.FSM.Tests.OscillatorTests.IsMaxReturnsTrueWhenMaximumValueReached
+      resultStatus: 0
+      duration: 0
+      messages: 
+      output: " Entering State 'Initializing'\r\n Initializing Oscillator. Initial
+        dx: 0.01\r\n Initialized value to: 1. dx remains: 0.01\r\n Entering State
+        'Initializing'\r\n Initializing Oscillator. Initial dx: 0.01\r\n Initialized
+        value to: 1. dx remains: 0.01\r\n Updating State 'Initializing'\r\n Exiting
+        State 'Initializing'\r\n Entering State 'Minimum'\r\n Entering Minimum State.
+        Current dx before flip: 0.01\r\n New dx after entering Minimum: 0.01\r\n
+        Updating State 'Initializing'\r\n Exiting State 'Initializing'\r\n Entering
+        State 'Minimum'\r\n Entering Minimum State. Current dx before flip: 0.01\r\n
+        New dx after entering Minimum: 0.01\r\n Updating State 'Minimum'\r\n Updating
+        State 'Minimum'\r\n Updating State 'Minimum'\r\n Updating State 'Minimum'\r\n
+        Updating State 'Minimum'\r\n Updating State 'Minimum'\r\n Updating State
+        'Minimum'\r\n Updating State 'Minimum'\r\n Updating State 'Minimum'\r\n Updating
+        State 'Minimum'\r\n Updating State 'Minimum'\r\n Updating State 'Minimum'\r\n
+        Updating State 'Minimum'\r\n Updating State 'Minimum'\r\n Updating State
+        'Minimum'\r\n Updating State 'Minimum'\r\n Updating State 'Minimum'\r\n Updating
+        State 'Minimum'\r\n Updating State 'Minimum'\r\n Updating State 'Minimum'\r\n
+        Updating State 'Minimum'\r\n Updating State 'Minimum'\r\n Updating State
+        'Minimum'\r\n Updating State 'Minimum'\r\n Updating State 'Minimum'\r\n Updating
+        State 'Minimum'\r\n Updating State 'Minimum'\r\n Updating State 'Minimum'\r\n
+        Updating State 'Minimum'\r\n Updating State 'Minimum'\r\n Updating State
+        'Minimum'\r\n Updating State 'Minimum'\r\n Updating State 'Minimum'\r\n Updating
+        State 'Minimum'\r\n Updating State 'Minimum'\r\n Updating State 'Minimum'\r\n
+        Updating State 'Minimum'\r\n Updating State 'Minimum'\r\n Updating State
+        'Minimum'\r\n Updating State 'Minimum'\r\n Updating State 'Minimum'\r\n Updating
+        State 'Minimum'\r\n Updating State 'Minimum'\r\n Updating State 'Minimum'\r\n
+        Updating State 'Minimum'\r\n Updating State 'Minimum'\r\n Updating State
+        'Minimum'\r\n Updating State 'Minimum'\r\n Updating State 'Minimum'\r\n Updating
+        State 'Minimum'\r\n Updating State 'Minimum'\r\n Updating State 'Minimum'\r\n
+        Updating State 'Minimum'\r\n Updating State 'Minimum'\r\n Updating State
+        'Minimum'\r\n Updating State 'Minimum'\r\n Updating State 'Minimum'\r\n Updating
+        State 'Minimum'\r\n Updating State 'Minimum'\r\n Updating State 'Minimum'\r\n
+        Updating State 'Minimum'\r\n Updating State 'Minimum'\r\n Updating State
+        'Minimum'\r\n Updating State 'Minimum'\r\n Updating State 'Minimum'\r\n Updating
+        State 'Minimum'\r\n Updating State 'Minimum'\r\n Updating State 'Minimum'\r\n
+        Updating State 'Minimum'\r\n Updating State 'Minimum'\r\n Updating State
+        'Minimum'\r\n Updating State 'Minimum'\r\n Updating State 'Minimum'\r\n Updating
+        State 'Minimum'\r\n Updating State 'Minimum'\r\n Updating State 'Minimum'\r\n
+        Updating State 'Minimum'\r\n Updating State 'Minimum'\r\n Updating State
+        'Minimum'\r\n Updating State 'Minimum'\r\n Updating State 'Minimum'\r\n Updating
+        State 'Minimum'\r\n Updating State 'Minimum'\r\n Updating State 'Minimum'\r\n
+        Updating State 'Minimum'\r\n Updating State 'Minimum'\r\n Updating State
+        'Minimum'\r\n Updating State 'Minimum'\r\n Updating State 'Minimum'\r\n Updating
+        State 'Minimum'\r\n Updating State 'Minimum'\r\n Updating State 'Minimum'\r\n
+        Updating State 'Minimum'\r\n Updating State 'Minimum'\r\n Updating State
+        'Minimum'\r\n Updating State 'Minimum'\r\n Updating State 'Minimum'\r\n Updating
+        State 'Minimum'\r\n Updating State 'Minimum'\r\n Updating State 'Minimum'\r\n
+        Updating State 'Minimum'\r\n Exiting State 'Minimum'\r\n Entering State 'Maximum'\r\n
+        Entering Maximum State. Current dx before flip: 0.01\r\n New dx after entering
+        Maximum: -0.01\r\n Updating State 'Minimum'\r\n Updating State 'Maximum'\r\n
+        Updating State 'Minimum'\r\n Updating State 'Maximum'\r\n Updating State
+        'Minimum'\r\n Updating State 'Maximum'\r\n Updating State 'Minimum'\r\n Updating
+        State 'Maximum'\r\n Updating State 'Minimum'\r\n Updating State 'Maximum'\r\n
+        Updating State 'Minimum'\r\n Updating State 'Maximum'\r\n Updating State
+        'Minimum'\r\n Updating State 'Maximum'\r\n Updating State 'Minimum'\r\n Updating
+        State 'Maximum'\r\n Updating State 'Minimum'\r\n Updating State 'Maximum'\r\n
+        Updating State 'Minimum'\r\n Updating State 'Maximum'\r\n Updating State
+        'Minimum'\r\n Updating State 'Maximum'\r\n Updating State 'Minimum'\r\n Updating
+        State 'Maximum'\r\n Updating State 'Minimum'\r\n Updating State 'Maximum'\r\n
+        Updating State 'Minimum'\r\n Updating State 'Maximum'\r\n Updating State
+        'Minimum'\r\n Updating State 'Maximum'\r\n Updating State 'Minimum'\r\n Updating
+        State 'Maximum'\r\n Updating State 'Minimum'\r\n Updating State 'Maximum'\r\n
+        Updating State 'Minimum'\r\n Updating State 'Maximum'\r\n Updating State
+        'Minimum'\r\n Updating State 'Maximum'\r\n Updating State 'Minimum'\r\n Updating
+        State 'Maximum'\r\n Updating State 'Minimum'\r\n Updating State 'Maximum'\r\n
+        Updating State 'Minimum'\r\n Updating State 'Maximum'\r\n Updating State
+        'Minimum'\r\n Updating State 'Maximum'\r\n Updating State 'Minimum'\r\n Updating
+        State 'Maximum'\r\n Updating State 'Minimum'\r\n Updating State 'Maximum'\r\n
+        Updating State 'Minimum'\r\n Updating State 'Maximum'\r\n Updating State
+        'Minimum'\r\n Updating State 'Maximum'\r\n Updating State 'Minimum'\r\n Updating
+        State 'Maximum'\r\n Updating State 'Minimum'\r\n Updating State 'Maximum'\r\n
+        Updating State 'Minimum'\r\n Updating State 'Maximum'\r\n Updating State
+        'Minimum'\r\n Updating State 'Maximum'\r\n Updating State 'Minimum'\r\n Updating
+        State 'Maximum'\r\n Updating State 'Minimum'\r\n Updating State 'Maximum'\r\n
+        Updating State 'Minimum'\r\n Updating State 'Maximum'\r\n Updating State
+        'Minimum'\r\n Updating State 'Maximum'\r\n Updating State 'Minimum'\r\n Updating
+        State 'Maximum'\r\n Updating State 'Minimum'\r\n Updating State 'Maximum'\r\n
+        Updating State 'Minimum'\r\n Updating State 'Maximum'\r\n Updating State
+        'Minimum'\r\n Updating State 'Maximum'\r\n Updating State 'Minimum'\r\n Updating
+        State 'Maximum'\r\n Updating State 'Minimum'\r\n Updating State 'Maximum'\r\n
+        Updating State 'Minimum'\r\n Updating State 'Maximum'\r\n Updating State
+        'Minimum'\r\n Updating State 'Maximum'\r\n Updating State 'Minimum'\r\n Updating
+        State 'Maximum'\r\n Updating State 'Minimum'\r\n Updating State 'Maximum'\r\n
+        Updating State 'Minimum'\r\n Updating State 'Maximum'\r\n Updating State
+        'Minimum'\r\n Updating State 'Maximum'\r\n Updating State 'Minimum'\r\n Updating
+        State 'Maximum'\r\n Updating State 'Minimum'\r\n"
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1064
+      parentUniqueId: 'Assembly-CSharp-Editor.dll/TheSingularityWorkshop/FSM/Tests/[Assembly-CSharp-Editor][TheSingularityWorkshop.FSM.Tests.OscillatorTests][suite]'
+    - id: 1066
+      uniqueId: 'Assembly-CSharp-Editor.dll/TheSingularityWorkshop/FSM/Tests/OscillatorTests/[Assembly-CSharp-Editor][TheSingularityWorkshop.FSM.Tests.OscillatorTests.IsMinReturnsTrueWhenMinimumValueReached]'
+      name: IsMinReturnsTrueWhenMinimumValueReached
+      fullName: TheSingularityWorkshop.FSM.Tests.OscillatorTests.IsMinReturnsTrueWhenMinimumValueReached
+      resultStatus: 0
+      duration: 0
+      messages: "  Oscillator should be in Minimum state when minimum value is reached.\r\n 
+        Expected: True\r\n  But was:  False\r\n"
+      output: " Entering State 'Initializing'\r\n Initializing Oscillator. Initial
+        dx: -0.01\r\n Initialized value to: 1. dx remains: -0.01\r\n Entering State
+        'Initializing'\r\n Initializing Oscillator. Initial dx: -0.01\r\n Initialized
+        value to: 1. dx remains: -0.01\r\n Updating State 'Initializing'\r\n Exiting
+        State 'Initializing'\r\n Entering State 'Minimum'\r\n Entering Minimum State.
+        Current dx before flip: -0.01\r\n New dx after entering Minimum: 0.01\r\n
+        Updating State 'Initializing'\r\n Exiting State 'Initializing'\r\n Entering
+        State 'Minimum'\r\n Entering Minimum State. Current dx before flip: 0.01\r\n
+        New dx after entering Minimum: 0.01\r\n Updating State 'Minimum'\r\n Updating
+        State 'Minimum'\r\n Updating State 'Minimum'\r\n Updating State 'Minimum'\r\n
+        Updating State 'Minimum'\r\n Updating State 'Minimum'\r\n Updating State
+        'Minimum'\r\n Updating State 'Minimum'\r\n Updating State 'Minimum'\r\n Updating
+        State 'Minimum'\r\n Updating State 'Minimum'\r\n Updating State 'Minimum'\r\n
+        Updating State 'Minimum'\r\n Updating State 'Minimum'\r\n Updating State
+        'Minimum'\r\n Updating State 'Minimum'\r\n Updating State 'Minimum'\r\n Updating
+        State 'Minimum'\r\n Updating State 'Minimum'\r\n Updating State 'Minimum'\r\n
+        Updating State 'Minimum'\r\n Updating State 'Minimum'\r\n Updating State
+        'Minimum'\r\n Updating State 'Minimum'\r\n Updating State 'Minimum'\r\n Updating
+        State 'Minimum'\r\n Updating State 'Minimum'\r\n Updating State 'Minimum'\r\n
+        Updating State 'Minimum'\r\n Updating State 'Minimum'\r\n Updating State
+        'Minimum'\r\n Updating State 'Minimum'\r\n Updating State 'Minimum'\r\n Updating
+        State 'Minimum'\r\n Updating State 'Minimum'\r\n Updating State 'Minimum'\r\n
+        Updating State 'Minimum'\r\n Updating State 'Minimum'\r\n Updating State
+        'Minimum'\r\n Updating State 'Minimum'\r\n Updating State 'Minimum'\r\n Updating
+        State 'Minimum'\r\n Updating State 'Minimum'\r\n Updating State 'Minimum'\r\n
+        Updating State 'Minimum'\r\n Updating State 'Minimum'\r\n Updating State
+        'Minimum'\r\n Updating State 'Minimum'\r\n Updating State 'Minimum'\r\n Updating
+        State 'Minimum'\r\n Updating State 'Minimum'\r\n Updating State 'Minimum'\r\n
+        Updating State 'Minimum'\r\n Updating State 'Minimum'\r\n Updating State
+        'Minimum'\r\n Updating State 'Minimum'\r\n Updating State 'Minimum'\r\n Updating
+        State 'Minimum'\r\n Updating State 'Minimum'\r\n Updating State 'Minimum'\r\n
+        Updating State 'Minimum'\r\n Updating State 'Minimum'\r\n Updating State
+        'Minimum'\r\n Updating State 'Minimum'\r\n Updating State 'Minimum'\r\n Updating
+        State 'Minimum'\r\n Updating State 'Minimum'\r\n Updating State 'Minimum'\r\n
+        Updating State 'Minimum'\r\n Updating State 'Minimum'\r\n Updating State
+        'Minimum'\r\n Updating State 'Minimum'\r\n Updating State 'Minimum'\r\n Updating
+        State 'Minimum'\r\n Updating State 'Minimum'\r\n Updating State 'Minimum'\r\n
+        Updating State 'Minimum'\r\n Updating State 'Minimum'\r\n Updating State
+        'Minimum'\r\n Updating State 'Minimum'\r\n Updating State 'Minimum'\r\n Updating
+        State 'Minimum'\r\n Updating State 'Minimum'\r\n Updating State 'Minimum'\r\n
+        Updating State 'Minimum'\r\n Updating State 'Minimum'\r\n Updating State
+        'Minimum'\r\n Updating State 'Minimum'\r\n Updating State 'Minimum'\r\n Updating
+        State 'Minimum'\r\n Updating State 'Minimum'\r\n Updating State 'Minimum'\r\n
+        Updating State 'Minimum'\r\n Updating State 'Minimum'\r\n Updating State
+        'Minimum'\r\n Updating State 'Minimum'\r\n Updating State 'Minimum'\r\n Updating
+        State 'Minimum'\r\n Updating State 'Minimum'\r\n Updating State 'Minimum'\r\n
+        Updating State 'Minimum'\r\n Exiting State 'Minimum'\r\n Entering State 'Maximum'\r\n
+        Entering Maximum State. Current dx before flip: 0.01\r\n New dx after entering
+        Maximum: -0.01\r\n Updating State 'Minimum'\r\n Updating State 'Maximum'\r\n
+        Updating State 'Minimum'\r\n Updating State 'Maximum'\r\n Updating State
+        'Minimum'\r\n Updating State 'Maximum'\r\n Updating State 'Minimum'\r\n Updating
+        State 'Maximum'\r\n Updating State 'Minimum'\r\n Updating State 'Maximum'\r\n
+        Updating State 'Minimum'\r\n Updating State 'Maximum'\r\n Updating State
+        'Minimum'\r\n Updating State 'Maximum'\r\n Updating State 'Minimum'\r\n Updating
+        State 'Maximum'\r\n Updating State 'Minimum'\r\n Updating State 'Maximum'\r\n
+        Updating State 'Minimum'\r\n Updating State 'Maximum'\r\n Updating State
+        'Minimum'\r\n Updating State 'Maximum'\r\n Updating State 'Minimum'\r\n Updating
+        State 'Maximum'\r\n Updating State 'Minimum'\r\n Updating State 'Maximum'\r\n
+        Updating State 'Minimum'\r\n Updating State 'Maximum'\r\n Updating State
+        'Minimum'\r\n Updating State 'Maximum'\r\n Updating State 'Minimum'\r\n Updating
+        State 'Maximum'\r\n Updating State 'Minimum'\r\n Updating State 'Maximum'\r\n
+        Updating State 'Minimum'\r\n Updating State 'Maximum'\r\n Updating State
+        'Minimum'\r\n Updating State 'Maximum'\r\n Updating State 'Minimum'\r\n Updating
+        State 'Maximum'\r\n Updating State 'Minimum'\r\n Updating State 'Maximum'\r\n
+        Updating State 'Minimum'\r\n Updating State 'Maximum'\r\n Updating State
+        'Minimum'\r\n Updating State 'Maximum'\r\n Updating State 'Minimum'\r\n Updating
+        State 'Maximum'\r\n Updating State 'Minimum'\r\n Updating State 'Maximum'\r\n
+        Updating State 'Minimum'\r\n Updating State 'Maximum'\r\n Updating State
+        'Minimum'\r\n Updating State 'Maximum'\r\n Updating State 'Minimum'\r\n Updating
+        State 'Maximum'\r\n Updating State 'Minimum'\r\n Updating State 'Maximum'\r\n
+        Updating State 'Minimum'\r\n Updating State 'Maximum'\r\n Updating State
+        'Minimum'\r\n Updating State 'Maximum'\r\n Updating State 'Minimum'\r\n Updating
+        State 'Maximum'\r\n Updating State 'Minimum'\r\n Updating State 'Maximum'\r\n
+        Updating State 'Minimum'\r\n Updating State 'Maximum'\r\n Updating State
+        'Minimum'\r\n Updating State 'Maximum'\r\n Updating State 'Minimum'\r\n Updating
+        State 'Maximum'\r\n Updating State 'Minimum'\r\n Updating State 'Maximum'\r\n
+        Updating State 'Minimum'\r\n Updating State 'Maximum'\r\n Updating State
+        'Minimum'\r\n Updating State 'Maximum'\r\n Updating State 'Minimum'\r\n Updating
+        State 'Maximum'\r\n Updating State 'Minimum'\r\n Updating State 'Maximum'\r\n
+        Updating State 'Minimum'\r\n Updating State 'Maximum'\r\n Updating State
+        'Minimum'\r\n Updating State 'Maximum'\r\n Updating State 'Minimum'\r\n Updating
+        State 'Maximum'\r\n Updating State 'Minimum'\r\n Updating State 'Maximum'\r\n
+        Updating State 'Minimum'\r\n Updating State 'Maximum'\r\n Updating State
+        'Minimum'\r\n Updating State 'Maximum'\r\n Updating State 'Minimum'\r\n Updating
+        State 'Maximum'\r\n Updating State 'Minimum'\r\n"
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1064
+      parentUniqueId: 'Assembly-CSharp-Editor.dll/TheSingularityWorkshop/FSM/Tests/[Assembly-CSharp-Editor][TheSingularityWorkshop.FSM.Tests.OscillatorTests][suite]'
+    - id: 1068
+      uniqueId: 'Assembly-CSharp-Editor.dll/TheSingularityWorkshop/FSM/Tests/OscillatorTests/[Assembly-CSharp-Editor][TheSingularityWorkshop.FSM.Tests.OscillatorTests.OscillatorChangesDirectionAfterReachingMax]'
+      name: OscillatorChangesDirectionAfterReachingMax
+      fullName: TheSingularityWorkshop.FSM.Tests.OscillatorTests.OscillatorChangesDirectionAfterReachingMax
+      resultStatus: 2
+      duration: 0.0021629
+      messages: 'System.Collections.Generic.KeyNotFoundException : FSM definition
+        ''OscillatorFSM'' not found in processing group ''OscillatorPG''. Cannot
+        create instance.'
+      output: '[SETUP] Starting SetUp for test.
+
+        [SETUP] Finished SetUp for
+        test.
+
+'
+      stacktrace: "  at TheSingularityWorkshop.FSM.API.FSM_API.CreateInstance (System.String
+        fsmName, TheSingularityWorkshop.FSM.API.IStateContext ctx, System.String
+        processingGroup) [0x00079] in C:\\Users\\Trent Best\\FSM_API\\Assets\\TheSingularityWorkshop\\FSM_API\\Scripts\\FSM\\FSM_API.cs:360
+        \r\n  at Oscillator.Awake () [0x0011d] in C:\\Users\\Trent Best\\FSM_API\\Assets\\TheSingularityWorkshop\\FSM_API\\Demo\\Scripts\\Oscillator.cs:46
+        \r\n  at TheSingularityWorkshop.FSM.Tests.OscillatorTests.OscillatorChangesDirectionAfterReachingMax
+        () [0x0006d] in C:\\Users\\Trent Best\\FSM_API\\Assets\\TheSingularityWorkshop\\FSM_API\\Tests\\Editor\\OscillatorTests.cs:124
+        \r\n  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)\r\n 
+        at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags
+        invokeAttr, System.Reflection.Binder binder, System.Object[] parameters,
+        System.Globalization.CultureInfo culture) [0x0006a] in <ed969b0e627d471da4848289f9c322df>:0 "
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1064
+      parentUniqueId: 'Assembly-CSharp-Editor.dll/TheSingularityWorkshop/FSM/Tests/[Assembly-CSharp-Editor][TheSingularityWorkshop.FSM.Tests.OscillatorTests][suite]'
+    - id: 1065
+      uniqueId: 'Assembly-CSharp-Editor.dll/TheSingularityWorkshop/FSM/Tests/OscillatorTests/[Assembly-CSharp-Editor][TheSingularityWorkshop.FSM.Tests.OscillatorTests.OscillatorInitializesCorrectly]'
+      name: OscillatorInitializesCorrectly
+      fullName: TheSingularityWorkshop.FSM.Tests.OscillatorTests.OscillatorInitializesCorrectly
+      resultStatus: 0
+      duration: 0
+      messages: 
+      output: 'TestOscillator Entering State ''Initializing''
+
+        TestOscillator
+        Initializing Oscillator. Initial dx: 0.01
+
+        TestOscillator Initialized
+        value to: 1. dx remains: 0.01
+
+'
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1064
+      parentUniqueId: 'Assembly-CSharp-Editor.dll/TheSingularityWorkshop/FSM/Tests/[Assembly-CSharp-Editor][TheSingularityWorkshop.FSM.Tests.OscillatorTests][suite]'
+    - id: 1069
       uniqueId: 'Assembly-CSharp-Editor.dll/TheSingularityWorkshop/FSM/Tests/[Assembly-CSharp-Editor][TheSingularityWorkshop.FSM.Tests.RNGTests][suite]'
       name: RNGTests
       fullName: TheSingularityWorkshop.FSM.Tests.RNGTests
@@ -1595,7 +1872,7 @@ MonoBehaviour:
       description: 
       isSuite: 1
       categories: []
-      parentId: 1079
+      parentId: 1084
       parentUniqueId: 'Assembly-CSharp-Editor.dll/TheSingularityWorkshop/FSM/[Assembly-CSharp-Editor][TheSingularityWorkshop.FSM.Tests][suite]'
     - id: 1054
       uniqueId: 'Assembly-CSharp-Editor.dll/TheSingularityWorkshop/FSM/Tests/RNGTests/[Assembly-CSharp-Editor][TheSingularityWorkshop.FSM.Tests.RNGTests.Hash_IsDeterministic_AndDifferentForDifferentInputs]'
@@ -1784,25 +2061,35 @@ MonoBehaviour:
       - Uncategorized
       parentId: 1053
       parentUniqueId: 'Assembly-CSharp-Editor.dll/TheSingularityWorkshop/FSM/Tests/[Assembly-CSharp-Editor][TheSingularityWorkshop.FSM.Tests.RNGTests][suite]'
-    m_ResultText: "OscillatorChangesDirectionAfterReachingMax (0.032s)\n---\n  Expected:
-      True\r\n  But was:  False\r\n\n---\nat TheSingularityWorkshop.FSM.Tests.OscillatorTests.OscillatorChangesDirectionAfterReachingMax
-      () [0x000a2] in <color=#40a0ff><a href=\"C:\\Users\\Trent Best\\FSM_API\\Assets\\TheSingularityWorkshop\\FSM_API\\Tests\\Editor\\OscillatorTests.cs\"
-      line=\"108\r\">Assets\\TheSingularityWorkshop\\FSM_API\\Tests\\Editor\\OscillatorTests.cs:108\r</a></color>\n\n---\nfasd
-      0\r\n Entering State 'Initializing'\r\n Initializing Oscillator\r\nfagd:  0\r\nfasd
-      0\r\n Entering State 'Initializing'\r\n Initializing Oscillator\r\nfagd:  0\r\nfasd
-      0\r\n Updating State 'Initializing'\r\nfagd:  0\r\nfagd:  0\r\n Exiting State
-      'Initializing'\r\n Entering State 'Maximum'\r\n Entering Maximum State\r\n
-      Updating State 'Initializing'\r\nfagd:  0\r\nfagd:  0\r\n Exiting State 'Initializing'\r\n
-      Entering State 'Maximum'\r\n Entering Maximum State\r\n Updating State 'Maximum'\r\nfagd: 
-      0\r\nfasd 0.5\r\nfagd:  0.5\r\n Updating State 'Maximum'\r\nfagd:  0.5\r\nfasd
-      1\r\nfagd:  1\r\n Updating State 'Maximum'\r\nfagd:  1\r\nfasd 1.5\r\nfagd: 
-      1.5\r\n Updating State 'Maximum'\r\nfagd:  1.5\r\nfasd 2\r\nfagd:  2"
-    m_ResultStacktrace: 'at TheSingularityWorkshop.FSM.Tests.OscillatorTests.OscillatorChangesDirectionAfterReachingMax
-      () [0x000a2] in C:\Users\Trent Best\FSM_API\Assets\TheSingularityWorkshop\FSM_API\Tests\Editor\OscillatorTests.cs:108
-
-'
+    m_ResultText: "OscillatorChangesDirectionAfterReachingMax (0.002s)\n---\nSystem.Collections.Generic.KeyNotFoundException
+      : FSM definition 'OscillatorFSM' not found in processing group 'OscillatorPG'.
+      Cannot create instance.\n---\n  at TheSingularityWorkshop.FSM.API.FSM_API.CreateInstance
+      (System.String fsmName, TheSingularityWorkshop.FSM.API.IStateContext ctx, System.String
+      processingGroup) [0x00079] in <color=#40a0ff><a href=\"C:\\Users\\Trent Best\\FSM_API\\Assets\\TheSingularityWorkshop\\FSM_API\\Scripts\\FSM\\FSM_API.cs\"
+      line=\"360 \r\">Assets\\TheSingularityWorkshop\\FSM_API\\Scripts\\FSM\\FSM_API.cs:360
+      \r</a></color>\n  at Oscillator.Awake () [0x0011d] in <color=#40a0ff><a href=\"C:\\Users\\Trent
+      Best\\FSM_API\\Assets\\TheSingularityWorkshop\\FSM_API\\Demo\\Scripts\\Oscillator.cs\"
+      line=\"46 \r\">Assets\\TheSingularityWorkshop\\FSM_API\\Demo\\Scripts\\Oscillator.cs:46
+      \r</a></color>\n  at TheSingularityWorkshop.FSM.Tests.OscillatorTests.OscillatorChangesDirectionAfterReachingMax
+      () [0x0006d] in <color=#40a0ff><a href=\"C:\\Users\\Trent Best\\FSM_API\\Assets\\TheSingularityWorkshop\\FSM_API\\Tests\\Editor\\OscillatorTests.cs\"
+      line=\"124 \r\">Assets\\TheSingularityWorkshop\\FSM_API\\Tests\\Editor\\OscillatorTests.cs:124
+      \r</a></color>\n  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)\r\n 
+      at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags
+      invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo
+      culture) [0x0006a] in <ed969b0e627d471da4848289f9c322df>:0 \n---\n[SETUP] Starting
+      SetUp for test.\r\n[SETUP] Finished SetUp for test."
+    m_ResultStacktrace: "  at TheSingularityWorkshop.FSM.API.FSM_API.CreateInstance
+      (System.String fsmName, TheSingularityWorkshop.FSM.API.IStateContext ctx, System.String
+      processingGroup) [0x00079] in C:\\Users\\Trent Best\\FSM_API\\Assets\\TheSingularityWorkshop\\FSM_API\\Scripts\\FSM\\FSM_API.cs:360
+      \r\n  at Oscillator.Awake () [0x0011d] in C:\\Users\\Trent Best\\FSM_API\\Assets\\TheSingularityWorkshop\\FSM_API\\Demo\\Scripts\\Oscillator.cs:46
+      \r\n  at TheSingularityWorkshop.FSM.Tests.OscillatorTests.OscillatorChangesDirectionAfterReachingMax
+      () [0x0006d] in C:\\Users\\Trent Best\\FSM_API\\Assets\\TheSingularityWorkshop\\FSM_API\\Tests\\Editor\\OscillatorTests.cs:124
+      \r\n  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)\r\n 
+      at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags
+      invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo
+      culture) [0x0006a] in <ed969b0e627d471da4848289f9c322df>:0 "
     m_TestListState:
-      scrollPos: {x: 0, y: 5}
+      scrollPos: {x: 0, y: 85}
       m_SelectedIDs: be47b6f9
       m_LastClickedID: -105494594
       m_ExpandedIDs: ae44c78402e1a0a385830be0f1881be58dbbecf87dc3bef9866432178cf0ac217fbe1638dc25fd3a4bcda841c7e3924784eb2559ef56eb64d7b8426fffffff7f
@@ -1835,7 +2122,7 @@ MonoBehaviour:
     m_SelectedOption: 0
   - m_Window: {fileID: 0}
     runProgress:
-      RunGuid: 4d419bc4-3370-4848-98c4-6a66329e39f8
+      RunGuid: f8363fd1-70cd-41fd-8b4f-9a8ba1e36471
       ExecutionSettings:
         m_TargetPlatform: 0
         m_HasTargetPlatform: 0
@@ -1847,7 +2134,8 @@ MonoBehaviour:
           assemblyNames: []
         filters:
         - testMode: 1
-          testNames: []
+          testNames:
+          - TheSingularityWorkshop.FSM.Tests.OscillatorTests.OscillatorChangesDirectionAfterReachingMax
           groupNames: []
           categoryNames: []
           assemblyNames: []
@@ -1862,7 +2150,7 @@ MonoBehaviour:
           disableNestedEnumeratorBugfix: 0
         randomOrderSeed: 0
       HasFinished: 1
-      Progress: 1.0000007
+      Progress: 0.9999999
       CurrentStepName: Unlock Reload Assemblies
       CurrentStageName: 
     m_NewResultList: []
@@ -1901,7 +2189,7 @@ MonoBehaviour:
     m_SelectedOption: 0
   - m_Window: {fileID: 0}
     runProgress:
-      RunGuid: 4d419bc4-3370-4848-98c4-6a66329e39f8
+      RunGuid: f8363fd1-70cd-41fd-8b4f-9a8ba1e36471
       ExecutionSettings:
         m_TargetPlatform: 0
         m_HasTargetPlatform: 0
@@ -1913,7 +2201,8 @@ MonoBehaviour:
           assemblyNames: []
         filters:
         - testMode: 1
-          testNames: []
+          testNames:
+          - TheSingularityWorkshop.FSM.Tests.OscillatorTests.OscillatorChangesDirectionAfterReachingMax
           groupNames: []
           categoryNames: []
           assemblyNames: []
@@ -1928,7 +2217,7 @@ MonoBehaviour:
           disableNestedEnumeratorBugfix: 0
         randomOrderSeed: 0
       HasFinished: 1
-      Progress: 1.0000007
+      Progress: 0.9999999
       CurrentStepName: Unlock Reload Assemblies
       CurrentStageName: 
     m_NewResultList: []
@@ -1981,7 +2270,7 @@ MonoBehaviour:
   m_MaxSize: {x: 4000, y: 4000}
   m_TitleContent:
     m_Text: UI Builder
-    m_Image: {fileID: 8683992553321208622, guid: 0000000000000000d000000000000000, type: 0}
+    m_Image: {fileID: -3932862461143797134, guid: 0000000000000000d000000000000000, type: 0}
     m_Tooltip: 
     m_TextWithWhitespace: "UI Builder\u200B"
   m_Pos:
@@ -2010,151 +2299,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 924ffcbe75518854f97b48776d0f1939, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_MinSize: {x: 50, y: 50}
-  m_MaxSize: {x: 4000, y: 4000}
-  m_TitleContent:
-    m_Text: SkyShader
-    m_Image: {fileID: 2800000, guid: 7129268cf102b2f45809905bcb27ce8b, type: 3}
-    m_Tooltip: 
-    m_TextWithWhitespace: "SkyShader\u200B"
-  m_Pos:
-    serializedVersion: 2
-    x: 379
-    y: 79
-    width: 1189
-    height: 656
-  m_SerializedDataModeController:
-    m_DataMode: 0
-    m_PreferredDataMode: 0
-    m_SupportedDataModes: 
-    isAutomatic: 1
-  m_ViewDataDictionary: {fileID: 0}
-  m_OverlayCanvas:
-    m_LastAppliedPresetName: Default
-    m_SaveData: []
-    m_ContainerData: []
-    m_OverlaysVisible: 1
-  m_Selected: 6eff9ac5239235446a1542c8bc7868a1
-  m_GraphObject: {fileID: 0}
-  m_LastSerializedFileContents: "{\n    \"m_SGVersion\": 3,\n    \"m_Type\": \"UnityEditor.ShaderGraph.GraphData\",\n   
-    \"m_ObjectId\": \"4eb1f43b22544df2a8546bbb9c2bd455\",\n    \"m_Properties\":
-    [],\n    \"m_Keywords\": [],\n    \"m_Dropdowns\": [],\n    \"m_CategoryData\":
-    [\n        {\n            \"m_Id\": \"952cd6172fde4508902bf782113d41f4\"\n       
-    }\n    ],\n    \"m_Nodes\": [\n        {\n            \"m_Id\": \"499f2158e4a848869d7e41c7cbaa1fb8\"\n       
-    },\n        {\n            \"m_Id\": \"4d8a3b1547104e3582c5d5865b0895bd\"\n       
-    },\n        {\n            \"m_Id\": \"b6ff25f80b614d4eaadbec26a8286efb\"\n       
-    },\n        {\n            \"m_Id\": \"af4edbfec730411c85c7baea9d903309\"\n       
-    }\n    ],\n    \"m_GroupDatas\": [],\n    \"m_StickyNoteDatas\": [],\n    \"m_Edges\":
-    [],\n    \"m_VertexContext\": {\n        \"m_Position\": {\n            \"x\":
-    0.0,\n            \"y\": 0.0\n        },\n        \"m_Blocks\": [\n           
-    {\n                \"m_Id\": \"499f2158e4a848869d7e41c7cbaa1fb8\"\n           
-    },\n            {\n                \"m_Id\": \"4d8a3b1547104e3582c5d5865b0895bd\"\n           
-    },\n            {\n                \"m_Id\": \"b6ff25f80b614d4eaadbec26a8286efb\"\n           
-    }\n        ]\n    },\n    \"m_FragmentContext\": {\n        \"m_Position\": {\n           
-    \"x\": 0.0,\n            \"y\": 200.0\n        },\n        \"m_Blocks\": [\n           
-    {\n                \"m_Id\": \"af4edbfec730411c85c7baea9d903309\"\n           
-    }\n        ]\n    },\n    \"m_PreviewData\": {\n        \"serializedMesh\": {\n           
-    \"m_SerializedMesh\": \"{\\\"mesh\\\":{\\\"instanceID\\\":0}}\",\n           
-    \"m_Guid\": \"\"\n        },\n        \"preventRotation\": false\n    },\n   
-    \"m_Path\": \"Shader Graphs\",\n    \"m_GraphPrecision\": 1,\n    \"m_PreviewMode\":
-    2,\n    \"m_OutputNode\": {\n        \"m_Id\": \"\"\n    },\n    \"m_SubDatas\":
-    [],\n    \"m_ActiveTargets\": [\n        {\n            \"m_Id\": \"2039388bfb584bab9ee66df83ab5e26e\"\n       
-    }\n    ]\n}\n\n{\n    \"m_SGVersion\": 1,\n    \"m_Type\": \"UnityEditor.Rendering.Universal.ShaderGraph.UniversalTarget\",\n   
-    \"m_ObjectId\": \"2039388bfb584bab9ee66df83ab5e26e\",\n    \"m_Datas\": [],\n   
-    \"m_ActiveSubTarget\": {\n        \"m_Id\": \"6af6a1492ea0463fbbb982b7fb9c7584\"\n   
-    },\n    \"m_AllowMaterialOverride\": false,\n    \"m_SurfaceType\": 0,\n    \"m_ZTestMode\":
-    4,\n    \"m_ZWriteControl\": 0,\n    \"m_AlphaMode\": 0,\n    \"m_RenderFace\":
-    2,\n    \"m_AlphaClip\": false,\n    \"m_CastShadows\": true,\n    \"m_ReceiveShadows\":
-    true,\n    \"m_DisableTint\": false,\n    \"m_AdditionalMotionVectorMode\": 0,\n   
-    \"m_AlembicMotionVectors\": false,\n    \"m_SupportsLODCrossFade\": false,\n   
-    \"m_CustomEditorGUI\": \"\",\n    \"m_SupportVFX\": false\n}\n\n{\n    \"m_SGVersion\":
-    0,\n    \"m_Type\": \"UnityEditor.ShaderGraph.ColorRGBMaterialSlot\",\n    \"m_ObjectId\":
-    \"2e8d860f32eb47259e7ed3a88b398eed\",\n    \"m_Id\": 0,\n    \"m_DisplayName\":
-    \"Base Color\",\n    \"m_SlotType\": 0,\n    \"m_Hidden\": false,\n    \"m_ShaderOutputName\":
-    \"BaseColor\",\n    \"m_StageCapability\": 2,\n    \"m_Value\": {\n        \"x\":
-    0.5,\n        \"y\": 0.5,\n        \"z\": 0.5\n    },\n    \"m_DefaultValue\":
-    {\n        \"x\": 0.5,\n        \"y\": 0.5,\n        \"z\": 0.5\n    },\n   
-    \"m_Labels\": [],\n    \"m_ColorMode\": 0,\n    \"m_DefaultColor\": {\n       
-    \"r\": 0.5,\n        \"g\": 0.5,\n        \"b\": 0.5,\n        \"a\": 1.0\n   
-    }\n}\n\n{\n    \"m_SGVersion\": 0,\n    \"m_Type\": \"UnityEditor.ShaderGraph.BlockNode\",\n   
-    \"m_ObjectId\": \"499f2158e4a848869d7e41c7cbaa1fb8\",\n    \"m_Group\": {\n       
-    \"m_Id\": \"\"\n    },\n    \"m_Name\": \"VertexDescription.Position\",\n   
-    \"m_DrawState\": {\n        \"m_Expanded\": true,\n        \"m_Position\": {\n           
-    \"serializedVersion\": \"2\",\n            \"x\": 0.0,\n            \"y\": 0.0,\n           
-    \"width\": 0.0,\n            \"height\": 0.0\n        }\n    },\n    \"m_Slots\":
-    [\n        {\n            \"m_Id\": \"87b0646c581c4e13a5fd7a0e15ff7330\"\n       
-    }\n    ],\n    \"synonyms\": [],\n    \"m_Precision\": 0,\n    \"m_PreviewExpanded\":
-    true,\n    \"m_DismissedVersion\": 0,\n    \"m_PreviewMode\": 0,\n    \"m_CustomColors\":
-    {\n        \"m_SerializableColors\": []\n    },\n    \"m_SerializedDescriptor\":
-    \"VertexDescription.Position\"\n}\n\n{\n    \"m_SGVersion\": 0,\n    \"m_Type\":
-    \"UnityEditor.ShaderGraph.BlockNode\",\n    \"m_ObjectId\": \"4d8a3b1547104e3582c5d5865b0895bd\",\n   
-    \"m_Group\": {\n        \"m_Id\": \"\"\n    },\n    \"m_Name\": \"VertexDescription.Normal\",\n   
-    \"m_DrawState\": {\n        \"m_Expanded\": true,\n        \"m_Position\": {\n           
-    \"serializedVersion\": \"2\",\n            \"x\": 0.0,\n            \"y\": 0.0,\n           
-    \"width\": 0.0,\n            \"height\": 0.0\n        }\n    },\n    \"m_Slots\":
-    [\n        {\n            \"m_Id\": \"91ffd46d99194003a0d573e44050c9da\"\n       
-    }\n    ],\n    \"synonyms\": [],\n    \"m_Precision\": 0,\n    \"m_PreviewExpanded\":
-    true,\n    \"m_DismissedVersion\": 0,\n    \"m_PreviewMode\": 0,\n    \"m_CustomColors\":
-    {\n        \"m_SerializableColors\": []\n    },\n    \"m_SerializedDescriptor\":
-    \"VertexDescription.Normal\"\n}\n\n{\n    \"m_SGVersion\": 2,\n    \"m_Type\":
-    \"UnityEditor.Rendering.Universal.ShaderGraph.UniversalUnlitSubTarget\",\n   
-    \"m_ObjectId\": \"6af6a1492ea0463fbbb982b7fb9c7584\"\n}\n\n{\n    \"m_SGVersion\":
-    0,\n    \"m_Type\": \"UnityEditor.ShaderGraph.PositionMaterialSlot\",\n    \"m_ObjectId\":
-    \"87b0646c581c4e13a5fd7a0e15ff7330\",\n    \"m_Id\": 0,\n    \"m_DisplayName\":
-    \"Position\",\n    \"m_SlotType\": 0,\n    \"m_Hidden\": false,\n    \"m_ShaderOutputName\":
-    \"Position\",\n    \"m_StageCapability\": 1,\n    \"m_Value\": {\n        \"x\":
-    0.0,\n        \"y\": 0.0,\n        \"z\": 0.0\n    },\n    \"m_DefaultValue\":
-    {\n        \"x\": 0.0,\n        \"y\": 0.0,\n        \"z\": 0.0\n    },\n   
-    \"m_Labels\": [],\n    \"m_Space\": 0\n}\n\n{\n    \"m_SGVersion\": 0,\n    \"m_Type\":
-    \"UnityEditor.ShaderGraph.NormalMaterialSlot\",\n    \"m_ObjectId\": \"91ffd46d99194003a0d573e44050c9da\",\n   
-    \"m_Id\": 0,\n    \"m_DisplayName\": \"Normal\",\n    \"m_SlotType\": 0,\n   
-    \"m_Hidden\": false,\n    \"m_ShaderOutputName\": \"Normal\",\n    \"m_StageCapability\":
-    1,\n    \"m_Value\": {\n        \"x\": 0.0,\n        \"y\": 0.0,\n        \"z\":
-    0.0\n    },\n    \"m_DefaultValue\": {\n        \"x\": 0.0,\n        \"y\": 0.0,\n       
-    \"z\": 0.0\n    },\n    \"m_Labels\": [],\n    \"m_Space\": 0\n}\n\n{\n    \"m_SGVersion\":
-    0,\n    \"m_Type\": \"UnityEditor.ShaderGraph.CategoryData\",\n    \"m_ObjectId\":
-    \"952cd6172fde4508902bf782113d41f4\",\n    \"m_Name\": \"\",\n    \"m_ChildObjectList\":
-    []\n}\n\n{\n    \"m_SGVersion\": 0,\n    \"m_Type\": \"UnityEditor.ShaderGraph.BlockNode\",\n   
-    \"m_ObjectId\": \"af4edbfec730411c85c7baea9d903309\",\n    \"m_Group\": {\n       
-    \"m_Id\": \"\"\n    },\n    \"m_Name\": \"SurfaceDescription.BaseColor\",\n   
-    \"m_DrawState\": {\n        \"m_Expanded\": true,\n        \"m_Position\": {\n           
-    \"serializedVersion\": \"2\",\n            \"x\": 0.0,\n            \"y\": 0.0,\n           
-    \"width\": 0.0,\n            \"height\": 0.0\n        }\n    },\n    \"m_Slots\":
-    [\n        {\n            \"m_Id\": \"2e8d860f32eb47259e7ed3a88b398eed\"\n       
-    }\n    ],\n    \"synonyms\": [],\n    \"m_Precision\": 0,\n    \"m_PreviewExpanded\":
-    true,\n    \"m_DismissedVersion\": 0,\n    \"m_PreviewMode\": 0,\n    \"m_CustomColors\":
-    {\n        \"m_SerializableColors\": []\n    },\n    \"m_SerializedDescriptor\":
-    \"SurfaceDescription.BaseColor\"\n}\n\n{\n    \"m_SGVersion\": 0,\n    \"m_Type\":
-    \"UnityEditor.ShaderGraph.BlockNode\",\n    \"m_ObjectId\": \"b6ff25f80b614d4eaadbec26a8286efb\",\n   
-    \"m_Group\": {\n        \"m_Id\": \"\"\n    },\n    \"m_Name\": \"VertexDescription.Tangent\",\n   
-    \"m_DrawState\": {\n        \"m_Expanded\": true,\n        \"m_Position\": {\n           
-    \"serializedVersion\": \"2\",\n            \"x\": 0.0,\n            \"y\": 0.0,\n           
-    \"width\": 0.0,\n            \"height\": 0.0\n        }\n    },\n    \"m_Slots\":
-    [\n        {\n            \"m_Id\": \"e471780a52464136a01eb357ddafc516\"\n       
-    }\n    ],\n    \"synonyms\": [],\n    \"m_Precision\": 0,\n    \"m_PreviewExpanded\":
-    true,\n    \"m_DismissedVersion\": 0,\n    \"m_PreviewMode\": 0,\n    \"m_CustomColors\":
-    {\n        \"m_SerializableColors\": []\n    },\n    \"m_SerializedDescriptor\":
-    \"VertexDescription.Tangent\"\n}\n\n{\n    \"m_SGVersion\": 0,\n    \"m_Type\":
-    \"UnityEditor.ShaderGraph.TangentMaterialSlot\",\n    \"m_ObjectId\": \"e471780a52464136a01eb357ddafc516\",\n   
-    \"m_Id\": 0,\n    \"m_DisplayName\": \"Tangent\",\n    \"m_SlotType\": 0,\n   
-    \"m_Hidden\": false,\n    \"m_ShaderOutputName\": \"Tangent\",\n    \"m_StageCapability\":
-    1,\n    \"m_Value\": {\n        \"x\": 0.0,\n        \"y\": 0.0,\n        \"z\":
-    0.0\n    },\n    \"m_DefaultValue\": {\n        \"x\": 0.0,\n        \"y\": 0.0,\n       
-    \"z\": 0.0\n    },\n    \"m_Labels\": [],\n    \"m_Space\": 0\n}\n\n"
-  m_AssetMaybeChangedOnDisk: 0
-  m_AssetMaybeDeleted: 0
---- !u!114 &15
-MonoBehaviour:
-  m_ObjectHideFlags: 52
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
   m_Script: {fileID: 12071, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -2162,7 +2306,7 @@ MonoBehaviour:
   m_MaxSize: {x: 4000, y: 4000}
   m_TitleContent:
     m_Text: Animation
-    m_Image: {fileID: -8166618308981325432, guid: 0000000000000000d000000000000000, type: 0}
+    m_Image: {fileID: -3237396543322336831, guid: 0000000000000000d000000000000000, type: 0}
     m_Tooltip: 
     m_TextWithWhitespace: "Animation\u200B"
   m_Pos:
@@ -2184,8 +2328,8 @@ MonoBehaviour:
     m_OverlaysVisible: 1
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: 42688
---- !u!114 &16
+  m_LastSelectedObjectID: 42362
+--- !u!114 &15
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2201,7 +2345,7 @@ MonoBehaviour:
   m_MaxSize: {x: 4000, y: 4000}
   m_TitleContent:
     m_Text: Animator
-    m_Image: {fileID: -1673928668082335149, guid: 0000000000000000d000000000000000, type: 0}
+    m_Image: {fileID: 1711060831702674872, guid: 0000000000000000d000000000000000, type: 0}
     m_Tooltip: 
     m_TextWithWhitespace: "Animator\u200B"
   m_Pos:
@@ -2257,7 +2401,7 @@ MonoBehaviour:
   m_CurrentEditor: 1
   m_LayerEditor:
     m_SelectedLayerIndex: 0
---- !u!114 &17
+--- !u!114 &16
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2273,15 +2417,15 @@ MonoBehaviour:
   m_MaxSize: {x: 10000, y: 10000}
   m_TitleContent:
     m_Text: Project
-    m_Image: {fileID: -5467254957812901981, guid: 0000000000000000d000000000000000, type: 0}
+    m_Image: {fileID: -5179483145760003458, guid: 0000000000000000d000000000000000, type: 0}
     m_Tooltip: 
     m_TextWithWhitespace: "Project\u200B"
   m_Pos:
     serializedVersion: 2
     x: 0
-    y: 610
-    width: 1444
-    height: 384
+    y: 488
+    width: 1104.6
+    height: 290
   m_SerializedDataModeController:
     m_DataMode: 0
     m_PreferredDataMode: 0
@@ -2304,7 +2448,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets
+    - Assets/YughuesFreeMetalMaterials/Materials
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -2314,16 +2458,16 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets
+  - Assets/YughuesFreeMetalMaterials/Materials
   m_LastFoldersGridSize: 16
   m_LastProjectPath: C:\Users\Trent Best\FSM_API
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: d2a60000
-    m_LastClickedID: 42706
-    m_ExpandedIDs: 00000000d2a60000d4a60000d6a60000d8a60000daa60000dca60000dea6000000ca9a3b
+    scrollPos: {x: 0, y: 70}
+    m_SelectedIDs: e6b30000
+    m_LastClickedID: 46054
+    m_ExpandedIDs: 00000000b6a60000b8a60000baa6000084a8000090ae0000eeb3000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -2352,7 +2496,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000d2a60000d4a60000d6a60000d8a60000daa60000dca60000dea60000
+    m_ExpandedIDs: 00000000b6a60000b8a60000baa60000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -2410,7 +2554,7 @@ MonoBehaviour:
     m_GridSize: 16
   m_SkipHiddenPackages: 0
   m_DirectoriesAreaWidth: 343
---- !u!114 &18
+--- !u!114 &17
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2426,15 +2570,15 @@ MonoBehaviour:
   m_MaxSize: {x: 4000, y: 4000}
   m_TitleContent:
     m_Text: Inspector
-    m_Image: {fileID: -2667387946076563598, guid: 0000000000000000d000000000000000, type: 0}
+    m_Image: {fileID: -440750813802333266, guid: 0000000000000000d000000000000000, type: 0}
     m_Tooltip: 
     m_TextWithWhitespace: "Inspector\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 1445
-    y: 79
-    width: 474
-    height: 915
+    x: 1105.6
+    y: 79.200005
+    width: 429.40002
+    height: 698.8
   m_SerializedDataModeController:
     m_DataMode: 0
     m_PreferredDataMode: 0
@@ -2459,7 +2603,7 @@ MonoBehaviour:
   m_LockTracker:
     m_IsLocked: 0
   m_PreviewWindow: {fileID: 0}
---- !u!114 &19
+--- !u!114 &18
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2475,15 +2619,15 @@ MonoBehaviour:
   m_MaxSize: {x: 4000, y: 4000}
   m_TitleContent:
     m_Text: Hierarchy
-    m_Image: {fileID: 7966133145522015247, guid: 0000000000000000d000000000000000, type: 0}
+    m_Image: {fileID: -3734745235275155857, guid: 0000000000000000d000000000000000, type: 0}
     m_Tooltip: 
     m_TextWithWhitespace: "Hierarchy\u200B"
   m_Pos:
     serializedVersion: 2
     x: 0
-    y: 79
-    width: 411
-    height: 505
+    y: 79.200005
+    width: 313.4
+    height: 382.8
   m_SerializedDataModeController:
     m_DataMode: 0
     m_PreferredDataMode: 0
@@ -2497,10 +2641,10 @@ MonoBehaviour:
     m_OverlaysVisible: 1
   m_SceneHierarchy:
     m_TreeViewState:
-      scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: d2a60000
-      m_LastClickedID: 0
-      m_ExpandedIDs: 40faffffb6a50000f2a50000
+      scrollPos: {x: 0, y: 150.20001}
+      m_SelectedIDs: b2a50000
+      m_LastClickedID: 42418
+      m_ExpandedIDs: 20fbffff50a500006ea50000cea5000000a60000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -2525,7 +2669,7 @@ MonoBehaviour:
       m_IsLocked: 0
     m_CurrentSortingName: TransformSorting
   m_WindowGUID: 4c969a2b90040154d917609493e03593
---- !u!114 &20
+--- !u!114 &19
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2541,7 +2685,7 @@ MonoBehaviour:
   m_MaxSize: {x: 4000, y: 4000}
   m_TitleContent:
     m_Text: Scene
-    m_Image: {fileID: 2593428753322112591, guid: 0000000000000000d000000000000000, type: 0}
+    m_Image: {fileID: 8634526014445323508, guid: 0000000000000000d000000000000000, type: 0}
     m_Tooltip: 
     m_TextWithWhitespace: "Scene\u200B"
   m_Pos:
@@ -3140,7 +3284,7 @@ MonoBehaviour:
   m_Rotation:
     m_Target: {x: 0.16645229, y: -0.3804875, z: 0.06982698, w: 0.9069996}
     speed: 2
-    m_Value: {x: -0.16645229, y: 0.3804875, z: -0.06982698, w: -0.90699965}
+    m_Value: {x: 0.16645218, y: -0.38048726, z: 0.06982694, w: 0.90699905}
   m_Size:
     m_Target: 0.8660254
     speed: 2
@@ -3165,7 +3309,7 @@ MonoBehaviour:
   m_LastSceneViewRotation: {x: 0, y: 0, z: 0, w: 0}
   m_LastSceneViewOrtho: 0
   m_Viewpoint:
-    m_SceneView: {fileID: 20}
+    m_SceneView: {fileID: 19}
     m_CameraOverscanSettings:
       m_Opacity: 50
       m_Scale: 1
@@ -3175,7 +3319,7 @@ MonoBehaviour:
   m_LastLockedObject: {fileID: 0}
   m_LastDebugDrawMode: 35
   m_ViewIsLockedToObject: 0
---- !u!114 &21
+--- !u!114 &20
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3191,15 +3335,15 @@ MonoBehaviour:
   m_MaxSize: {x: 4000, y: 4000}
   m_TitleContent:
     m_Text: Game
-    m_Image: {fileID: -6423792434712278376, guid: 0000000000000000d000000000000000, type: 0}
+    m_Image: {fileID: 4621777727084837110, guid: 0000000000000000d000000000000000, type: 0}
     m_Tooltip: 
     m_TextWithWhitespace: "Game\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 412
-    y: 79
-    width: 1031
-    height: 505
+    x: 314.4
+    y: 79.200005
+    width: 789.19995
+    height: 382.8
   m_SerializedDataModeController:
     m_DataMode: 0
     m_PreferredDataMode: 0
@@ -3217,7 +3361,7 @@ MonoBehaviour:
   m_ShowGizmos: 0
   m_TargetDisplay: 0
   m_ClearColor: {r: 0, g: 0, b: 0, a: 0}
-  m_TargetSize: {x: 1031, y: 484}
+  m_TargetSize: {x: 789.19995, y: 361.8}
   m_TextureFilterMode: 0
   m_TextureHideFlags: 61
   m_RenderIMGUI: 1
@@ -3232,10 +3376,10 @@ MonoBehaviour:
     m_VRangeLocked: 0
     hZoomLockedByDefault: 0
     vZoomLockedByDefault: 0
-    m_HBaseRangeMin: -515.5
-    m_HBaseRangeMax: 515.5
-    m_VBaseRangeMin: -242
-    m_VBaseRangeMax: 242
+    m_HBaseRangeMin: -315.68
+    m_HBaseRangeMax: 315.68
+    m_VBaseRangeMin: -144.72
+    m_VBaseRangeMax: 144.72
     m_HAllowExceedBaseRangeMin: 1
     m_HAllowExceedBaseRangeMax: 1
     m_VAllowExceedBaseRangeMin: 1
@@ -3253,30 +3397,30 @@ MonoBehaviour:
       serializedVersion: 2
       x: 0
       y: 21
-      width: 1031
-      height: 484
-    m_Scale: {x: 1, y: 1}
-    m_Translation: {x: 515.5, y: 242}
+      width: 789.19995
+      height: 361.8
+    m_Scale: {x: 1.25, y: 1.25}
+    m_Translation: {x: 394.59998, y: 180.9}
     m_MarginLeft: 0
     m_MarginRight: 0
     m_MarginTop: 0
     m_MarginBottom: 0
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
-      x: -515.5
-      y: -242
-      width: 1031
-      height: 484
+      x: -315.68
+      y: -144.72
+      width: 631.36
+      height: 289.44
     m_MinimalGUI: 1
   m_defaultScale: 1
-  m_LastWindowPixelSize: {x: 1031, y: 505}
+  m_LastWindowPixelSize: {x: 986.49994, y: 478.5}
   m_ClearInEditMode: 1
   m_NoCameraWarning: 1
   m_LowResolutionForAspectRatios: 01000000000000000000
   m_XRRenderMode: 0
   m_RenderTexture: {fileID: 0}
   m_showToolbar: 1
---- !u!114 &22
+--- !u!114 &21
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3292,15 +3436,15 @@ MonoBehaviour:
   m_MaxSize: {x: 4000, y: 4000}
   m_TitleContent:
     m_Text: Console
-    m_Image: {fileID: -4327648978806127646, guid: 0000000000000000d000000000000000, type: 0}
+    m_Image: {fileID: -4950941429401207979, guid: 0000000000000000d000000000000000, type: 0}
     m_Tooltip: 
     m_TextWithWhitespace: "Console\u200B"
   m_Pos:
     serializedVersion: 2
     x: 0
-    y: 610
-    width: 1444
-    height: 384
+    y: 488
+    width: 1104.6
+    height: 290
   m_SerializedDataModeController:
     m_DataMode: 0
     m_PreferredDataMode: 0

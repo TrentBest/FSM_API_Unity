@@ -165,7 +165,7 @@ namespace TheSingularityWorkshop.FSM.API
             if (buckets.TryGetValue(fsmName, out var existingBucket))
             {
                 // FSM definition already exists, return a builder initialized with its data for modification.
-                return new FSMBuilder(existingBucket.Definition);
+                return new FSMBuilder(existingBucket.Definition, $"{fsmName}-Clone");
             }
 
             // New FSM definition, return a fresh builder.

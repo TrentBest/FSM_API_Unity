@@ -3,24 +3,44 @@
   "WorkspaceRootPath": "C:\\Users\\Trent Best\\FSM_API\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{FC5EFAA0-9796-3350-4C57-BF1D5435273A}|Assembly-CSharp-Editor.csproj|c:\\users\\trent best\\fsm_api\\assets\\thesingularityworkshop\\fsm_api\\tests\\editor\\fsm_api_tests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FC5EFAA0-9796-3350-4C57-BF1D5435273A}|Assembly-CSharp-Editor.csproj|solutionrelative:assets\\thesingularityworkshop\\fsm_api\\tests\\editor\\fsm_api_tests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{FC5EFAA0-9796-3350-4C57-BF1D5435273A}|Assembly-CSharp-Editor.csproj|c:\\users\\trent best\\fsm_api\\assets\\thesingularityworkshop\\fsm_api\\tests\\editor\\fsmbuildertests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FC5EFAA0-9796-3350-4C57-BF1D5435273A}|Assembly-CSharp-Editor.csproj|solutionrelative:assets\\thesingularityworkshop\\fsm_api\\tests\\editor\\fsmbuildertests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C8351662-3162-14C1-5DE3-BE98CF72A100}|Assembly-CSharp.csproj|C:\\Users\\Trent Best\\FSM_API\\assets\\thesingularityworkshop\\fsm_api\\scripts\\fsm\\fsm_api.cs||{8B382828-6202-11D1-8870-0000F87579D2}",
       "RelativeMoniker": "D:0:0:{C8351662-3162-14C1-5DE3-BE98CF72A100}|Assembly-CSharp.csproj|solutionrelative:assets\\thesingularityworkshop\\fsm_api\\scripts\\fsm\\fsm_api.cs||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FC5EFAA0-9796-3350-4C57-BF1D5435273A}|Assembly-CSharp-Editor.csproj|C:\\Users\\Trent Best\\FSM_API\\assets\\thesingularityworkshop\\fsm_api\\tests\\editor\\fsmtests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FC5EFAA0-9796-3350-4C57-BF1D5435273A}|Assembly-CSharp-Editor.csproj|solutionrelative:assets\\thesingularityworkshop\\fsm_api\\tests\\editor\\fsmtests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C8351662-3162-14C1-5DE3-BE98CF72A100}|Assembly-CSharp.csproj|c:\\users\\trent best\\fsm_api\\assets\\thesingularityworkshop\\fsm_api\\demo\\scripts\\simplesplashdemo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C8351662-3162-14C1-5DE3-BE98CF72A100}|Assembly-CSharp.csproj|solutionrelative:assets\\thesingularityworkshop\\fsm_api\\demo\\scripts\\simplesplashdemo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C8351662-3162-14C1-5DE3-BE98CF72A100}|Assembly-CSharp.csproj|C:\\Users\\Trent Best\\FSM_API\\assets\\thesingularityworkshop\\fsm_api\\scripts\\fsm\\fsmbuilder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C8351662-3162-14C1-5DE3-BE98CF72A100}|Assembly-CSharp.csproj|solutionrelative:assets\\thesingularityworkshop\\fsm_api\\scripts\\fsm\\fsmbuilder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C8351662-3162-14C1-5DE3-BE98CF72A100}|Assembly-CSharp.csproj|C:\\Users\\Trent Best\\FSM_API\\assets\\thesingularityworkshop\\fsm_api\\demo\\scripts\\oscillator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C8351662-3162-14C1-5DE3-BE98CF72A100}|Assembly-CSharp.csproj|solutionrelative:assets\\thesingularityworkshop\\fsm_api\\demo\\scripts\\oscillator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FC5EFAA0-9796-3350-4C57-BF1D5435273A}|Assembly-CSharp-Editor.csproj|C:\\Users\\Trent Best\\FSM_API\\assets\\thesingularityworkshop\\fsm_api\\tests\\editor\\oscillatortests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FC5EFAA0-9796-3350-4C57-BF1D5435273A}|Assembly-CSharp-Editor.csproj|solutionrelative:assets\\thesingularityworkshop\\fsm_api\\tests\\editor\\oscillatortests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C8351662-3162-14C1-5DE3-BE98CF72A100}|Assembly-CSharp.csproj|C:\\Users\\Trent Best\\FSM_API\\assets\\thesingularityworkshop\\fsm_api\\scripts\\fsm\\fsmhandle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C8351662-3162-14C1-5DE3-BE98CF72A100}|Assembly-CSharp.csproj|solutionrelative:assets\\thesingularityworkshop\\fsm_api\\scripts\\fsm\\fsmhandle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C8351662-3162-14C1-5DE3-BE98CF72A100}|Assembly-CSharp.csproj|C:\\Users\\Trent Best\\FSM_API\\assets\\thesingularityworkshop\\fsm_api\\scripts\\fsm\\fsmstate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C8351662-3162-14C1-5DE3-BE98CF72A100}|Assembly-CSharp.csproj|solutionrelative:assets\\thesingularityworkshop\\fsm_api\\scripts\\fsm\\fsmstate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C8351662-3162-14C1-5DE3-BE98CF72A100}|Assembly-CSharp.csproj|C:\\Users\\Trent Best\\FSM_API\\assets\\thesingularityworkshop\\fsm_api\\scripts\\fsm\\fsmbuilder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C8351662-3162-14C1-5DE3-BE98CF72A100}|Assembly-CSharp.csproj|solutionrelative:assets\\thesingularityworkshop\\fsm_api\\scripts\\fsm\\fsmbuilder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{FC5EFAA0-9796-3350-4C57-BF1D5435273A}|Assembly-CSharp-Editor.csproj|C:\\Users\\Trent Best\\FSM_API\\assets\\thesingularityworkshop\\fsm_api\\tests\\editor\\fsm_api_tests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FC5EFAA0-9796-3350-4C57-BF1D5435273A}|Assembly-CSharp-Editor.csproj|solutionrelative:assets\\thesingularityworkshop\\fsm_api\\tests\\editor\\fsm_api_tests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FC5EFAA0-9796-3350-4C57-BF1D5435273A}|Assembly-CSharp-Editor.csproj|C:\\Users\\Trent Best\\FSM_API\\assets\\thesingularityworkshop\\fsm_api\\tests\\editor\\fsmtests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FC5EFAA0-9796-3350-4C57-BF1D5435273A}|Assembly-CSharp-Editor.csproj|solutionrelative:assets\\thesingularityworkshop\\fsm_api\\tests\\editor\\fsmtests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -43,6 +63,71 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "FSMBuilderTests.cs",
+              "DocumentMoniker": "C:\\Users\\Trent Best\\FSM_API\\Assets\\TheSingularityWorkshop\\FSM_API\\Tests\\Editor\\FSMBuilderTests.cs",
+              "RelativeDocumentMoniker": "Assets\\TheSingularityWorkshop\\FSM_API\\Tests\\Editor\\FSMBuilderTests.cs",
+              "ToolTip": "C:\\Users\\Trent Best\\FSM_API\\Assets\\TheSingularityWorkshop\\FSM_API\\Tests\\Editor\\FSMBuilderTests.cs",
+              "RelativeToolTip": "Assets\\TheSingularityWorkshop\\FSM_API\\Tests\\Editor\\FSMBuilderTests.cs",
+              "ViewState": "AgIAAH4AAAAAAAAAAADwv5AAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-18T21:33:07.75Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "SimpleSplashDemo.cs",
+              "DocumentMoniker": "C:\\Users\\Trent Best\\FSM_API\\Assets\\TheSingularityWorkshop\\FSM_API\\Demo\\Scripts\\SimpleSplashDemo.cs",
+              "RelativeDocumentMoniker": "Assets\\TheSingularityWorkshop\\FSM_API\\Demo\\Scripts\\SimpleSplashDemo.cs",
+              "ToolTip": "C:\\Users\\Trent Best\\FSM_API\\Assets\\TheSingularityWorkshop\\FSM_API\\Demo\\Scripts\\SimpleSplashDemo.cs",
+              "RelativeToolTip": "Assets\\TheSingularityWorkshop\\FSM_API\\Demo\\Scripts\\SimpleSplashDemo.cs",
+              "ViewState": "AgIAAEgAAAAAAAAAAAAQwFQAAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-18T08:02:47.376Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "FSMHandle.cs",
+              "DocumentMoniker": "C:\\Users\\Trent Best\\FSM_API\\Assets\\TheSingularityWorkshop\\FSM_API\\Scripts\\FSM\\FSMHandle.cs",
+              "RelativeDocumentMoniker": "Assets\\TheSingularityWorkshop\\FSM_API\\Scripts\\FSM\\FSMHandle.cs",
+              "ToolTip": "C:\\Users\\Trent Best\\FSM_API\\Assets\\TheSingularityWorkshop\\FSM_API\\Scripts\\FSM\\FSMHandle.cs",
+              "RelativeToolTip": "Assets\\TheSingularityWorkshop\\FSM_API\\Scripts\\FSM\\FSMHandle.cs",
+              "ViewState": "AgIAAF0AAAAAAAAAAAAzwGsAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-18T07:23:19.296Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Oscillator.cs",
+              "DocumentMoniker": "C:\\Users\\Trent Best\\FSM_API\\Assets\\TheSingularityWorkshop\\FSM_API\\Demo\\Scripts\\Oscillator.cs",
+              "RelativeDocumentMoniker": "Assets\\TheSingularityWorkshop\\FSM_API\\Demo\\Scripts\\Oscillator.cs",
+              "ToolTip": "C:\\Users\\Trent Best\\FSM_API\\Assets\\TheSingularityWorkshop\\FSM_API\\Demo\\Scripts\\Oscillator.cs",
+              "RelativeToolTip": "Assets\\TheSingularityWorkshop\\FSM_API\\Demo\\Scripts\\Oscillator.cs",
+              "ViewState": "AgIAACkAAAAAAAAAAAAowDoAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-18T00:34:58.847Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "OscillatorTests.cs",
+              "DocumentMoniker": "C:\\Users\\Trent Best\\FSM_API\\Assets\\TheSingularityWorkshop\\FSM_API\\Tests\\Editor\\OscillatorTests.cs",
+              "RelativeDocumentMoniker": "Assets\\TheSingularityWorkshop\\FSM_API\\Tests\\Editor\\OscillatorTests.cs",
+              "ToolTip": "C:\\Users\\Trent Best\\FSM_API\\Assets\\TheSingularityWorkshop\\FSM_API\\Tests\\Editor\\OscillatorTests.cs",
+              "RelativeToolTip": "Assets\\TheSingularityWorkshop\\FSM_API\\Tests\\Editor\\OscillatorTests.cs",
+              "ViewState": "AgIAAIEAAAAAAAAAAAAywIsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-18T00:34:42.438Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
               "Title": "FSM_API_Tests.cs",
               "DocumentMoniker": "C:\\Users\\Trent Best\\FSM_API\\Assets\\TheSingularityWorkshop\\FSM_API\\Tests\\Editor\\FSM_API_Tests.cs",
               "RelativeDocumentMoniker": "Assets\\TheSingularityWorkshop\\FSM_API\\Tests\\Editor\\FSM_API_Tests.cs",
@@ -50,12 +135,11 @@
               "RelativeToolTip": "Assets\\TheSingularityWorkshop\\FSM_API\\Tests\\Editor\\FSM_API_Tests.cs",
               "ViewState": "AgIAAAwAAAAAAAAAAAAAABcAAAAOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-16T00:41:47.671Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-16T00:41:47.671Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 9,
               "Title": "FSMTests.cs",
               "DocumentMoniker": "C:\\Users\\Trent Best\\FSM_API\\Assets\\TheSingularityWorkshop\\FSM_API\\Tests\\Editor\\FSMTests.cs",
               "RelativeDocumentMoniker": "Assets\\TheSingularityWorkshop\\FSM_API\\Tests\\Editor\\FSMTests.cs",
@@ -67,13 +151,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 7,
               "Title": "FSMState.cs",
               "DocumentMoniker": "C:\\Users\\Trent Best\\FSM_API\\Assets\\TheSingularityWorkshop\\FSM_API\\Scripts\\FSM\\FSMState.cs",
               "RelativeDocumentMoniker": "Assets\\TheSingularityWorkshop\\FSM_API\\Scripts\\FSM\\FSMState.cs",
               "ToolTip": "C:\\Users\\Trent Best\\FSM_API\\Assets\\TheSingularityWorkshop\\FSM_API\\Scripts\\FSM\\FSMState.cs",
               "RelativeToolTip": "Assets\\TheSingularityWorkshop\\FSM_API\\Scripts\\FSM\\FSMState.cs",
-              "ViewState": "AgIAACUAAAAAAAAAAAAgwCQAAAALAAAAAAAAAA==",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAkwA8AAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-07-15T21:25:50.55Z"
             },
@@ -85,21 +169,23 @@
               "RelativeDocumentMoniker": "Assets\\TheSingularityWorkshop\\FSM_API\\Scripts\\FSM\\FSM_API.cs",
               "ToolTip": "C:\\Users\\Trent Best\\FSM_API\\Assets\\TheSingularityWorkshop\\FSM_API\\Scripts\\FSM\\FSM_API.cs",
               "RelativeToolTip": "Assets\\TheSingularityWorkshop\\FSM_API\\Scripts\\FSM\\FSM_API.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAOsAAAAcAAAAAAAAAA==",
+              "ViewState": "AgIAAJMAAAAAAAAAAAAiwKcAAABSAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-15T21:19:14.965Z"
+              "WhenOpened": "2025-07-15T21:19:14.965Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 3,
               "Title": "FSMBuilder.cs",
               "DocumentMoniker": "C:\\Users\\Trent Best\\FSM_API\\Assets\\TheSingularityWorkshop\\FSM_API\\Scripts\\FSM\\FSMBuilder.cs",
               "RelativeDocumentMoniker": "Assets\\TheSingularityWorkshop\\FSM_API\\Scripts\\FSM\\FSMBuilder.cs",
               "ToolTip": "C:\\Users\\Trent Best\\FSM_API\\Assets\\TheSingularityWorkshop\\FSM_API\\Scripts\\FSM\\FSMBuilder.cs",
               "RelativeToolTip": "Assets\\TheSingularityWorkshop\\FSM_API\\Scripts\\FSM\\FSMBuilder.cs",
-              "ViewState": "AgIAAGYAAAAAAAAAAAAgwNYAAAAcAAAAAAAAAA==",
+              "ViewState": "AgIAACsAAAAAAAAAAAAIwDwAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-14T19:51:42.373Z"
+              "WhenOpened": "2025-07-14T19:51:42.373Z",
+              "EditorCaption": ""
             }
           ]
         }

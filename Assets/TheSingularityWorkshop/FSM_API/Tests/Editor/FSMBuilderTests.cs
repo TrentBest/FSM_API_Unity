@@ -136,7 +136,7 @@ namespace TheSingularityWorkshop.FSM.Tests
 
             // Modify using FSMBuilder(FSM)
             var fsm = FSM_API.GetDefinition("TestFSM");
-            var builder2 = new FSMBuilder(fsm);
+            var builder2 = new FSMBuilder(fsm, "T");
             builder2.WithName("TestFSM2").State("C").WithInitialState("C").BuildDefinition();
 
             var fsm2 = FSM_API.GetDefinition("TestFSM2");
