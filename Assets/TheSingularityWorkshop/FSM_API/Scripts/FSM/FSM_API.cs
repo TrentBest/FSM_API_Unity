@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 
+using Unity.VisualScripting;
+
 namespace TheSingularityWorkshop.FSM.API
 {
     /// <summary>
@@ -225,6 +227,7 @@ namespace TheSingularityWorkshop.FSM.API
                 _underConstruction.Remove(fsmName);
         }
 
+       
         /// <summary>
         /// Checks if an FSM definition with the given name exists within the specified processing group.
         /// </summary>
@@ -234,24 +237,26 @@ namespace TheSingularityWorkshop.FSM.API
         /// <exception cref="ArgumentException">Thrown if <paramref name="fsmName"/> or <paramref name="processingGroup"/> is null or empty.</exception>
         public static bool Exists(string fsmName, string processingGroup = "Update")
         {
-            if (string.IsNullOrWhiteSpace(fsmName))
-            {
-                throw new ArgumentException("FSM name cannot be null or empty.", nameof(fsmName));
-            }
-            if (string.IsNullOrWhiteSpace(processingGroup))
-            {
-                throw new ArgumentException("Processing group cannot be null or empty.", nameof(processingGroup));
-            }
-            if(_underConstruction.Count > 0 && _underConstruction.Contains(fsmName))
-            {
-                return true;
-            }
-            if (!_buckets.TryGetValue(processingGroup, out var categoryBuckets))
-            {
-                _underConstruction.Add(fsmName); // Assuming that if the group doesn't exist, it means the FSM is still being defined
-                return false;
-            }
-            return categoryBuckets.ContainsKey(fsmName);
+            
+                if (string.IsNullOrWhiteSpace(fsmName))
+                {
+                    throw new ArgumentException("FSM name cannot be null or empty.", nameof(fsmName));
+                }
+                if (string.IsNullOrWhiteSpace(processingGroup))
+                {
+                    throw new ArgumentException("Processing group cannot be null or empty.", nameof(processingGroup));
+                }
+                //if (_underConstruction.Count > 0 && _underConstruction.Contains(fsmName))
+                //{
+                //    return true;
+                //}
+                if (!_buckets.TryGetValue(processingGroup, out var categoryBuckets))
+                {
+                    //_underConstruction.Add(fsmName); // Assuming that if the group doesn't exist, it means the FSM is still being defined
+                    return false;
+                }
+                return categoryBuckets.ContainsKey(fsmName);
+            
         }
 
         /// <summary>
@@ -637,6 +642,11 @@ namespace TheSingularityWorkshop.FSM.API
         public static List<string> GetAllProcessGroups()
         {
             return _buckets.Keys.ToList();
+        }
+
+        public static bool ExistsProcessingGroup(string processingGroup)
+        {
+            return _buckets.ContainsKey(processingGroup);
         }
     }
 }

@@ -14,14 +14,32 @@ namespace TheSingularityWorkshop.FSM.Tests
         [SetUp]
         public void SetUp()
         {
+            Debug.Log("[SETUP] Starting SetUp for test.");
+
+            // Get all FSM definitions (assuming FSM_API has a way to iterate/get these)
+            // If FSM_API.GetFiniteStateMachineNames() exists:
+            var fsmDefinitions = FSM_API.GetAllDefinitionNames();
+            foreach (var fsmName in fsmDefinitions)
+            {
+                FSM_API.DestroyFiniteStateMachine(fsmName); 
+                Debug.Log($"[SETUP] Removed FSM Definition: {fsmName}");
+            }
+
+
             var groups = FSM_API.GetAllProcessGroups();
             foreach (var pg in groups)
             {
-                if(pg != "Update")
+                if (pg != "Update") // Keep "Update" if it's a special, always-present group
                 {
                     FSM_API.RemoveProcessingGroup(pg);
+                    Debug.Log($"[SETUP] Removed Processing Group: {pg}");
                 }
             }
+
+            // Ensure no lingering instances or definitions
+            // If FSM_API has a general reset/clear method, call it here. E.g., FSM_API.ResetStatics();
+
+            Debug.Log("[SETUP] Finished SetUp for test.");
         }
 
         [Test]
@@ -49,18 +67,24 @@ namespace TheSingularityWorkshop.FSM.Tests
             var oscillator = gameObject.AddComponent<Oscillator>();
             oscillator.MinimumValue = 1f;
             oscillator.MaximumValue = 2f;
-            oscillator.dx = -0.01f;
+            oscillator.dx = -0.01f; // dx is negative, so it will decrease towards MinimumValue
             oscillator.floatAccesorSetDelegate = fasd;
             oscillator.floatAccessorGetDelegate = fagd;
+
+            // Start at MaximumValue so it can decrease towards MinimumValue
+            oscillator.floatAccesorSetDelegate(gameObject, oscillator.MaximumValue); // ADDED THIS LINE
+
             oscillator.Awake();
             FSM_API.CreateInstance("OscillatorFSM", oscillator, "OscillatorPG");
             // Act
-            for (int i = 0; i < 100; i++)
+            for (int i = 0; i < 100; i++) // 100 updates should be enough to reach from 2f down to 1f with dx of -0.01f
             {
                 FSM_API.Update("OscillatorPG");
             }
             // Assert
             Assert.IsTrue(oscillator.OscillatorFSM.CurrentState == "Minimum", "Oscillator should be in Minimum state when minimum value is reached.");
+            // Optionally, add an assertion to confirm the value is also at the minimum
+            Assert.That(oscillator.floatAccessorGetDelegate(gameObject), Is.EqualTo(oscillator.MinimumValue).Within(0.001f)); // Added for robustness
         }
 
         [Test]
