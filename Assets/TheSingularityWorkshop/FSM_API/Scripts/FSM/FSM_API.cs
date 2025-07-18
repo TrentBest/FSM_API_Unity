@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 
-using Unity.VisualScripting;
-
 namespace TheSingularityWorkshop.FSM.API
 {
     /// <summary>
@@ -36,7 +34,7 @@ namespace TheSingularityWorkshop.FSM.API
         /// <param name="message">The error message.</param>
         /// <param name="ex">The exception that occurred, if any.</param>
         public static void InvokeInternalApiError(FSMErrorType errorType, string message, System.Exception ex = null,
-                                                 IStateContext context = null, string fsmName = null, string stateName = null)
+                                            IStateContext context = null, string fsmName = null, string stateName = null)
         {
             // Ensure the message provides some detail even if null/empty
             if (string.IsNullOrEmpty(message))
@@ -59,8 +57,8 @@ namespace TheSingularityWorkshop.FSM.API
         {
             public FSM Definition;
             public List<FSMHandle> Instances = new();
-            public int ProcessRate;       // –1 (every frame), 0 (event-driven), or >0 (every Nth frame)
-            public int Counter;           // Internal counter for frame-skipping
+            public int ProcessRate;      // –1 (every frame), 0 (event-driven), or >0 (every Nth frame)
+            public int Counter;          // Internal counter for frame-skipping
         }
 
         /// <summary>
@@ -73,7 +71,6 @@ namespace TheSingularityWorkshop.FSM.API
         // _buckets: Stores all FSM definitions and their instances, organized by
         // their processing group (e.g., "Update", "FixedUpdate") and then by FSM name.
         public static Dictionary<string, Dictionary<string, FsmBucket>> _buckets = new();
-        private static List<string> _underConstruction = new();
 
         /// <summary>
         /// Safely retrieves the dictionary of FSMs for a given processing group.
@@ -170,7 +167,7 @@ namespace TheSingularityWorkshop.FSM.API
                 // FSM definition already exists, return a builder initialized with its data for modification.
                 return new FSMBuilder(existingBucket.Definition);
             }
-            _underConstruction.Add(fsmName);
+
             // New FSM definition, return a fresh builder.
             return new FSMBuilder(fsmName, processRate, processingGroup);
         }
@@ -210,7 +207,7 @@ namespace TheSingularityWorkshop.FSM.API
                 existingBucket.Definition = fsm;
                 existingBucket.ProcessRate = processRate;
                 existingBucket.Counter = processRate > 0 ? processRate : 0; // Reset counter for new rate
-                InvokeInternalApiError(FSMErrorType.DefinitionError, $"FSM '{fsmName}' in processing group '{processingGroup}' definition updated at runtime.", null);
+                InvokeInternalApiError(FSMErrorType.DefinitionError,$"FSM '{fsmName}' in processing group '{processingGroup}' definition updated at runtime.", null);
             }
             else
             {
@@ -223,11 +220,8 @@ namespace TheSingularityWorkshop.FSM.API
                 };
                 InvokeInternalApiError(FSMErrorType.DefinitionError, $"FSM '{fsmName}' in processing group '{processingGroup}' newly registered.", null);
             }
-            if (_underConstruction.Contains(fsmName))
-                _underConstruction.Remove(fsmName);
         }
 
-       
         /// <summary>
         /// Checks if an FSM definition with the given name exists within the specified processing group.
         /// </summary>
@@ -237,26 +231,20 @@ namespace TheSingularityWorkshop.FSM.API
         /// <exception cref="ArgumentException">Thrown if <paramref name="fsmName"/> or <paramref name="processingGroup"/> is null or empty.</exception>
         public static bool Exists(string fsmName, string processingGroup = "Update")
         {
-            
-                if (string.IsNullOrWhiteSpace(fsmName))
-                {
-                    throw new ArgumentException("FSM name cannot be null or empty.", nameof(fsmName));
-                }
-                if (string.IsNullOrWhiteSpace(processingGroup))
-                {
-                    throw new ArgumentException("Processing group cannot be null or empty.", nameof(processingGroup));
-                }
-                //if (_underConstruction.Count > 0 && _underConstruction.Contains(fsmName))
-                //{
-                //    return true;
-                //}
-                if (!_buckets.TryGetValue(processingGroup, out var categoryBuckets))
-                {
-                    //_underConstruction.Add(fsmName); // Assuming that if the group doesn't exist, it means the FSM is still being defined
-                    return false;
-                }
-                return categoryBuckets.ContainsKey(fsmName);
-            
+            if (string.IsNullOrWhiteSpace(fsmName))
+            {
+                throw new ArgumentException("FSM name cannot be null or empty.", nameof(fsmName));
+            }
+            if (string.IsNullOrWhiteSpace(processingGroup))
+            {
+                throw new ArgumentException("Processing group cannot be null or empty.", nameof(processingGroup));
+            }
+
+            if (!_buckets.TryGetValue(processingGroup, out var categoryBuckets))
+            {
+                return false;
+            }
+            return categoryBuckets.ContainsKey(fsmName);
         }
 
         /// <summary>
@@ -370,6 +358,8 @@ namespace TheSingularityWorkshop.FSM.API
             return handle;
         }
 
+       
+
         /// <summary>
         /// Processes all FSMs in the "Update" processing group. Call this method from a
         /// MonoBehaviour's <c>Update()</c> method in your main application to
@@ -383,7 +373,7 @@ namespace TheSingularityWorkshop.FSM.API
             sw.Stop();
             if (sw.ElapsedMilliseconds > TickPerformanceWarningThresholdMs)
             {
-                InvokeInternalApiError(FSMErrorType.RuntimeError, $"'{processGroup}' tick took {sw.ElapsedMilliseconds}ms. Threshold: {TickPerformanceWarningThresholdMs}ms.", null);
+                InvokeInternalApiError(FSMErrorType.RuntimeError,$"'Update' tick took {sw.ElapsedMilliseconds}ms. Threshold: {TickPerformanceWarningThresholdMs}ms.", null);
             }
         }
 
@@ -402,7 +392,7 @@ namespace TheSingularityWorkshop.FSM.API
                 }
                 catch (Exception ex)
                 {
-                    InvokeInternalApiError(FSMErrorType.RuntimeError, "Error during deferred API modification.", ex);
+                    InvokeInternalApiError(FSMErrorType.RuntimeError,"Error during deferred API modification.", ex);
                 }
             }
         }
@@ -416,7 +406,7 @@ namespace TheSingularityWorkshop.FSM.API
         {
             if (string.IsNullOrWhiteSpace(processingGroup))
             {
-                InvokeInternalApiError(FSMErrorType.InvalidOperation, "TickAll called with null or empty processing group.", null);
+                InvokeInternalApiError(FSMErrorType.InvalidOperation,"TickAll called with null or empty processing group.", null);
                 return;
             }
 
@@ -444,8 +434,7 @@ namespace TheSingularityWorkshop.FSM.API
                     bucket.Counter = bucket.ProcessRate;
                 }
 
-                // Create a temporary list to iterate, allowing modifications to the original list
-                var instancesToTick = bucket.Instances.ToList(); 
+                var instancesToTick = bucket.Instances.ToList();
                 foreach (var h in instancesToTick)
                 {
                     // Ensure the handle itself is not null, its context is not null,
@@ -458,20 +447,14 @@ namespace TheSingularityWorkshop.FSM.API
                         }
                         catch (Exception ex)
                         {
-                            // If an exception occurs during the FSM's internal step, report it as a "runtime error".
+                            // If an exception occurs during the FSM's internal step, report it as a "error".
                             ReportError(h, ex);
                         }
                     }
                     else
                     {
                         // If an instance is null or its context is null/invalid, it should be removed.
-                        // We defer this removal to avoid modifying the collection while iterating.
-                        _deferredModifications.Enqueue(() =>
-                        {
-                            InvokeInternalApiError(FSMErrorType.RuntimeError, $"FSM instance '{h?.Name}' (Definition: '{h?.Definition?.Name}') became null or its context invalid. Scheduling unregistration.", null);
-                            Unregister(h);
-                            IncrementDefinitionError(h.Definition.Name, h.Definition.ProcessingGroup);
-                        });
+                        ReportError(h, new ApplicationException("FSM instance or its context became null/invalid (IsValid returned false)."));
                     }
                 }
             }
@@ -497,7 +480,7 @@ namespace TheSingularityWorkshop.FSM.API
 
             if (!_buckets.TryGetValue(processingGroup, out var categoryBuckets))
             {
-                InvokeInternalApiError(FSMErrorType.InvalidOperation, $"Attempted to destroy FSM '{fsmName}' from non-existent processing group '{processingGroup}'.", null);
+                InvokeInternalApiError(FSMErrorType.InvalidOperation,$"Attempted to destroy FSM '{fsmName}' from non-existent processing group '{processingGroup}'.", null);
                 return;
             }
 
@@ -535,12 +518,12 @@ namespace TheSingularityWorkshop.FSM.API
 
             bool removed = false;
             // Iterate through all processing groups
-            foreach (var processingGroupEntry in _buckets) // Renamed variable to avoid conflict with method parameter
+            foreach (var categoryKvp in _buckets)
             {
                 // Iterate through all FSM definitions within each processing group
-                foreach (var fsmBucket in processingGroupEntry.Value.Values)
+                foreach (var fsmBucket in categoryKvp.Value.Values)
                 {
-                    // Attempt to remove the instance from the handle's list of instances
+                    // Attempt to remove the instance from the bucket's list of instances
                     if (fsmBucket.Instances.Remove(instance))
                     {
                         removed = true;
@@ -560,6 +543,7 @@ namespace TheSingularityWorkshop.FSM.API
                 );
             }
         }
+
 
         // Internal method to report FSM instance errors
         internal static void ReportError(FSMHandle handle, Exception ex)
@@ -584,12 +568,13 @@ namespace TheSingularityWorkshop.FSM.API
             }
 
             // Report the specific error
-            InvokeInternalApiError(FSMErrorType.RuntimeError,
-                $"An error occurred in FSM instance '{handle.Name}' (FSM: '{handle.Definition.Name}', State: '{handle.CurrentState}'). Error Count: {newInstanceCount}/{ErrorCountThreshold}.",
-                ex,
-                handle.Context,
-                handle.Definition.Name,
+            InvokeInternalApiError(FSMErrorType.RuntimeError, 
+                $"FSM instance '{handle.Name}' (FSM: '{handle.Definition.Name}') exceeded error threshold. Removing.",
+                null, 
+                handle.Context, 
+                handle.Definition.Name, 
                 handle.CurrentState);
+            
 
             if (newInstanceCount >= ErrorCountThreshold)
             {
@@ -623,11 +608,14 @@ namespace TheSingularityWorkshop.FSM.API
                 _fsmDefinitionErrorCounts.Add(fsmName, newDefinitionCount);
             }
 
-            // Report the specific error for the definition
-            InvokeInternalApiError(FSMErrorType.DefinitionError,
-                $"FSM Definition '{fsmName}' in group '{processingGroup}' experienced a critical instance error. Definition Error Count: {newDefinitionCount}/{DefinitionErrorThreshold}.",
-                null, null, fsmName);
+            InvokeInternalApiError(FSMErrorType.DefinitionError, $"FSM Definition '{fsmName}' exceeded error threshold. Unregistering.", null, null, fsmName); 
 
+
+            //InvokeInternalApiError(FSMErrorType.RuntimeError, $"FSM Instance '{handle.Name}' (Definition: '{handle.Definition.Name}') hit Error Threshold ({ErrorCountThreshold}). Scheduling removal.", null);
+
+            
+
+            //InvokeInternalApiError($"FSMHandle '{instance.Name}' not found in any registered FSM in any group for deregistration. It might have already been deregistered or was never registered.", null);
             if (newDefinitionCount >= DefinitionErrorThreshold)
             {
                 // Definition hit its error threshold, schedule its complete destruction
@@ -637,16 +625,6 @@ namespace TheSingularityWorkshop.FSM.API
                     DestroyFiniteStateMachine(fsmName, processingGroup);
                 });
             }
-        }
-
-        public static List<string> GetAllProcessGroups()
-        {
-            return _buckets.Keys.ToList();
-        }
-
-        public static bool ExistsProcessingGroup(string processingGroup)
-        {
-            return _buckets.ContainsKey(processingGroup);
         }
     }
 }
