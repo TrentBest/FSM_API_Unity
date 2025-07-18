@@ -40,9 +40,9 @@ namespace TheSingularityWorkshop.FSM.Tests
         public void AddState_NullState_ReportsError()
         {
             bool errorCalled = false;
-            FSM_API.OnInternalApiError += (msg, ex) => errorCalled = true;
+            FSM_API.OnInternalApiError += args => errorCalled = true; // Fix: Adjusted to match the delegate signature
             _fsm.AddState(null);
-            FSM_API.OnInternalApiError -= (msg, ex) => errorCalled = true;
+            FSM_API.OnInternalApiError -= args => errorCalled = true; // Fix: Adjusted to match the delegate signature
             Assert.IsFalse(_fsm.HasState("null"));
             Assert.IsTrue(errorCalled);
         }
@@ -65,9 +65,9 @@ namespace TheSingularityWorkshop.FSM.Tests
         public void AddTransition_NullCondition_ReportsError()
         {
             bool errorCalled = false;
-            FSM_API.OnInternalApiError += (msg, ex) => errorCalled = true;
+            FSM_API.OnInternalApiError += args => errorCalled = true; // Fix: Adjusted to match the delegate signature
             _fsm.AddTransition("A", "B", null);
-            FSM_API.OnInternalApiError -= (msg, ex) => errorCalled = true;
+            FSM_API.OnInternalApiError -= args => errorCalled = true; // Fix: Adjusted to match the delegate signature
             Assert.IsTrue(errorCalled);
         }
 
@@ -88,9 +88,9 @@ namespace TheSingularityWorkshop.FSM.Tests
         public void AddAnyStateTransition_NullCondition_ReportsError()
         {
             bool errorCalled = false;
-            FSM_API.OnInternalApiError += (msg, ex) => errorCalled = true;
+            FSM_API.OnInternalApiError += args => errorCalled = true; // Fix: Adjusted to match the delegate signature
             _fsm.AddAnyStateTransition("B", null);
-            FSM_API.OnInternalApiError -= (msg, ex) => errorCalled = true;
+            FSM_API.OnInternalApiError -= args => errorCalled = true; // Fix: Adjusted to match the delegate signature
             Assert.IsTrue(errorCalled);
         }
 
@@ -129,9 +129,9 @@ namespace TheSingularityWorkshop.FSM.Tests
         {
             _fsm.InitialState = "Missing";
             bool errorCalled = false;
-            FSM_API.OnInternalApiError += (msg, ex) => errorCalled = true;
+            FSM_API.OnInternalApiError += args => errorCalled = true; // Fix: Adjusted to match the delegate signature
             Assert.Throws<ArgumentException>(() => _fsm.EnterInitial(_context));
-            FSM_API.OnInternalApiError -= (msg, ex) => errorCalled = true;
+            FSM_API.OnInternalApiError -= args => errorCalled = true; // Fix: Adjusted to match the delegate signature
             Assert.IsTrue(errorCalled);
         }
 
@@ -150,10 +150,10 @@ namespace TheSingularityWorkshop.FSM.Tests
             _fsm.AddState(new FSMState("Idle"));
             _fsm.InitialState = "Idle";
             bool errorCalled = false;
-            FSM_API.OnInternalApiError += (msg, ex) => errorCalled = true;
+            FSM_API.OnInternalApiError += args => errorCalled = true; // Fix: Adjusted to match the delegate signature
             string next;
             _fsm.Step("Missing", _context, out next);
-            FSM_API.OnInternalApiError -= (msg, ex) => errorCalled = true;
+            FSM_API.OnInternalApiError -= args => errorCalled = true; // Fix: Adjusted to match the delegate signature
             Assert.AreEqual("Idle", next);
             Assert.IsTrue(errorCalled);
         }
@@ -203,10 +203,10 @@ namespace TheSingularityWorkshop.FSM.Tests
             _fsm.AddState(new FSMState("A"));
             _fsm.AddAnyStateTransition("Missing", c => true);
             bool errorCalled = false;
-            FSM_API.OnInternalApiError += (msg, ex) => errorCalled = true;
+            FSM_API.OnInternalApiError += args => errorCalled = true; // Fix: Adjusted to match the delegate signature
             string next;
             _fsm.Step("A", _context, out next);
-            FSM_API.OnInternalApiError -= (msg, ex) => errorCalled = true;
+            FSM_API.OnInternalApiError -= args => errorCalled = true; // Fix: Adjusted to match the delegate signature
             Assert.IsTrue(errorCalled);
             Assert.AreEqual("A", next);
         }
@@ -217,10 +217,10 @@ namespace TheSingularityWorkshop.FSM.Tests
             _fsm.AddState(new FSMState("A"));
             _fsm.AddAnyStateTransition("A", c => throw new Exception("Condition failed"));
             bool errorCalled = false;
-            FSM_API.OnInternalApiError += (msg, ex) => errorCalled = true;
+            FSM_API.OnInternalApiError += args => errorCalled = true; // Fix: Adjusted to match the delegate signature
             string next;
             _fsm.Step("A", _context, out next);
-            FSM_API.OnInternalApiError -= (msg, ex) => errorCalled = true;
+            FSM_API.OnInternalApiError -= args => errorCalled = true; // Fix: Adjusted to match the delegate signature
             Assert.IsTrue(errorCalled);
             Assert.AreEqual("A", next);
         }
@@ -230,10 +230,10 @@ namespace TheSingularityWorkshop.FSM.Tests
         {
             _fsm.AddState(new FSMState("A", null, c => throw new Exception("Update failed")));
             bool errorCalled = false;
-            FSM_API.OnInternalApiError += (msg, ex) => errorCalled = true;
+            FSM_API.OnInternalApiError += args => errorCalled = true; // Fix: Adjusted to match the delegate signature
             string next;
             _fsm.Step("A", _context, out next);
-            FSM_API.OnInternalApiError -= (msg, ex) => errorCalled = true;
+            FSM_API.OnInternalApiError -= args => errorCalled = true; // Fix: Adjusted to match the delegate signature
             Assert.IsTrue(errorCalled);
             Assert.AreEqual("A", next);
         }
@@ -254,9 +254,9 @@ namespace TheSingularityWorkshop.FSM.Tests
         {
             _fsm.AddState(new FSMState("A"));
             bool errorCalled = false;
-            FSM_API.OnInternalApiError += (msg, ex) => errorCalled = true;
+            FSM_API.OnInternalApiError += args => errorCalled = true; // Fix: Adjusted to match the delegate signature
             Assert.Throws<ArgumentException>(() => _fsm.ForceTransition("A", "Missing", _context));
-            FSM_API.OnInternalApiError -= (msg, ex) => errorCalled = true;
+            FSM_API.OnInternalApiError -= args => errorCalled = true; // Fix: Adjusted to match the delegate signature
             Assert.IsTrue(errorCalled);
         }
 
@@ -265,9 +265,9 @@ namespace TheSingularityWorkshop.FSM.Tests
         {
             _fsm.AddState(new FSMState("B"));
             bool errorCalled = false;
-            FSM_API.OnInternalApiError += (msg, ex) => errorCalled = true;
+            FSM_API.OnInternalApiError += args => errorCalled = true; // Fix: Adjusted to match the delegate signature
             _fsm.ForceTransition("Missing", "B", _context);
-            FSM_API.OnInternalApiError -= (msg, ex) => errorCalled = true;
+            FSM_API.OnInternalApiError -= args => errorCalled = true; // Fix: Adjusted to match the delegate signature
             Assert.IsTrue(errorCalled);
         }
 
@@ -278,9 +278,9 @@ namespace TheSingularityWorkshop.FSM.Tests
             _fsm.AddState(new FSMState("A", null, null, c => throw new Exception("Exit failed")));
             _fsm.AddState(new FSMState("B", c => entered = true));
             bool errorCalled = false;
-            FSM_API.OnInternalApiError += (msg, ex) => errorCalled = true;
+            FSM_API.OnInternalApiError += args => errorCalled = true; // Fix: Adjusted to match the delegate signature
             _fsm.ForceTransition("A", "B", _context);
-            FSM_API.OnInternalApiError -= (msg, ex) => errorCalled = true;
+            FSM_API.OnInternalApiError -= args => errorCalled = true; // Fix: Adjusted to match the delegate signature
             Assert.IsTrue(errorCalled);
             Assert.IsTrue(entered);
         }
@@ -291,9 +291,9 @@ namespace TheSingularityWorkshop.FSM.Tests
             _fsm.AddState(new FSMState("A"));
             _fsm.AddState(new FSMState("B", c => throw new Exception("Enter failed")));
             bool errorCalled = false;
-            FSM_API.OnInternalApiError += (msg, ex) => errorCalled = true;
+            FSM_API.OnInternalApiError += args => errorCalled = true; // Fix: Adjusted to match the delegate signature
             Assert.Throws<Exception>(() => _fsm.ForceTransition("A", "B", _context));
-            FSM_API.OnInternalApiError -= (msg, ex) => errorCalled = true;
+            FSM_API.OnInternalApiError -= args => errorCalled = true; // Fix: Adjusted to match the delegate signature
             Assert.IsTrue(errorCalled);
         }
     }

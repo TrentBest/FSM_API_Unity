@@ -30,8 +30,8 @@ See: [FSMBuilder Deep Dive](04_FSM_Builder_Deep_Dive.md)
 ### **Q: What's the difference between event-driven and frame-based FSMs?**
 
 **A:**  
-- **Event-driven FSMs** (`processRate = 0`) only update when you explicitly call for it—ideal for UI or turn-based logic.
-- **Frame-based FSMs** (`processRate = -1` or `>0`) update every frame or every Nth frame—best for real-time gameplay.
+- **Event-driven FSMs** (`processRate = 0`) only update when you explicitly call for itâ€”ideal for UI or turn-based logic.
+- **Frame-based FSMs** (`processRate = -1` or `>0`) update every frame or every Nth frameâ€”best for real-time gameplay.
 See: [Performance Tips](08_Performance_Tips.md)
 
 ---
@@ -76,4 +76,4 @@ See: [Common Use Cases](09_Common_Use_Cases.md)
 
 ---
 
-[Return to User Guide Index](_Index.md)
+[Return to User Guide Index](00_Introduction.md)
