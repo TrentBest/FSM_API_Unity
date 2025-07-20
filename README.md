@@ -55,11 +55,9 @@ var fsm = FSM_API.CreateFiniteStateMachine("LightSwitchFSM", processRate: 1, pro
     .State("Off")
         .OnEnter(ctx => { if (ctx is LightSwitch l) l.IsOn = false; })
         .TransitionIf("On", ctx => ctx is LightSwitch)
-    .End()
     .State("On")
         .OnEnter(ctx => { if (ctx is LightSwitch l) l.IsOn = true; })
         .TransitionIf("Off", ctx => ctx is LightSwitch l && !l.IsOn)
-    .End()
     .BuildDefinition();
  ````
 Create an instance:
