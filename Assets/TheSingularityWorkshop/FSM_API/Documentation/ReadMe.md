@@ -1,68 +1,74 @@
-# FSM_API: Robust Finite State Machine for Unity & Beyond
+FSM_API: Robust Finite State Machine for Unity & Beyond
 
-A high-performance, modular, and **game-engine-agnostic** C#/.NET API for building and managing Finite State Machines (FSMs) in Unity and any C# application. FSM_API empowers developers to model behavior with clarity and efficiency — whether you're handling complex AI, player state transitions, UI flow, or reactive systems.
-
----
-
-## 🎮 What Is a Finite State Machine (FSM)?
+A high-performance, modular, and game-engine-agnostic C#/.NET API for building and managing Finite State Machines (FSMs) in Unity and any C# application. FSM_API empowers developers to model behavior with clarity and efficiency — whether you're handling complex AI, player state transitions, UI flow, or reactive systems.
+🎮 What Is a Finite State Machine (FSM)?
 
 A Finite State Machine allows you to define:
 
-- All possible **states** an object can be in (Idle, Moving, Attacking...)
-- The **rules** for transitioning between those states
-- The **actions** to perform when entering, updating, or exiting each state
+    All possible states an object can be in (Idle, Moving, Attacking...)
 
-FSMs simplify intricate behaviors into modular, testable logic units. Instead of tangled `if/else` trees, you get structured flow and readable logic.
+    The rules for transitioning between those states
 
----
+    The actions to perform when entering, updating, or exiting each state
 
-## ✨ Why FSM_API?
+FSMs simplify intricate behaviors into modular, testable logic units. Instead of tangled if/else trees, you get structured flow and readable logic.
+✨ Why FSM_API?
 
-- **🔧 Unified Logic Architecture**  
-  Design all game logic through a central, fluent FSM definition system.
+    🔧 Unified Logic Architecture Design all game logic through a central, fluent FSM definition system.
 
-- **🧩 Engine-Agnostic, Unity-Optimized**  
-  Built in pure C#/.NET with no Unity dependencies in the core. Easily integrates into any MonoBehaviour or GameObject via a clean interface.
+    🧩 Engine-Agnostic, Unity-Optimized Built in pure C#/.NET with no Unity dependencies in the core. Easily integrates into any MonoBehaviour or GameObject via a clean interface.
 
-- **🌀 Context-Driven Execution**  
-  FSMs operate on your custom data structures through the `IStateContext` interface — no reflection, no boxing.
+    🌀 Context-Driven Execution FSMs operate on your custom data structures through the IStateContext interface — no reflection, no boxing.
 
-- **⚙️ Flexible Update Control**  
-  Attach FSMs to Unity's `Update`, `FixedUpdate`, `LateUpdate`, or define custom update groups.
+    ⚙️ Flexible Update Control Attach FSMs to Unity's Update, FixedUpdate, LateUpdate, or define custom update groups.
 
-- **🚀 Fine-Tuned Performance**  
-  Each FSM can:
-  - Run every frame (`-1`)
-  - React only to events (`0`)
-  - Run every Nth frame (`>0`)
+    🚀 Fine-Tuned Performance Each FSM can:
 
-- **🧪 Test-Ready Architecture**  
-  Clean separation of definition and instance enables straightforward unit testing — both inside and outside Unity.
+        Run every frame (-1)
 
-- **🛡️ Built-In Error Handling**  
-  All exceptions are captured via the `OnInternalApiError` event. Broken FSMs are removed gracefully without crashing your app.
+        React only to events (0)
 
-- **♻️ Hot Swappable FSM Logic**  
-  Update FSM definitions at runtime — instances will adopt new logic on their next tick.
+        Run every Nth frame (>0)
 
----
+    🧪 Test-Ready Architecture Clean separation of definition and instance enables straightforward unit testing — both inside and outside Unity.
 
-## 🧠 Core Concepts
+    🛡️ Built-In Error Handling All exceptions are captured via the OnInternalApiError event. Broken FSMs are removed gracefully without crashing your app.
 
-| Concept        | Description |
-|----------------|-------------|
-| `FSM_API`      | The global static manager. Defines, updates, and organizes FSMs. |
-| `FSMBuilder`   | A fluent interface for creating FSM blueprints. |
-| `FSM Definition` | A reusable FSM blueprint shared across instances. |
-| `FSMHandle`    | A live instance tied to a specific game object or logic unit. |
-| `IStateContext`| Your context class that FSMs operate on. Must implement `IsValid` and `Name`. |
+    ♻️ Hot Swappable FSM Logic Update FSM definitions at runtime — instances will adopt new logic on their next tick.
 
----
+🧠 Core Concepts
 
-## 🛠️ Quick Unity Integration
+Concept
+	
 
-### 1. Implement a Context
+Description
 
+FSM_API
+	
+
+The global static manager. Defines, updates, and organizes FSMs.
+
+FSMBuilder
+	
+
+A fluent interface for creating FSM blueprints.
+
+FSM Definition
+	
+
+A reusable FSM blueprint shared across instances.
+
+FSMHandle
+	
+
+A live instance tied to a specific game object or logic unit.
+
+IStateContext
+	
+
+Your context class that FSMs operate on. Must implement IsValid and Name.
+🛠️ Quick Unity Integration
+1. Implement a Context
 ```csharp
 public class PlayerController : MonoBehaviour, IStateContext
 {
@@ -149,4 +155,4 @@ Have questions or want to collaborate?
 
     GitHub Issues: https://github.com/yourname/FSM_API/issues
 
-    FSM_API is precision-designed for developers who want control, clarity, and performance — without sacrificing flexibility.
+FSM_API is precision-designed for developers who want control, clarity, and performance — without sacrificing flexibility.
