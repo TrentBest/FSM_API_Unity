@@ -87,12 +87,19 @@ FSM_API.Update("MainLoop");
 📦 Features at a Glance
 Capability	Description
 🔄 State Transition Logic	Conditional or forced
+
 🎭 Context-Driven Behavior	FSM logic operates on your POCOs
+
 🧪 Update Control	Process every frame, every Nth frame, or event-driven
+
 🧯 Error Escalation	Per-instance and per-definition error tracking
+
 🔁 Runtime Redefinition	FSMs can be redefined while running
+
 🎯 Lightweight & Fast	Minimal allocations, optimized for performance
+
 🌐 Unity Integration	Dedicated helper methods and examples for Unity lifecycle
+
 🔬 Core API Link	Built on the [FSM_API Core Library](https://github.com/TrentBest/FSM_API)
 
 
