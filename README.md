@@ -101,7 +101,7 @@ FSM_API.Update("MainLoop");
 
     🌐 Unity Integration	Dedicated helper methods and examples for Unity lifecycle
 
-    🔬 Core API Link	Built on the [FSM_API Core Library](https://github.com/TrentBest/FSM_API)
+    🔬 Core API Link	Built on the [FSM_API Core Library](https://github.com/TrentBest/FSM_API/)
 
 
 
