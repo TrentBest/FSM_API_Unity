@@ -84,35 +84,36 @@ FSM_API.Update("MainLoop");
 
     Thread-Safe by Design: All modifications are deferred and processed safely post-update.
 
-📦 Features at a Glance
-Capability	Description
-🔄 State Transition Logic	Conditional or forced
 
-🎭 Context-Driven Behavior	FSM logic operates on your POCOs
+    📦 Features at a Glance
+    Capability	Description
+    🔄 State Transition Logic	Conditional or forced
 
-🧪 Update Control	Process every frame, every Nth frame, or event-driven
+    🎭 Context-Driven Behavior	FSM logic operates on your POCOs
 
-🧯 Error Escalation	Per-instance and per-definition error tracking
+    🧪 Update Control	Process every frame, every Nth frame, or event-driven
 
-🔁 Runtime Redefinition	FSMs can be redefined while running
+    🧯 Error Escalation	Per-instance and per-definition error tracking
 
-🎯 Lightweight & Fast	Minimal allocations, optimized for performance
+    🔁 Runtime Redefinition	FSMs can be redefined while running
 
-🌐 Unity Integration	Dedicated helper methods and examples for Unity lifecycle
+    🎯 Lightweight & Fast	Minimal allocations, optimized for performance
 
-🔬 Core API Link	Built on the [FSM_API Core Library](https://github.com/TrentBest/FSM_API)
+    🌐 Unity Integration	Dedicated helper methods and examples for Unity lifecycle
+
+    🔬 Core API Link	Built on the [FSM_API Core Library](https://github.com/TrentBest/FSM_API)
 
 
 
-📘 What’s Next?
+    📘 What’s Next?
 
-📖 Full Documentation & Wiki (TBD)
+    📖 Full Documentation & Wiki (TBD)
 
-🧪 Unit Tests & Benchmarks (Currently Under Development)
+    🧪 Unit Tests & Benchmarks (Currently Under Development)
 
-🌐 Unity Package (.unitypackage) distribution 
+    🌐 Unity Package (.unitypackage) distribution 
 
-🎮 Unity Integration Examples (as a secondary layer)
+    🎮 Unity Integration Examples (as a secondary layer)
 
     🔌 Plugins & Extension Framework
 
