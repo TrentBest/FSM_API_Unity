@@ -70,21 +70,19 @@ Tick the FSM from your main loop:
 ```csharp
 FSM_API.Update("MainLoop");
  ````
-🔧 Core Concepts
-
-    FSMBuilder: Fluently define states, transitions, enter/exit actions.
-
-    FSMHandle: Runtime instance of an FSM with full control.
-
-    IStateContext: Any data model the FSM will operate upon.
-
-    Processing Groups: Organize FSMs by update loop or system.
-
-    Error Handling: Thresholds prevent runaway logic or invalid state contexts.
-
-    Thread-Safe by Design: All modifications are deferred and processed safely post-update.
 
 
+| 🔧 Core Concepts        | Brief Summary                                                    |
+|--------------------------|-----------------------------------------------------------------|
+| FSMBuilder               | Fluently define states, transitions, enter/exit actions.        |
+| FSMHandle                | Runtime instance of an FSM with full control.                   |
+| IStateContext            | Any data model the FSM will operate upon.                       |
+| Processing Groups        | Organize FSMs by update loop or system.                         |
+| Error Handling           | Thresholds prevent runaway logic or invalid state contexts.     |
+| Thread-Safe by Design    | All modifications are deferred and processed safely post-update.|
+   
+
+ 
     📦 Features at a Glance
     Capability	Description
     🔄 State Transition Logic	Conditional or forced
@@ -127,6 +125,7 @@ MIT License. Use it, hack it, build amazing things with it.
 🧠 Brought to you by
 
 The Singularity Workshop — Tools for the curious, the bold, and the systemically inclined.
+
 <img src="https://github.com/user-attachments/assets/b94a9412-29f3-4b55-9d07-ddef3b57e082" width="200">    
 
     Because state shouldn't be a mess.
