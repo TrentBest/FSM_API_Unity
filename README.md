@@ -83,34 +83,18 @@ FSM_API.Update("MainLoop");
 
 | Capability                | Description                                                                                             |
 | :------------------------ | :------------------------------------------------------------------------------------------------------ |
-| 🔄 **State Transition Logic** | Effortlessly define state changes based on **dynamic conditions** or **explicit triggers**, ensuring your FSMs react precisely. |
-| 🎭 **Context-Driven Behavior**| Your FSM logic directly operates on **any custom C# object (POCO)** that implements `IStateContext`, allowing clean separation of concerns. |
-| 🧪 **Flexible Update Control** | Choose how FSMs are processed: **event-driven**, **tick-based** (every N frames), or **manual**, adapting to any application loop. |
-| 🧯 **Robust Error Escalation**| Benefit from **per-instance and per-definition error tracking**, providing insights to prevent runaway logic or invalid states without crashing. |
-| 🔁 **Runtime Redefinition** | Adapt your application on the fly! FSM definitions can be **redefined while actively running**, enabling dynamic updates and live patching. |
-| 🎯 **Lightweight & Fast** | Engineered for **minimal memory allocations** and **optimized performance**, ensuring your FSMs are efficient even in demanding scenarios. |
-| 🌐 **Seamless Unity Integration** | Utilize **dedicated helper methods** and **clear examples** tailored for Unity's lifecycle, making FSM management a breeze within the engine. |
-| 🔬 **Core API Link** | This Unity integration is **built on the robust [FSM_API Core Library](https://github.com/TrentBest/FSM_API)**, providing a solid, platform-agnostic foundation. |
- 
-   
-    	
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-
-🔬 Core API Link	Built on the [FSM_API Core Library](https://github.com/TrentBest/FSM_API/README.md)
-
+| 🔄 **Deterministic State Logic** | Effortlessly define predictable state changes based on dynamic conditions or explicit triggers, ensuring your application's behavior is consistent and, where applicable, mathematically provable. Ideal for complex workflows and reliable automation. |
+| 🎭 **Context-Driven Behavior**| Your FSM logic directly operates on any custom C# object (POCO) that implements IStateContext. This enables clean separation of concerns (logic vs. data) and allows domain experts (e.g., BIM specifiers) to define behavior patterns that developers then implement. |
+| 🧪 **Flexible Update Control** | Choose how FSMs are processed: event-driven, tick-based (every N frames), or manual. This adaptability means it's perfect for real-time systems, background processes, or even complex user interactions within any application loop. |
+| 🧯 **Robust Error Escalation**| Benefit from per-instance and per-definition error tracking, providing immediate insights to prevent runaway logic or invalid states without crashing your application. Critical for long-running services and mission-critical software. |
+| 🔁 **Runtime Redefinition** | Adapt your application on the fly! FSM definitions can be redefined while actively running, enabling dynamic updates, live patching, and extreme behavioral variation without recompilation or downtime. Perfect for highly configurable systems. |
+| 🎯 **Lightweight & Fast** | Engineered for minimal memory allocations and optimized performance, ensuring your FSMs are efficient even in demanding enterprise or simulation scenarios. No overhead, just pure C# power. |
+| 🌐 **Seamless Unity Integration** | Specifically designed for Unity developers, this layer offers dedicated helper methods and clear examples tailored for Unity's lifecycle, making FSM management a breeze within game development. |
+| 🔬 **Core API Link** | This Unity integration is built on the robust [FSM_API Core Library](https://github.com/TrentBest/FSM_API)**, The core provides a solid, platform-agnostic foundation ideal for any C# environment where state management is critical. |
+|    **Easy to Unit Test** |  The inherent decoupling of FSM logic from context data ensures your state machines are highly testable in isolation, leading to more robust and reliable code with simplified unit testing. |
+|    **Mathematically Provable** | With clearly defined states and transitions, the FSM architecture lends itself to formal verification and rigorous analysis, providing a strong foundation for high-assurance systems where correctness is paramount. |
+|🤝 **Collaborative Design** | FSMs provide a visual and structured way to define complex behaviors, fostering better communication between developers, designers, and domain experts, and enabling less code-savvy individuals to contribute to core logic definitions.|
+---
  
 
     📘 What’s Next?
@@ -131,7 +115,7 @@ Contributions welcome! Whether you're integrating into your engine, designing ne
 📄 [License](LICENSE.txt)
 
 MIT License. Use it, hack it, build amazing things with it.
-🧠 Brought to you by
+🧠 Brought to you by:
 
 The Singularity Workshop — Tools for the curious, the bold, and the systemically inclined.
 
