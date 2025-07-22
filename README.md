@@ -1,8 +1,9 @@
-# FSM_API
+# FSM_API (Unity Integration)
 
-**A blazing-fast, software-agnostic Finite State Machine system for C#**
+**Seamlessly integrate the blazing-fast, software-agnostic Finite State Machine system into your Unity projects.**
 
 > Designed for flexibility. Built for robustness. Ready for anything.
+
 
 ---
 
@@ -91,13 +92,23 @@ Capability	Description
 🧯 Error Escalation	Per-instance and per-definition error tracking
 🔁 Runtime Redefinition	FSMs can be redefined while running
 🎯 Lightweight & Fast	Minimal allocations, optimized for performance
+
+🔄 State Transition Logic	Conditional or forced
+🎭 Context-Driven Behavior	FSM logic operates on your POCOs / Unity components
+🧪 Update Control	Process every frame, every Nth frame, or event-driven
+🧯 Error Escalation	Per-instance and per-definition error tracking
+🔁 Runtime Redefinition	FSMs can be redefined while running
+🎯 Lightweight & Fast	Minimal allocations, optimized for performance in Unity
+🌐 Unity Integration	Dedicated helper methods and examples for Unity lifecycle
+🔬 Core API Link	Built on the [FSM_API Core Library](https://github.com/TrentBest/FSM_API)
+
 📘 What’s Next?
 
-📖 Full Documentation & Wiki
+📖 Full Documentation & Wiki (TBD)
 
-🧪 Unit Tests & Benchmarks
+🧪 Unit Tests & Benchmarks (Currently Under Development)
 
-🌐 Unity Package (.unitypackage) distribution
+🌐 Unity Package (.unitypackage) distribution 
 
 🎮 Unity Integration Examples (as a secondary layer)
 
@@ -106,7 +117,7 @@ Capability	Description
 🤝 Contributing
 
 Contributions welcome! Whether you're integrating into your engine, designing new extensions, or just fixing typos, PRs and issues are appreciated.
-📄 License
+📄 [License](LICENSE.txt)
 
 MIT License. Use it, hack it, build amazing things with it.
 🧠 Brought to you by
@@ -114,3 +125,6 @@ MIT License. Use it, hack it, build amazing things with it.
 The Singularity Workshop — Tools for the curious, the bold, and the systemically inclined.
 
     Because state shouldn't be a mess.
+
+    
+![TheSingularityWorkshop](https://github.com/user-attachments/assets/b94a9412-29f3-4b55-9d07-ddef3b57e082)
