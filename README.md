@@ -70,34 +70,43 @@ Tick the FSM from your main loop:
 ```csharp
 FSM_API.Update("MainLoop");
  ````
+    🔧 Core Concepts
+     [FSMBuilder]([FSMBuilder.md](https://github.com/TrentBest/FSM_API_Unity/blob/master/Assets/TheSingularityWorkshop/FSM_API/Documentation/UserGuide/04_FSM_Builder_Deep_Dive.md)) - Fluently define states, transitions, enter/exit actions.
+     [FSMHandle]([FSMBuilder.md](https://github.com/TrentBest/FSM_API_Unity/blob/master/Assets/TheSingularityWorkshop/FSM_API/Documentation/UserGuide/04_FSM_Builder_Deep_Dive.md)) - Runtime instance of an FSM with full control.
+     [IStateContext]([FSMBuilder.md](https://github.com/TrentBest/FSM_API_Unity/blob/master/Assets/TheSingularityWorkshop/FSM_API/Documentation/UserGuide/04_FSM_Builder_Deep_Dive.md)) - Any data model the FSM will operate upon.
+    [Processing Groups]([FSMBuilder.md](https://github.com/TrentBest/FSM_API_Unity/blob/master/Assets/TheSingularityWorkshop/FSM_API/Documentation/UserGuide/04_FSM_Builder_Deep_Dive.md)) - Organize FSMs by update loop or system.
+    [Error Handling]([FSMBuilder.md](https://github.com/TrentBest/FSM_API_Unity/blob/master/Assets/TheSingularityWorkshop/FSM_API/Documentation/UserGuide/04_FSM_Builder_Deep_Dive.md)) - Thresholds prevent runaway logic or invalid state contexts.
+    [Thread-Safe by Design]([FSMBuilder.md](https://github.com/TrentBest/FSM_API_Unity/blob/master/Assets/TheSingularityWorkshop/FSM_API/Documentation/UserGuide/04_FSM_Builder_Deep_Dive.md)) - All modifications are deferred and processed safely post-update.
 
+---
+## 📦 Features at a Glance
 
-| 🔧 Core Concepts        | Brief Summary                                                    |
-|--------------------------|-----------------------------------------------------------------|
-| [FSMBuilder]([FSMBuilder.md](https://github.com/TrentBest/FSM_API_Unity/blob/master/Assets/TheSingularityWorkshop/FSM_API/Documentation/UserGuide/04_FSM_Builder_Deep_Dive.md))               | Fluently define states, transitions, enter/exit actions.        |
-| FSMHandle                | Runtime instance of an FSM with full control.                   |
-| IStateContext            | Any data model the FSM will operate upon.                       |
-| Processing Groups        | Organize FSMs by update loop or system.                         |
-| Error Handling           | Thresholds prevent runaway logic or invalid state contexts.     |
-| Thread-Safe by Design    | All modifications are deferred and processed safely post-update.|
-   
-
+| Capability                | Description                                                                                             |
+| :------------------------ | :------------------------------------------------------------------------------------------------------ |
+| 🔄 **State Transition Logic** | Effortlessly define state changes based on **dynamic conditions** or **explicit triggers**, ensuring your FSMs react precisely. |
+| 🎭 **Context-Driven Behavior**| Your FSM logic directly operates on **any custom C# object (POCO)** that implements `IStateContext`, allowing clean separation of concerns. |
+| 🧪 **Flexible Update Control** | Choose how FSMs are processed: **event-driven**, **tick-based** (every N frames), or **manual**, adapting to any application loop. |
+| 🧯 **Robust Error Escalation**| Benefit from **per-instance and per-definition error tracking**, providing insights to prevent runaway logic or invalid states without crashing. |
+| 🔁 **Runtime Redefinition** | Adapt your application on the fly! FSM definitions can be **redefined while actively running**, enabling dynamic updates and live patching. |
+| 🎯 **Lightweight & Fast** | Engineered for **minimal memory allocations** and **optimized performance**, ensuring your FSMs are efficient even in demanding scenarios. |
+| 🌐 **Seamless Unity Integration** | Utilize **dedicated helper methods** and **clear examples** tailored for Unity's lifecycle, making FSM management a breeze within the engine. |
+| 🔬 **Core API Link** | This Unity integration is **built on the robust [FSM_API Core Library](https://github.com/TrentBest/FSM_API)**, providing a solid, platform-agnostic foundation. |
  
-    📦 Features at a Glance
-    Capability	Description
-    🔄 State Transition Logic	Conditional or forced
+   
+    	
+    
 
-    🎭 Context-Driven Behavior	FSM logic operates on your POCOs
+    
 
-    🧪 Update Control	Process every frame, every Nth frame, or event-driven
+    
 
-    🧯 Error Escalation	Per-instance and per-definition error tracking
+    
 
-    🔁 Runtime Redefinition	FSMs can be redefined while running
+    
 
-    🎯 Lightweight & Fast	Minimal allocations, optimized for performance
+    
 
-    🌐 Unity Integration	Dedicated helper methods and examples for Unity lifecycle
+    
 
 
 🔬 Core API Link	Built on the [FSM_API Core Library](https://github.com/TrentBest/FSM_API/README.md)
