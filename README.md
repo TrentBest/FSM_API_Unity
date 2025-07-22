@@ -74,7 +74,7 @@ FSM_API.Update("MainLoop");
 
 | 🔧 Core Concepts        | Brief Summary                                                    |
 |--------------------------|-----------------------------------------------------------------|
-| FSMBuilder               | Fluently define states, transitions, enter/exit actions.        |
+| [FSMBuilder]([FSMBuilder.md](https://github.com/TrentBest/FSM_API_Unity/blob/master/Assets/TheSingularityWorkshop/FSM_API/Documentation/UserGuide/04_FSM_Builder_Deep_Dive.md))               | Fluently define states, transitions, enter/exit actions.        |
 | FSMHandle                | Runtime instance of an FSM with full control.                   |
 | IStateContext            | Any data model the FSM will operate upon.                       |
 | Processing Groups        | Organize FSMs by update loop or system.                         |
