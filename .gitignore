@@ -49,6 +49,9 @@ ExportedObj/
 *.userprefs
 *.suo
 *.booproj
+*.csproj
+*.unityproj
+*.sln
 
 # Crashlytics build data
 crashlytics-build.properties
@@ -61,13 +64,4 @@ crashlytics-build.properties
 *.apk
 *.aab
 *.app
-
-
-# =============================
-# ✅ Files We WANT to Keep in Git
-# =============================
-
-!FSM_API.sln
-!Assembly-CSharp.csproj
-!Assembly-CSharp-Editor.csproj
 
