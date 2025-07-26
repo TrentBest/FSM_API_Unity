@@ -55,6 +55,7 @@ ExportedObj/
 *.csproj
 *.unityproj
 *.sln
+Packages/
 
 # Crashlytics build data
 crashlytics-build.properties
