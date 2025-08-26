@@ -15,6 +15,6 @@
     "email": "TheSingularityWorkshop@gmail.com"
   },
   "dependencies": {
-    "com.trentbest.fsm_api": "https://github.com/TrentBest/FSM_API_Unity.git#v1.0.8"
+   "com.thesingularityworkshop.fsmapi": "https://github.com/TrentBest/FSM_API_Unity.git#v1.0.8"
   }
 }
