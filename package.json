@@ -1,20 +1,17 @@
 {
-  "name": "com.thesingularityworkshop.fsmapi",
-  "version": "1.0.8",
-  "displayName": "The Singularity Workshop FSM API",
-  "description": "A powerful, lightweight Finite State Machine API for Unity.",
-  "unity": "2022.3",
-  "keywords": [
-    "fsm",
-    "state machine",
-    "ai",
-    "api"
-  ],
-  "author": {
-    "name": "The Singularity Workshop",
-    "email": "TheSingularityWorkshop@gmail.com"
-  },
-  "dependencies": {
-   "com.thesingularityworkshop.fsmapi": "https://github.com/TrentBest/FSM_API_Unity.git#v1.0.8"
-  }
+  "name": "com.thesingularityworkshop.fsmapi",
+  "version": "1.0.8",
+  "displayName": "The Singularity Workshop FSM API",
+  "description": "A powerful, lightweight Finite State Machine API for Unity.",
+  "unity": "2022.3",
+  "keywords": [
+    "fsm",
+    "state machine",
+    "ai",
+    "api"
+  ],
+  "author": {
+    "name": "The Singularity Workshop",
+    "email": "TheSingularityWorkshop@gmail.com"
+  }
 }
