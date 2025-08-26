@@ -1,6 +1,6 @@
 {
   "name": "com.thesingularityworkshop.fsmapi",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "displayName": "The Singularity Workshop FSM API",
   "description": "A powerful, lightweight Finite State Machine API for Unity.",
   "unity": "2022.3",
