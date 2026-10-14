@@ -14,6 +14,9 @@
 
 ---
 
+
+This README follows the Workshop's shared [Documentation Standard](https://github.com/TrentBest/TheSingularityWorkshop.FSM_COS/blob/master/DOCUMENTATION_STANDARD.md), while keeping this repository's own purpose and implementation authoritative.
+
 ## 🔍 Overview
 
 **FSM_API** is a modular, runtime-safe, and fully event-aware Finite State Machine (FSM) system designed to plug directly into **any C# application**—from enterprise software to games, simulations, robotics, or reactive systems.
