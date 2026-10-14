@@ -5,7 +5,7 @@
   </a>
 </p>
 
-# FSM_API (Unity Integration)
+# ✳️ 00 FSM_API (Unity Integration)
 
 **Seamlessly integrate the blazing-fast, software-agnostic Finite State Machine system into your Unity projects.**
 
