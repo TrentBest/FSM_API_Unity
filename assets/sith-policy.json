@@ -1,0 +1,21 @@
+{
+  "repository": "TrentBest/FSM_API_Unity",
+  "policy": "exactly-master-and-development",
+  "required_branches": [
+    "development",
+    "master"
+  ],
+  "actual_branches": [
+    "FSM_API_ErrorReporting",
+    "FinalizingDocumentationForRelease",
+    "SplashScene",
+    "development",
+    "feature/integrate-core-fsm-api",
+    "master"
+  ],
+  "branch_count": 6,
+  "status": "NON-COMPLIANT",
+  "evaluated_at": "2026-11-05T04:40:40Z",
+  "workflow_run": "https://github.com/TrentBest/FSM_API_Unity/actions/runs/41969257227",
+  "triggering_commit": "afcb2d0082ab2a15c74390704fded9c05c7c196c"
+}
