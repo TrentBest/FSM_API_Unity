@@ -7,13 +7,13 @@
 
 # ✳️ 00 FSM_API (Unity Integration)
 
+[![Sith Policy](assets/sith-policy.svg)](https://github.com/TrentBest/FSM_API_Unity/actions/workflows/sith-policy.yml)
+
 **Seamlessly integrate the blazing-fast, software-agnostic Finite State Machine system into your Unity projects.**
 
 > Designed for flexibility. Built for robustness. Ready for anything.
 
-
 ---
-
 
 This README follows the Workshop's shared [Documentation Standard](https://github.com/TrentBest/TheSingularityWorkshop.FSM_COS/blob/master/DOCUMENTATION_STANDARD.md), while keeping this repository's own purpose and implementation authoritative.
 
@@ -131,7 +131,6 @@ The Singularity Workshop — Tools for the curious, the bold, and the systemical
 <img src="https://github.com/user-attachments/assets/b94a9412-29f3-4b55-9d07-ddef3b57e082" width="200">    
 
     Because state shouldn't be a mess.
-
 
 ---
 
