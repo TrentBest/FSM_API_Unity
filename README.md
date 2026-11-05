@@ -7,6 +7,7 @@
 
 # ✳️ 00 FSM_API (Unity Integration)
 
+[![Sith Policy](assets/sith-policy.svg)](https://github.com/TrentBest/FSM_API_Unity/actions/workflows/sith-policy.yml)
 **Seamlessly integrate the blazing-fast, software-agnostic Finite State Machine system into your Unity projects.**
 
 > Designed for flexibility. Built for robustness. Ready for anything.
